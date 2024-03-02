@@ -1,0 +1,58 @@
+.main-section{
+    position: relative;
+    background: url("../../assets/imgs/main-background-1.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 100px;
+    height: 90svh;
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.main-section::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url("../../assets/imgs/main-background-2.png");
+    background: linear-gradient(180deg, rgba(15, 23, 22, 0) 52.45%, #0F1716 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+h1{
+    position: relative;
+    z-index: 3;
+    font-size: 52px;
+}
+
+h3{
+    position: relative;
+    text-align: center;
+    z-index: 3;
+    font-size: 18px;
+}
+
+
+
+.main-coin{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    z-index: 2;
+}
+
+h2{
+    font-size: 50.4px;
+    text-align: center;
+    transform: translateY(-60px);
+}

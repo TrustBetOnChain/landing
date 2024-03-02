@@ -1,0 +1,52 @@
+.payouts{
+    display: flex;
+    margin-top: 100px !important;
+}
+
+.payouts > article{
+    width: 50%;
+}
+
+.payouts > article > h3{
+    font-size: 42px;
+    text-align: left;
+}
+
+.payouts > article > p{
+    margin-top: 135px;
+    font-size: 18px;
+}
+
+.payouts-cards{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    margin-left: 100px;
+}
+
+.payouts-card{
+    background: #FFFFFF0A;
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.payouts-card > h4{
+    color: #88C13C;
+    font-size: 24px;
+
+}
+
+.payouts-card > p{
+    margin-top: 30px;
+}
+
+.payouts-card-img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 108px;
+}
