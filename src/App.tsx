@@ -9,6 +9,7 @@ import { Benefits } from "./components/benefits/benefits";
 import { Payouts } from "./components/payouts/payouts";
 import { HowToStart } from "./components/howtostart/howtostart";
 import { ConnectWallet } from "./components/connectwallet/connectwallet";
+import { TokenDetails } from "./components/tokendetails/tokendetails";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Payouts />
         <HowToStart />
         <ConnectWallet />
+        <TokenDetails />
       </main>
       <Footer />
     </>
