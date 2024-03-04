@@ -1,28 +1,99 @@
-
-
-.swiper {
+.mySwiper {
   width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
+  height: fit-content; /* Высота слайдера */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+ }
+
+
+ 
+ /* Стили для слайдов */
+ .swiper-slide-1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  color: #333;
+padding: 30px;
+  /* height: 560px; */
+  
+   height: 560px;
+  background: #FFFFFF0A;
+  border-radius: 15px;
+  position: relative;
+  backdrop-filter: blur(10px);
+  
+}
+
+/* .swiper-slide-1::before{
+   filter: blur(10px);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  z-index: -1;
+ } */
+ .swiper-slide-1 > h3{
+  text-align: left;
+  z-index: 5;
+  color: white;
+ }
+
+.swiper-slide-1 > ul{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+ .swiper-slide-1 > ul > li{
+  display: flex;
   align-items: center;
-}
+  font-size: 17px;
 
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  /* flex-direction: column; */
+ }
 
-.swiper-slide-1{
-    color: black;
+ .swiper-slide-1 > ul > li > p{
+  margin-left: 10px;
+ }
+
+
+
+ 
+ /* Стили для кнопки "next" */
+ button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+ 
+ button:hover {
+  background-color: #0056b3;
+ }
+ 
+ /* Стили для пагинации */
+ .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background-color: #000;
+ }
+ 
+ .swiper-pagination-bullet-active {
+  background-color: #007bff;
+ }
+
+.swiper-line{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, #259945 50%, rgba(37, 153, 69, 0) 100%);
+
 }

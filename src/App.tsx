@@ -12,6 +12,7 @@ import { ConnectWallet } from "./components/connectwallet/connectwallet";
 import { TokenDetails } from "./components/tokendetails/tokendetails";
 import { ContactUs } from "./components/contactus/contactus";
 import { Roadmap } from "./components/roadmap/roadmap";
+import { TBetModes } from "./components/trustbetmodes/tbetmodes";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Cards />
         <Future />
         <Benefits />
+        <TBetModes />
         <Payouts />
         <HowToStart />
         <Roadmap />

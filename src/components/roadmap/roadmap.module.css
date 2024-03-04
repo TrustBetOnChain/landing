@@ -1,0 +1,53 @@
+.section{
+    display: flex;
+    justify-content: end;
+}
+
+.roadmap-bg{
+    position: absolute;
+        background: url("../../assets/imgs/roadma-bg-2.png"), 
+                        linear-gradient(180deg, #0F1716 0%, rgba(15, 23, 22, 0.893738) 15%, rgba(15, 23, 22, 0) 91.45%),
+                        linear-gradient(360deg, #0F1716 0%, rgba(15, 23, 22, 0.893738) 5.44%, rgba(15, 23, 22, 0) 33.18%);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    object-fit: scale-down;
+    
+    height: 130%;
+  }
+
+.roadmap-bg::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background:linear-gradient(180deg, #0F1716 0%, rgba(15, 23, 22, 0.893738) 15%, rgba(15, 23, 22, 0) 91.45%) ;
+    top: 0;
+    left: 0;
+}
+
+.roadmap-bg::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background:linear-gradient(180deg, #0F1716 0%, rgba(15, 23, 22, 0.893738) 15%, rgba(15, 23, 22, 0) 91.45%) ;
+    bottom: 0;
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.roadmap-title{
+    max-width: 1200px;
+    width: 100%;
+    justify-content: space-between;
+    
+    order: -1;
+    display: flex;
+}
+
+.roadmap-title > h2{
+    transform: none;
+}

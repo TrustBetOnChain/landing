@@ -1,14 +1,20 @@
 import {Swiper, SwiperSlide} from "swiper/react"
 import { FreeMode } from 'swiper/modules';
-import { useSwiper } from "swiper/react";
+import s from "./roadmap.module.css"
+import 'swiper/css';
 import "./swiper.css"
+import Ok from "../../assets/imgs/ok.svg"
+import Loading from "../../assets/imgs/loading.svg"
+import { SwiperButtons } from "./swiperbuttons";
 export const Roadmap = () =>{
-    const swiper = useSwiper()
     return(
-        <section>
-            <button onClick={() => swiper.slideNext()}>next</button>
-            <Swiper
-        slidesPerView={3}
+      <section className={s["section"]} style={{position: "relative"}}>
+      <div className={s["roadmap-bg"]}></div>
+        <div className="roadmap-container">
+         
+      <Swiper
+      
+        slidesPerView={2.5}
         spaceBetween={30}
         freeMode={true}
         pagination={{
@@ -17,16 +23,146 @@ export const Roadmap = () =>{
         modules={[FreeMode]}
         className="mySwiper"
       >
-        <SwiperSlide className="swiper-slide-1">Slide 1</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 3</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 4</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 2</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 5</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 6</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 7</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 8</SwiperSlide>
-        <SwiperSlide className="swiper-slide-1">Slide 9</SwiperSlide>
+         <div className={s["roadmap-title"]}>
+            <h2>TrustBet On-Chain's roadmap</h2>
+            <SwiperButtons />
+            
+          </div>
+        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
+          <h3>Q1 2024</h3>
+          <div className="swiper-line">
+           
+          </div>
+          <ul>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Angel investor round. (Locked for 2 years from TGE)</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Obtaining DAO LLC</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Obtaining gaming license.</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>On-boarding team members including consultants.</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Seed round completion</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Pre-sale website construction.</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Assure DEFI KYC verification.</p>
+              </li>
+              <li>
+                <img src={Ok} alt="" />
+                <p>Launch pre-sale website.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Marketing for presale</p>
+              </li>
+            </ul>
+        </SwiperSlide>
+        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
+          <h3>Q2 2024</h3>
+          <div className="swiper-line">
+           
+          </div>
+          <ul>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Main website construction and launch in beta phase, commence mobile app construction.Loading</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Audit of Website and Mobile App.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Incorporate staking facility into DAO for passive income.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Marketing for continued presale tier</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>New presale tier price rise</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Launch of website and DAPP for mobile using mainwebsite UI.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Marketing for next presale tier</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Announce Tier 1 Exchange listing.</p>
+              </li>
+            </ul>
+        </SwiperSlide>
+        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
+          <h3>Q3 2024</h3>
+          <div className="swiper-line">
+           
+          </div>
+          <ul>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Register with Coin Gecko.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Additional exchange listings.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Marketing for casino.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Addition of multiple new UI functionality</p>
+              </li>
+            </ul>
+        </SwiperSlide>
+        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
+          <h3>Q4 2024</h3>
+          <div className="swiper-line">
+           
+          </div>
+          <ul>
+          <li>
+                <img src={Loading} alt="" />
+                <p>Commence work on NFT marketplace.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>Website update with NFT marketplace functionality.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>First voting proposal for TBET DAO members.</p>
+              </li>
+              <li>
+                <img src={Loading} alt="" />
+                <p>TrustBet On-Chain released as a full Autonomous Organization</p>
+              </li>
+            </ul>
+        </SwiperSlide>
+        
       </Swiper>
-        </section>
+        </div>
+      </section>
     )
 }
