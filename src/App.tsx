@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
@@ -11,24 +10,26 @@ import { HowToStart } from "./components/howtostart/howtostart";
 import { ConnectWallet } from "./components/connectwallet/connectwallet";
 import { TokenDetails } from "./components/tokendetails/tokendetails";
 import { ContactUs } from "./components/contactus/contactus";
+import { WalletConnectProvider } from "./WalletConnectProvider";
 
 function App() {
-
   return (
     <>
-      <Header />
-      <main>
-        <Main />
-        <Cards />
-        <Future />
-        <Benefits />
-        <Payouts />
-        <HowToStart />
-        <ConnectWallet />
-        <TokenDetails />
-        <ContactUs />
-      </main>
-      <Footer />
+      <WalletConnectProvider>
+        <Header />
+        <main>
+          <Main />
+          <Cards />
+          <Future />
+          <Benefits />
+          <Payouts />
+          <HowToStart />
+          <ConnectWallet />
+          <TokenDetails />
+          <ContactUs />
+        </main>
+        <Footer />
+      </WalletConnectProvider>
     </>
   );
 }
