@@ -11,6 +11,7 @@ import { HowToStart } from "./components/howtostart/howtostart";
 import { ConnectWallet } from "./components/connectwallet/connectwallet";
 import { TokenDetails } from "./components/tokendetails/tokendetails";
 import { ContactUs } from "./components/contactus/contactus";
+import { Roadmap } from "./components/roadmap/roadmap";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Benefits />
         <Payouts />
         <HowToStart />
+        <Roadmap />
         <ConnectWallet />
         <TokenDetails />
         <ContactUs />
