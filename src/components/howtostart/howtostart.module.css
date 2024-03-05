@@ -1,5 +1,5 @@
 .how-to-start{
-    display: flex;
+    /* display: flex; */
     margin-top: 150px !important;
 }
 
@@ -44,9 +44,20 @@ p > a{
     left: 0;
 }
 
+.article{
+    position: relative;
+}
+
 .how-to-start-bets{
     position: absolute;
     bottom: 0;
     right: -10%;
 }
 
+@media (max-width: 1300px) {
+    .cards-wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}

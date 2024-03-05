@@ -88,3 +88,15 @@ max-width: 190px;
 .benefits-footer-side > h5{
     font-size: 24px;
 }
+
+@media (max-width: 790px) {
+    .benefits-cards{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 550px) {
+    .benefits-footer{
+        flex-direction: column;
+    }
+}
