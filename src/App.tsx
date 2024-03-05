@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
@@ -13,26 +12,28 @@ import { TokenDetails } from "./components/tokendetails/tokendetails";
 import { ContactUs } from "./components/contactus/contactus";
 import { Roadmap } from "./components/roadmap/roadmap";
 import { TBetModes } from "./components/trustbetmodes/tbetmodes";
+import { WalletConnectProvider } from "./WalletConnectProvider";
 
 function App() {
-
   return (
     <>
-      <Header />
-      <main>
-        <Main />
-        <Cards />
-        <Future />
-        <Benefits />
-        <TBetModes />
-        <Payouts />
-        <HowToStart />
-        <Roadmap />
-        <ConnectWallet />
-        <TokenDetails />
-        <ContactUs />
-      </main>
-      <Footer />
+      <WalletConnectProvider>
+        <Header />
+        <main>
+          <Main />
+          <Cards />
+          <Future />
+          <Benefits />
+          <TBetModes />
+          <Payouts />
+          <HowToStart />
+          <Roadmap />
+          <ConnectWallet />
+          <TokenDetails />
+          <ContactUs />
+        </main>
+        <Footer />
+      </WalletConnectProvider>
     </>
   );
 }
