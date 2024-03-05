@@ -90,5 +90,13 @@
     cursor: pointer;
 }
 
-
+@media (max-width: 900px) {
+    .contactus{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .article,.aside{
+        width: 100%;
+    }
+}
 

@@ -111,3 +111,37 @@
     text-align: center;
     margin-top: 40px;
 }
+
+@media (max-width: 1010px) {
+    .trustbet-modes-cards{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .trustbet-modes-card > img{
+        width: 300px;
+    }
+
+    .trustbet-modes-card-2{
+        order: 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .trustbet-modes-cards{
+        flex-direction: column;
+        /* width: fit-content; */
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        gap: 0;
+    }
+    .trustbet-modes-card{
+        width: fit-content;
+        margin-top: 30px;
+    }
+    .button{
+        display: none;
+    }
+}
