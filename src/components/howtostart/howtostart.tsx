@@ -3,12 +3,14 @@ import s from "./howtostart.module.css";
 import Phone from "../../assets/imgs/phone.webp"
 import Device from "../../assets/imgs/how-to-start-2.webp"
 import Bets from "../../assets/imgs/how-to-start-3.webp"
+import Final from "../../assets/imgs/how-to-start.png"
 
 export const HowToStart = () => {
     return (
         <section className={`${s["how-to-start"]} container`}>
+            <h2>How to Start</h2>
+            <div className={s["cards-wrapper"]}>
             <div className={s["how-to-start-title"]}>
-                <h2>How to Start</h2>
                 <div className={s["how-to-start-cards"]}>
                 <div className={s["how-to-start-card"]}>
                     <h3>1. Connecting your wallet</h3>
@@ -31,14 +33,10 @@ export const HowToStart = () => {
                 </div>
             </div>
             </div>
-
-          
-
-            <article>
-                <img className={s["how-to-start-device"]} src={Bets} alt="" />
-                <img className={s["how-to-start-phone"]} src={Phone} alt="" />
-                <img className={s["how-to-start-bets"]} src={Device} alt="" />
+            <article className={s["article"]}>
+                <img src={Final} alt="" />
             </article>
+            </div>
         </section>
     );
 };

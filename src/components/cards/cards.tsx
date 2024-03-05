@@ -7,8 +7,8 @@ import Card2 from "../../assets/imgs/card-img-2.png"
 export const Cards = () => {
     return (
         <section>
-            <h2 className={s["section-title"]}>TrustBet On-Chain is a gamechanger in the online<br/> iGaming industry designed to transform the<br/> conventional iGaming experience.</h2>
-            <h3 className={s["section-subtitle"]}>Discover the groundbreaking potential of TrustBet On-Chain (TBET), where token holders are catapulted into a<br/> realm of thrilling financial possibilities! With TBET, you're not just an investor; you're a pivotal decision-maker,<br/> steering the DAO with your vote. Imagine a world where half of a bustling casino's profits flow directly into your<br/> wallet. That's right, 50% of casino profits are distributed as passive income exclusively to staked TBET holders<br/> within the DAO, revolutionizing the way you earn.</h3>
+            <h2 className={s["section-title"]}>TrustBet On-Chain is a gamechanger in the online iGaming industry designed to transform the conventional iGaming experience.</h2>
+            <h3 className={s["section-subtitle"]}>Discover the groundbreaking potential of TrustBet On-Chain (TBET), where token holders are catapulted into a realm of thrilling financial possibilities! With TBET, you're not just an investor; you're a pivotal decision-maker, steering the DAO with your vote. Imagine a world where half of a bustling casino's profits flow directly into your wallet. That's right, 50% of casino profits are distributed as passive income exclusively to staked TBET holders within the DAO, revolutionizing the way you earn.</h3>
             <div className={s["cards-wrapper"]}>
                 <div className={s["card"]}>
                     <img className={s["card-img"]} src={Card1} alt="" />

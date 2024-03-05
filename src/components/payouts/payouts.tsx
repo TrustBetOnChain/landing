@@ -7,7 +7,7 @@ export const Payouts = () => {
     return (
         <section className={`${s.payouts} container`}>
             <article>
-                <h3>Immediate<br/> Transparent Payouts<br/> and<strong> Web 3.0 Model</strong></h3>
+                <h3>Immediate Transparent Payouts and<strong> Web 3.0 Model</strong></h3>
                 <p>
                     Our organization, being a Decentralized Autonomous Organization (DAO), enables auditing through direct examination of the DAO and the open ledger on the blockchain. 
                     <br/><br/>

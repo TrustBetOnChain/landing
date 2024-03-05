@@ -1,7 +1,7 @@
 
 import  s  from "./benefits.module.css";
 import BenefitCard1 from "../../assets/imgs/benefit-img-1.png"
-import BenefitCard2 from "../../assets/imgs/benefit-icon-2.png"
+import BenefitCard2 from "../../assets/imgs/benefit-img-2.png"
 import BenefitCard3 from "../../assets/imgs/benefit-img-3.png"
 import BenefitCard4 from "../../assets/imgs/benefit-img-4.png"
 import Loading from "../../assets/imgs/loading.png"

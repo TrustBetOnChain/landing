@@ -38,6 +38,16 @@ h2{
 }
 
 .roadmap-container{
-    max-width: 100%;
-    
+    max-width: 100%;   
+}
+
+
+@media (max-width: 820px) {
+    section{
+        /* padding: 0 20px; */
+    }
+
+    .roadmap-container{
+        padding-left: 20px;
+    }
 }

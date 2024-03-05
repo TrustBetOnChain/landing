@@ -6,7 +6,24 @@ import "./swiper.css"
 import Ok from "../../assets/imgs/ok.svg"
 import Loading from "../../assets/imgs/loading.svg"
 import { SwiperButtons } from "./swiperbuttons";
+import { useState, useEffect } from "react";
 export const Roadmap = () =>{
+  const [slidesPerView, setSlidesPerView] = useState(2.5);
+
+ useEffect(() => {
+    const updateSlidesPerView = () => {
+      if (window.innerWidth <= 820 ) {
+        setSlidesPerView(1.5);
+      } else {
+        setSlidesPerView(2.5);
+      }
+    };
+
+    updateSlidesPerView(); 
+    window.addEventListener('resize', updateSlidesPerView);
+
+    return () => window.removeEventListener('resize', updateSlidesPerView);
+ }, []);
     return(
       <section className={s["section"]} style={{position: "relative"}}>
       <div className={s["roadmap-bg"]}></div>
@@ -14,7 +31,7 @@ export const Roadmap = () =>{
          
       <Swiper
       
-        slidesPerView={2.5}
+        slidesPerView={slidesPerView}
         spaceBetween={30}
         freeMode={true}
         pagination={{

@@ -1,5 +1,5 @@
 .how-to-start{
-    display: flex;
+    /* display: flex; */
     margin-top: 150px !important;
 }
 
@@ -44,9 +44,41 @@ p > a{
     left: 0;
 }
 
+.article{
+    position: relative;
+}
+
 .how-to-start-bets{
     position: absolute;
     bottom: 0;
     right: -10%;
 }
 
+.cards-wrapper{
+    display: flex;
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .cards-wrapper{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .article{
+        display: flex;
+        justify-content: center;
+    }
+
+    .how-to-start-title{
+        padding: 0 20px;
+    }
+
+    .how-to-start > h2{
+        font-size: 32px;
+        text-align: left;
+        margin-left: 20px;
+    }
+}
