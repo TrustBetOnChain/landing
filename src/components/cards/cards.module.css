@@ -18,6 +18,17 @@
     padding: 20px;
 }
 
+.section-title{
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.section-subtitle{
+    width: 1100px;
+    font-weight: normal;
+    margin: 0 auto;
+}
+
 .card-img{
     position: absolute;
     top: -30%;
@@ -27,6 +38,24 @@
 
 .card > p{
     align-self: self-end;
+}
+
+@media (max-width: 1140px) {
+    .section-subtitle,.section-title{
+        width: auto;
+    }
+}
+
+@media (max-width: 820px) {
+    .section-title{
+        font-size: 27px;
+        padding: 0 20px;
+    }
+
+    .section-subtitle{
+        font-size: 16px;
+        padding: 0 20px;
+    }
 }
 
 @media (max-width: 720px) {

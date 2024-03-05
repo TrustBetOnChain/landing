@@ -55,6 +55,7 @@
 @media (max-width: 1000px) {
     .payouts{
         flex-direction: column;
+        gap: 20px;
     }
 
     .payouts > article{
@@ -64,5 +65,15 @@
     .payouts-cards{
         width: 100%;
         margin: 0;
+    }
+}
+
+@media (max-width: 820px) {
+    .payouts{
+        padding: 0 20px;
+    }
+
+    .payouts > article > h3{
+        width: 70%;
     }
 }

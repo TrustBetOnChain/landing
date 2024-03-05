@@ -3,6 +3,7 @@ import s from "./howtostart.module.css";
 import Phone from "../../assets/imgs/phone.webp"
 import Device from "../../assets/imgs/how-to-start-2.webp"
 import Bets from "../../assets/imgs/how-to-start-3.webp"
+import Final from "../../assets/imgs/how-to-start.png"
 
 export const HowToStart = () => {
     return (
@@ -33,9 +34,7 @@ export const HowToStart = () => {
             </div>
             </div>
             <article className={s["article"]}>
-                <img className={s["how-to-start-device"]} src={Bets} alt="" />
-                <img className={s["how-to-start-phone"]} src={Phone} alt="" />
-                <img className={s["how-to-start-bets"]} src={Device} alt="" />
+                <img src={Final} alt="" />
             </article>
             </div>
         </section>
