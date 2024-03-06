@@ -1,7 +1,4 @@
 import s from "./howtostart.module.css";
-import Phone from "../../assets/imgs/phone.webp";
-import Device from "../../assets/imgs/how-to-start-2.webp";
-import Bets from "../../assets/imgs/how-to-start-3.webp";
 import Final from "../../assets/imgs/how-to-start.png";
 import { PageSection } from "../../page-section";
 

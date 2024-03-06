@@ -1,65 +1,65 @@
-
-.cards-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 100px;
-    gap: 40px;
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 100px;
+  gap: 40px;
 }
 
-.card{
-    position: relative;
-    background: #FFFFFF0A;
-    border-radius: 15px;
+.card {
+  position: relative;
+  background: #ffffff0a;
+  border-radius: 15px;
 
-    display: flex;
-    width: 300px;
-    height: 280px;
-    padding: 20px;
+  display: flex;
+  width: 300px;
+  height: 280px;
+  padding: 20px;
 }
 
-.section-title{
-    width: 1100px;
-    margin: 0 auto;
+.section-title {
+  width: 1100px;
+  margin: 0 auto;
 }
 
-.section-subtitle{
-    width: 1100px;
-    font-weight: normal;
-    margin: 0 auto;
+.section-subtitle {
+  width: 1100px;
+  font-weight: normal;
+  margin: 0 auto;
 }
 
-.card-img{
-    position: absolute;
-    top: -30%;
-    left: 50%;
-    transform: translateX(-50%);
+.card-img {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.card > p{
-    align-self: self-end;
+.card > p {
+  align-self: self-end;
 }
 
 @media (max-width: 1140px) {
-    .section-subtitle,.section-title{
-        width: auto;
-    }
+  .section-subtitle,
+  .section-title {
+    width: auto;
+  }
 }
 
 @media (max-width: 820px) {
-    .section-title{
-        font-size: 27px;
-        padding: 0 20px;
-    }
+  .section-title {
+    font-size: 27px;
+    padding: 0 20px;
+  }
 
-    .section-subtitle{
-        font-size: 16px;
-        padding: 0 20px;
-    }
+  .section-subtitle {
+    font-size: 16px;
+    padding: 0 20px;
+  }
 }
 
 @media (max-width: 720px) {
-    .cards-wrapper{
-        gap: 100px;
-    }
+  .cards-wrapper {
+    gap: 100px;
+  }
 }
