@@ -1,4 +1,3 @@
-import React from "react";
 import s from "./howtostart.module.css";
 import Phone from "../../assets/imgs/phone.webp";
 import Device from "../../assets/imgs/how-to-start-2.webp";

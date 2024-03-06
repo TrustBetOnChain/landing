@@ -1,11 +1,9 @@
-import ConnectWall from "../../assets/imgs/connect-wallet.svg"
-import s from "./footer.module.css"
+import { ConnectWalletButton } from "../connectwallet/connect-wallet-button";
+import s from "./footer.module.css";
 export const Footer = () => {
-    return(
-        <footer>
-            <button className={s["button"]}>Connect Wallet
-                <img src={ConnectWall} alt="" />
-            </button>
-        </footer>
-    )
+  return (
+    <footer>
+      <ConnectWalletButton className={s["button"]} />
+    </footer>
+  );
 };

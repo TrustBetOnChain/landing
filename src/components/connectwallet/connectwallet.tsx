@@ -1,27 +1,8 @@
 import s from "./connectwallet.module.css";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import Info from "../../assets/imgs/info.webp";
-import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { ConnectWalletButton } from "./connect-wallet-button";
 
 export const ConnectWallet = () => {
-  const { connected, connecting, disconnect } = useWallet();
-  const { setVisible } = useWalletModal();
-
-  const connectWalletButtonText = () => {
-    if (connecting) return "Connecting";
-    if (connected) return "Disconnect";
-    return "Connect Wallet";
-  };
-
-  const onConnectButtonClick = () => {
-    if (connected) {
-      disconnect();
-    } else {
-      setVisible(true);
-    }
-  };
-
   return (
     <section className={`${s.info} container`}>
       <img src={Info} alt="" />
@@ -34,10 +15,7 @@ export const ConnectWallet = () => {
         <br /> equilibrium in the digital iGaming realm. Be part of this
         <br /> exciting journey as we redefine the iGaming experience
       </p>
-      <button onClick={onConnectButtonClick} className="connect-wallet-btn">
-        {connectWalletButtonText()}
-        <img src={ConnectWalletImg} alt="" />
-      </button>
+      <ConnectWalletButton className="connect-wallet-btn" />
     </section>
   );
 };

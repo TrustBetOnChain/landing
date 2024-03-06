@@ -1,56 +1,56 @@
-import {Swiper, SwiperSlide} from "swiper/react"
-import { FreeMode } from 'swiper/modules';
-import s from "./roadmap.module.css"
-import 'swiper/css';
-import "./swiper.css"
-import Ok from "../../assets/imgs/ok.svg"
-import Loading from "../../assets/imgs/loading.svg"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode } from "swiper/modules";
+import s from "./roadmap.module.css";
+import "swiper/css";
+import "./swiper.css";
+import Ok from "../../assets/imgs/ok.svg";
+import Loading from "../../assets/imgs/loading.svg";
 import { SwiperButtons } from "./swiperbuttons";
 import { useState, useEffect } from "react";
-export const Roadmap = () =>{
+import { PageSection } from "../../page-section";
+export const Roadmap = () => {
   const [slidesPerView, setSlidesPerView] = useState(2.5);
 
- useEffect(() => {
+  useEffect(() => {
     const updateSlidesPerView = () => {
-      if (window.innerWidth <= 820 ) {
+      if (window.innerWidth <= 820) {
         setSlidesPerView(1.5);
       } else {
         setSlidesPerView(2.5);
       }
     };
 
-    updateSlidesPerView(); 
-    window.addEventListener('resize', updateSlidesPerView);
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
 
-    return () => window.removeEventListener('resize', updateSlidesPerView);
- }, []);
-    return(
-      <section className={s["section"]} style={{position: "relative"}}>
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, []);
+  return (
+    <section
+      id={PageSection.ROADMAP}
+      className={s["section"]}
+      style={{ position: "relative" }}
+    >
       <div className={s["roadmap-bg"]}></div>
-        <div className="roadmap-container">
-         
-      <Swiper
-      
-        slidesPerView={slidesPerView}
-        spaceBetween={30}
-        freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode]}
-        className="mySwiper"
-      >
-         <div className={s["roadmap-title"]}>
+      <div className="roadmap-container">
+        <Swiper
+          slidesPerView={slidesPerView}
+          spaceBetween={30}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode]}
+          className="mySwiper"
+        >
+          <div className={s["roadmap-title"]}>
             <h2>TrustBet On-Chain's roadmap</h2>
             <SwiperButtons />
-            
           </div>
-        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
-          <h3>Q1 2024</h3>
-          <div className="swiper-line">
-           
-          </div>
-          <ul>
+          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+            <h3>Q1 2024</h3>
+            <div className="swiper-line"></div>
+            <ul>
               <li>
                 <img src={Ok} alt="" />
                 <p>Angel investor round. (Locked for 2 years from TGE)</p>
@@ -88,16 +88,17 @@ export const Roadmap = () =>{
                 <p>Marketing for presale</p>
               </li>
             </ul>
-        </SwiperSlide>
-        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
-          <h3>Q2 2024</h3>
-          <div className="swiper-line">
-           
-          </div>
-          <ul>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+            <h3>Q2 2024</h3>
+            <div className="swiper-line"></div>
+            <ul>
               <li>
                 <img src={Loading} alt="" />
-                <p>Main website construction and launch in beta phase, commence mobile app construction.Loading</p>
+                <p>
+                  Main website construction and launch in beta phase, commence
+                  mobile app construction.Loading
+                </p>
               </li>
               <li>
                 <img src={Loading} alt="" />
@@ -117,7 +118,9 @@ export const Roadmap = () =>{
               </li>
               <li>
                 <img src={Loading} alt="" />
-                <p>Launch of website and DAPP for mobile using mainwebsite UI.</p>
+                <p>
+                  Launch of website and DAPP for mobile using mainwebsite UI.
+                </p>
               </li>
               <li>
                 <img src={Loading} alt="" />
@@ -128,13 +131,11 @@ export const Roadmap = () =>{
                 <p>Announce Tier 1 Exchange listing.</p>
               </li>
             </ul>
-        </SwiperSlide>
-        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
-          <h3>Q3 2024</h3>
-          <div className="swiper-line">
-           
-          </div>
-          <ul>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+            <h3>Q3 2024</h3>
+            <div className="swiper-line"></div>
+            <ul>
               <li>
                 <img src={Loading} alt="" />
                 <p>Register with Coin Gecko.</p>
@@ -152,14 +153,12 @@ export const Roadmap = () =>{
                 <p>Addition of multiple new UI functionality</p>
               </li>
             </ul>
-        </SwiperSlide>
-        <SwiperSlide style={{width: '500px'}} className="swiper-slide-1">
-          <h3>Q4 2024</h3>
-          <div className="swiper-line">
-           
-          </div>
-          <ul>
-          <li>
+          </SwiperSlide>
+          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+            <h3>Q4 2024</h3>
+            <div className="swiper-line"></div>
+            <ul>
+              <li>
                 <img src={Loading} alt="" />
                 <p>Commence work on NFT marketplace.</p>
               </li>
@@ -173,13 +172,14 @@ export const Roadmap = () =>{
               </li>
               <li>
                 <img src={Loading} alt="" />
-                <p>TrustBet On-Chain released as a full Autonomous Organization</p>
+                <p>
+                  TrustBet On-Chain released as a full Autonomous Organization
+                </p>
               </li>
             </ul>
-        </SwiperSlide>
-        
-      </Swiper>
-        </div>
-      </section>
-    )
-}
+          </SwiperSlide>
+        </Swiper>
+      </div>
+    </section>
+  );
+};
