@@ -52,5 +52,6 @@ h2 {
 
   .roadmap-container {
     padding-left: 20px;
+    overflow-x: hidden;
   }
 }

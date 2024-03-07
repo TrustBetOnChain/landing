@@ -56,7 +56,7 @@ export const TokenDetails = () => {
                 Following this, we will transition to the second phase to
                 accurately reflect our developmental progress.
                 <br /> <br />
-                Current Stage Price - Please note, as our circulating supply is
+                <span className={s["green"]}>Current Stage Price</span> - Please note, as our circulating supply is
                 significantly smaller than most projects and capped at 100
                 million, with an initial circulating supply of 55 million, 30
                 million to treasury and liquidity and 15 million locked in

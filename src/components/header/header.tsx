@@ -4,7 +4,7 @@ import { PageSection } from "../../page-section";
 
 export const Header = () => {
   return (
-    <header>
+    <header className={s["header"]}>
       <nav>
         <ul className={s["nav-list"]}>
           <li className={s["nav-item"]}>

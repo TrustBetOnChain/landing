@@ -136,6 +136,11 @@
     font-size: 24px;
   }
 
+  .t-bet-bg{
+    background-size: auto;
+    height: 100%;
+  }
+
   .trustbet-modes-card {
     margin: 0;
   }
