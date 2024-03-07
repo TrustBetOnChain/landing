@@ -1,102 +1,101 @@
-.contactus{
-    background: #0B1211;
-    padding: 30px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px !important;
-    margin-bottom: 150px !important;
+.contactus {
+  background: #0b1211;
+  padding: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px !important;
+  margin-bottom: 150px !important;
 }
 
-.aside{
-    width: 50%;
-    margin-top: 20px;
+.aside {
+  width: 50%;
+  margin-top: 20px;
 }
 
-.aside-header{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 70%;
+.aside-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
 }
 
-.aside-header > img{
-    width: fit-content;
+.aside-header > img {
+  width: fit-content;
 }
 
-.aside-header > div{
-    display: flex;
-    gap: 20px;
+.aside-header > div {
+  display: flex;
+  gap: 20px;
 }
 
-.aside-header > div > a{
-    color: #88C13C;
-    font-size: 20px;
+.aside-header > div > a {
+  color: #88c13c;
+  font-size: 20px;
 }
 
-.aside-links{
-    margin-top: 30px;
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
+.aside-links {
+  margin-top: 30px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
 }
 
-.aside-links > p{
-    display: flex;
-    gap: 10px;
-    color: #FFFFFF;
-
+.aside-links > p {
+  display: flex;
+  gap: 10px;
+  color: #ffffff;
 }
 
-.aside-socials{
-    margin-top: 20px;
+.aside-socials {
+  margin-top: 20px;
 }
 
-.article{
-    width: 40%;
+.article {
+  width: 40%;
 }
 
-.title{
-    transform: none;    
-    margin-top: 20px;
+.title {
+  transform: none;
+  margin-top: 20px;
 }
 
-.form{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 30px;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
 }
 
-.input{
-    padding: 25px 30px;
-    background: #0F1716;
-    border: 1px solid #353535;
-    border-radius: 20px;
-    font-size: 18px;
+.input {
+  padding: 25px 30px;
+  background: #0f1716;
+  border: 1px solid #353535;
+  border-radius: 20px;
+  font-size: 18px;
 }
 
-.input::-moz-input-placeholder{
-    font-size: 18px;
-    color: white;
+.input::-moz-input-placeholder {
+  font-size: 18px;
+  color: white;
 }
 
-.button{
-    padding: 25px 30px;
-    background: linear-gradient(180deg, #219653 0%, #299C35 100%);
-    border-radius: 20px;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
+.button {
+  padding: 25px 30px;
+  background: linear-gradient(180deg, #219653 0%, #299c35 100%);
+  border-radius: 20px;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 900px) {
-    .contactus{
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-    .article,.aside{
-        width: 100%;
-    }
+  .contactus {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .article,
+  .aside {
+    width: 100%;
+  }
 }
-

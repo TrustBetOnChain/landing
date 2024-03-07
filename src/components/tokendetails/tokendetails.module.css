@@ -1,140 +1,135 @@
-.token-details{
-    background: #0B1211;
-    padding: 30px;
-    margin-top: 150px !important;
-    border-radius: 15px;
+.token-details {
+  background: #0b1211;
+  padding: 30px;
+  margin-top: 150px !important;
+  border-radius: 15px;
 }
 
-.token-title{
-    transform: none;
+.token-title {
+  transform: none;
 }
 
-.token-details-header-card{
-    background: #FFFFFF0A;
-    border-radius: 15px;
-
+.token-details-header-card {
+  background: #ffffff0a;
+  border-radius: 15px;
 }
 
-.token-details-wrapper{
-    margin-top: 40px;
-    display: flex;
-    gap: 20px;
-    border-radius: 15px;
+.token-details-wrapper {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  border-radius: 15px;
 }
 
-.token-details-wrapper > aside,article{
-    width: 50%;
+.token-details-wrapper > aside,
+article {
+  width: 50%;
 }
 
-.token-details-header-cards{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
-
+.token-details-header-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
 }
 
-.token-details-header-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /* width: 42%; */
-    height: 100px;
-    padding: 20px;
-    border-radius: 15px;
+.token-details-header-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* width: 42%; */
+  height: 100px;
+  padding: 20px;
+  border-radius: 15px;
 }
 
-.card-head{
-    display: flex;
-    justify-content: space-between;
+.card-head {
+  display: flex;
+  justify-content: space-between;
 }
 
-.card-head > h3{
-    color: #8b8f8f;
-
+.card-head > h3 {
+  color: #8b8f8f;
 }
 
-.token-details-footer{
-    margin-top: 10px;
-    padding: 20px;
-    background: #FFFFFF0A;
-    border-radius: 15px;
+.token-details-footer {
+  margin-top: 10px;
+  padding: 20px;
+  background: #ffffff0a;
+  border-radius: 15px;
 }
 
-.token-details-footer > h3{
-    text-align: left;
-    color: #8b8f8f;
-    margin-bottom: 30px;
+.token-details-footer > h3 {
+  text-align: left;
+  color: #8b8f8f;
+  margin-bottom: 30px;
 }
 
-.article{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    
+.article {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.article-footer{
-    display: flex;
-    gap: 20px;
+.article-footer {
+  display: flex;
+  gap: 20px;
 }
 
-.article-footer > aside > h3{
-    text-align: left;
-    margin-top: 30px;
+.article-footer > aside > h3 {
+  text-align: left;
+  margin-top: 30px;
 }
 
-.article-footer > aside > p{
-    margin-top:  30px;
+.article-footer > aside > p {
+  margin-top: 30px;
 }
 
-
-.article > div > p > span{
-    font-weight: bold;
+.article > div > p > span {
+  font-weight: bold;
 }
 
-.text{
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
+.text {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
 }
 
-.article-footer > aside > h4{
-    font-weight: normal;
-    color: #8b8f8f;
-    margin-top: 140px;
+.article-footer > aside > h4 {
+  font-weight: normal;
+  color: #8b8f8f;
+  margin-top: 140px;
 }
-.tbet-gif{
-    width: 234px;
-    height: 348px;
-    border-radius: 15px;
- 
+.tbet-gif {
+  width: 234px;
+  height: 348px;
+  border-radius: 15px;
 }
-
 
 @media (max-width: 1000px) {
-    .token-details-wrapper{
-        flex-direction: column;
-        align-items: center;
-    }
+  .token-details-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .token-details-wrapper > aside,article{
-        width: 100%;
-    }
+  .token-details-wrapper > aside,
+  article {
+    width: 100%;
+  }
 }
 
 @media (max-width: 550px) {
-    .token-details-header-cards{
-        display: flex;
-        flex-direction: column;
-    }
+  .token-details-header-cards {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .article-footer{
-        flex-direction: column;
-        align-items: center;
-    }
+  .article-footer {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .article-footer > aside > h4{
-        margin: 0;
-    }
+  .article-footer > aside > h4 {
+    margin: 0;
+  }
 }

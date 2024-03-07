@@ -1,84 +1,84 @@
-.how-to-start{
-    /* display: flex; */
-    margin-top: 150px !important;
+.how-to-start {
+  /* display: flex; */
+  margin-top: 150px !important;
 }
 
-.how-to-start > article{
-    position: relative;
+.how-to-start > article {
+  position: relative;
 }
 
-.how-to-start-title > h2{
-    text-align: left;
+.how-to-start-title > h2 {
+  text-align: left;
 }
 
-.how-to-start-cards{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.how-to-start-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.how-to-start-card{
-    background: #FFFFFF0A;
-    padding: 20px;
-    border-radius: 15px;
+.how-to-start-card {
+  background: #ffffff0a;
+  padding: 20px;
+  border-radius: 15px;
 }
 
-.how-to-start-card > h3{
-    text-align: left;
-    font-size: 24px;
-    font-weight: normal;
-    margin-bottom: 30px;
+.how-to-start-card > h3 {
+  text-align: left;
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 30px;
 }
 
-.how-to-start-card > ul > li{
-    list-style: inside;
+.how-to-start-card > ul > li {
+  list-style: inside;
 }
 
-p > a{
-    text-decoration: underline;
+p > a {
+  text-decoration: underline;
 }
 
-.how-to-start-phone{
-    position: absolute;
-    bottom: 0;
-    left: 0;
+.how-to-start-phone {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
-.article{
-    position: relative;
+.article {
+  position: relative;
 }
 
-.how-to-start-bets{
-    position: absolute;
-    bottom: 0;
-    right: -10%;
+.how-to-start-bets {
+  position: absolute;
+  bottom: 0;
+  right: -10%;
 }
 
-.cards-wrapper{
-    display: flex;
-    gap: 30px;
+.cards-wrapper {
+  display: flex;
+  gap: 30px;
 }
 
 @media (max-width: 900px) {
-    .cards-wrapper{
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 10px;
-    }
+  .cards-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px;
+  }
 
-    .article{
-        display: flex;
-        justify-content: center;
-    }
+  .article {
+    display: flex;
+    justify-content: center;
+  }
 
-    .how-to-start-title{
-        padding: 0 20px;
-    }
+  .how-to-start-title {
+    padding: 0 20px;
+  }
 
-    .how-to-start > h2{
-        font-size: 32px;
-        text-align: left;
-        margin-left: 20px;
-    }
+  .how-to-start > h2 {
+    font-size: 32px;
+    text-align: left;
+    margin-left: 20px;
+  }
 }
