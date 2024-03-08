@@ -82,3 +82,10 @@ p > a {
     margin-left: 20px;
   }
 }
+
+@media (max-width: 570px) {
+  .article > img{
+    width: 90%;
+  }
+}
+

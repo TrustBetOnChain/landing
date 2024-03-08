@@ -72,10 +72,67 @@ h2 {
   transform: translateY(-60px);
 }
 
+.info{
+  display: inline;
+  position: relative;
+  margin-left: 20px;
+  background: #FFFFFF1A;
+  border-radius: 200px;
+  padding: 2px 11px;
+}
+
+.info > div{
+  display: none;
+}
+
+.info:hover > div{
+  display: flex;
+  position: absolute;
+  top: -150px;
+  left: 0;
+  border-radius: 15px;
+  padding: 20px;
+  background: #0f1716;
+  width: 400px;
+}
+
+.gif{
+  position: absolute;
+  left: 10%;
+  bottom: 10%;
+  width: 100px;
+  border-radius: 15px;
+}
+
+.gif > img{
+  width: 100px;
+}
+
+.button {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 20px;
+  gap: 20px;
+  background: linear-gradient(180deg, #219653 0%, #299c35 100%);
+  padding: 25px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  /* width: 100%; */
+  z-index: 10000;
+}
+
 @media (max-width: 820px) {
   h1 {
-    margin-top: 40px;
-    font-size: 40px;
+    margin-top: 140px;
+    font-size: 27px;
+  }
+
+  .info{
+    display: none;
+
   }
 
   .main-coin {
@@ -85,4 +142,30 @@ h2 {
   .h3 {
     font-size: 16px;
   }
+
+  .gif{
+    margin-top: 40px;
+    position: relative;
+    bottom: 0;
+    align-self: baseline;
+  }
 }
+
+@media (max-width: 500px) {
+  .main-coin{
+    top: 45%;
+    width: 190px;
+  }
+
+  .button{
+    display: flex;
+  }
+  .gif{
+    align-self: center;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    /* margin-top: 40px; */
+  }
+}
+

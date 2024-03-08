@@ -94,5 +94,7 @@ button:hover {
 @media (max-width: 820px) {
   .mySwiper {
     padding-left: 20px;
+    overflow-x: hidden;
+
   }
 }

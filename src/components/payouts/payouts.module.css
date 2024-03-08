@@ -75,3 +75,10 @@
     width: 70%;
   }
 }
+
+@media (max-width: 500px) {
+  .payouts-card-img{
+    width: 50px;
+  }
+}
+

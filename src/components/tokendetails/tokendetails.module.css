@@ -98,12 +98,17 @@ article {
 .article-footer > aside > h4 {
   font-weight: normal;
   color: #8b8f8f;
-  margin-top: 140px;
+  margin-top: 130px;
+
 }
 .tbet-gif {
   width: 234px;
   height: 348px;
   border-radius: 15px;
+}
+
+.green{
+  color: #88C13C;
 }
 
 @media (max-width: 1000px) {

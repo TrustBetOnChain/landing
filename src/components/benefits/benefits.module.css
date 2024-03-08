@@ -100,7 +100,11 @@ li.benefits-card:nth-child(2) > img:nth-child(2) {
   .benefits-cards {
     justify-content: center;
   }
-}
+
+  .benefits > h2{
+    font-size: 24px;
+  }
+
 
 @media (max-width: 550px) {
   .benefits-footer {
