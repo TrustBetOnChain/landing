@@ -56,12 +56,13 @@ export const TokenDetails = () => {
                 Following this, we will transition to the second phase to
                 accurately reflect our developmental progress.
                 <br /> <br />
-                <span className={s["green"]}>Current Stage Price</span> - Please note, as our circulating supply is
-                significantly smaller than most projects and capped at 100
-                million, with an initial circulating supply of 55 million, 30
-                million to treasury and liquidity and 15 million locked in
-                staking for up to 2 years with a slow unlock schedule the
-                presale stage 1 price is 0.50 cents USD.
+                <span className={s["green"]}>Current Stage Price</span> - Please
+                note, as our circulating supply is significantly smaller than
+                most projects and capped at 100 million, with an initial
+                circulating supply of 55 million, 30 million to treasury and
+                liquidity and 15 million locked in staking for up to 2 years
+                with a slow unlock schedule the presale stage 1 price is 0.50
+                cents USD.
               </p>
             </div>
           </div>

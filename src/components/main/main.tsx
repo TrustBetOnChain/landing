@@ -18,14 +18,15 @@ export const Main = () => {
         <div className={s["info"]}>
           <span>i</span>
           <div>
-          It will be available when the DAO goes live. Passive income is derived from USDT Casino earnings and is not dependant on the performance of the TBET token in a bear market or due to volatility.
+            It will be available when the DAO goes live. Passive income is
+            derived from USDT Casino earnings and is not dependant on the
+            performance of the TBET token in a bear market or due to volatility.
           </div>
         </div>
       </h3>
       <img src={MainCoin} className={s["main-coin"]} alt="" />
       <a href="https://content.assuredefi.com/verification-package-content/trustbet-on-chain">
-      <img src={TBetGif} className={s["gif"]} alt="" />
-
+        <img src={TBetGif} className={s["gif"]} alt="" />
       </a>
       <ConnectWalletButton className={s["button"]} />
     </section>
