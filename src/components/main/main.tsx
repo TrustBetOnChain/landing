@@ -1,7 +1,9 @@
 import s from "./main.module.css";
 import MainCoin from "../../assets/imgs/main-coin.png";
+
 import TBetGif from "../../assets/imgs/t-bet-gif.gif";
 import { ConnectWalletButton } from "../connectwallet/connect-wallet-button";
+
 export const Main = () => {
   return (
     <section className={s["main-section"]}>
