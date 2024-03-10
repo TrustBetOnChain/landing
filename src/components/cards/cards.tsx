@@ -12,7 +12,7 @@ export const Cards = () => {
         TrustBet On-Chain is a gamechanger in the online iGaming industry
         designed to transform the conventional iGaming experience.
       </h2>
-      <h3 className={s["section-subtitle"]}>
+      <div className={s["section-subtitle"]}>
         Discover the groundbreaking potential of TrustBet On-Chain (TBET), where
         token holders are catapulted into a realm of thrilling financial
         possibilities! With TBET, you're not just an investor; you're a pivotal
@@ -21,7 +21,7 @@ export const Cards = () => {
         That's right, 50% of casino profits are distributed as passive income
         exclusively to staked TBET holders within the DAO, revolutionizing the
         way you earn.
-      </h3>
+      </div>
       <div className={s["cards-wrapper"]}>
         <div className={s["card"]}>
           <img className={s["card-img"]} src={Card1} alt="" />

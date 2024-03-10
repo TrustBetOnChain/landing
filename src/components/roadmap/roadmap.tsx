@@ -9,14 +9,14 @@ import { SwiperButtons } from "./swiperbuttons";
 import { useState, useEffect } from "react";
 import { PageSection } from "../../page-section";
 export const Roadmap = () => {
-  const [slidesPerView, setSlidesPerView] = useState(2.5);
+  const [slidesPerView, setSlidesPerView] = useState(3);
 
   useEffect(() => {
     const updateSlidesPerView = () => {
       if (window.innerWidth <= 820) {
-        setSlidesPerView(1.5);
+        setSlidesPerView(1);
       } else {
-        setSlidesPerView(2.5);
+        setSlidesPerView(2);
       }
     };
 
@@ -34,7 +34,7 @@ export const Roadmap = () => {
       <div className={s["roadmap-bg"]}></div>
       <div className="roadmap-container">
         <Swiper
-          slidesPerView={slidesPerView}
+          slidesPerView="auto"
           spaceBetween={30}
           freeMode={true}
           pagination={{

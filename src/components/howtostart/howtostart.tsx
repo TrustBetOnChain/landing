@@ -21,7 +21,7 @@ export const HowToStart = () => {
                 from Phantom Wallet's design, which is tailored for seamless
                 integration with Solana's Decentralized Autonomous Organization
                 (DAO) infrastructure, accessible at{" "}
-                <a href="https://app.realms.today/dao/TBET">
+                <a target="_blank" href="https://app.realms.today/dao/TBET">
                   https://app.realms.today/dao/TBET
                 </a>
               </p>

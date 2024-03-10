@@ -4,17 +4,20 @@ import BurgerMenu from "../../../assets/imgs/burger-menu.svg";
 import Logo from "../../../assets/imgs/logo.svg";
 import Discord from "../../../assets/imgs/discord.svg";
 import Telegram from "../../../assets/imgs/tg.svg";
+import Youtube from "../../../assets/imgs/youtube.svg";
 import X from "../../../assets/imgs/x.svg";
 import Cross from "../../../assets/imgs/cross.svg";
 import Assure from "../../../assets/imgs/assure.svg";
 import { ConnectWalletButton } from "../../connectwallet/connect-wallet-button";
 import { PageSection } from "../../../page-section";
 import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const HeaderMobile = () => {
   const [modal, setModal] = useState(false);
+  const [refAnimate] = useAutoAnimate();
   return (
-    <header className={s["header"]}>
+    <header ref={refAnimate} className={s["header"]}>
       <nav className={s["nav"]}>
         <ul className={s["nav-list"]}>
           <li className={s["nav-list"]}>
@@ -75,26 +78,29 @@ export const HeaderMobile = () => {
                   onClick={() => setModal(false)}
                   // src={Cross}
                   href={`#${PageSection.CONTACT}`}
-                >
-                  {" "}
-                  Contact
-                </a>
+                ></a>
               </li>
             </ul>
             <div className={s["aside-footer"]}>
-              <ConnectWalletButton className={s["button"]} />
+              <ConnectWalletButton
+                onClick={() => setModal(false)}
+                className={s["button"]}
+              />
               <div className={s["aside-socials"]}>
-                <a href="#">
+                <a href="https://discord.com/invite/dxRQXn6F2S">
                   <img src={Discord} alt="" />
                 </a>
-                <a href="#">
+                <a href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />
                 </a>
-                <a href="#">
+                <a href="http://www.x.com/TrustBetOnChain">
                   <img src={X} alt="" />
                 </a>
-                <a href="#">
+                <a href="https://assuredefi.com/projects/trustbet-on-chain">
                   <img src={Assure} alt="" />
+                </a>
+                <a href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D">
+                  <img src={Youtube} alt="" />
                 </a>
               </div>
             </div>

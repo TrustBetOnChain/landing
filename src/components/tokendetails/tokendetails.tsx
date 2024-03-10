@@ -39,7 +39,13 @@ export const TokenDetails = () => {
               <li className={s["token-details-header-card"]}>
                 <div className={s["card-head"]}>
                   <h3>Contract Address</h3>
-                  <img src={CopyIcon} alt="" />
+                  <img
+                    onClick={() =>
+                      navigator.clipboard.writeText("xpFbKJa92Ee1NSYEhc3b3BV")
+                    }
+                    src={CopyIcon}
+                    alt=""
+                  />
                 </div>
                 <p>
                   xpFbKJa92Ee1NSYEhc3b3BV

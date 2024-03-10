@@ -36,15 +36,20 @@
 
 .aside-links {
   margin-top: 30px;
-  display: flex;
-  gap: 5px;
-  flex-direction: column;
+  width: 45%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
 }
 
-.aside-links > p {
-  display: flex;
-  gap: 10px;
-  color: #ffffff;
+.aside-links > a,span {
+  /* display: flex; */
+  /* gap: 10px; */
+  color: #3C4141;
+}
+
+.aside-links > a{
+  text-decoration: underline;
 }
 
 .aside-socials {

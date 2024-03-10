@@ -22,6 +22,7 @@
 
 .main-section::after {
   content: "";
+  pointer-events: none;
   position: absolute;
   transform: rotate(180deg);
   width: 100%;
@@ -32,6 +33,7 @@
 }
 
 .main-section::before {
+  pointer-events: none;
   content: "";
   position: absolute;
   top: 0;
@@ -72,20 +74,20 @@ h2 {
   transform: translateY(-60px);
 }
 
-.info{
+.info {
   display: inline;
   position: relative;
-  margin-left: 20px;
-  background: #FFFFFF1A;
+  margin-left: 5px;
+  background: #ffffff1a;
   border-radius: 200px;
   padding: 2px 11px;
 }
 
-.info > div{
+.info > div {
   display: none;
 }
 
-.info:hover > div{
+.info:hover > div {
   display: flex;
   position: absolute;
   top: -150px;
@@ -94,17 +96,18 @@ h2 {
   padding: 20px;
   background: #0f1716;
   width: 400px;
+  z-index: 100000;
 }
 
-.gif{
+.gif {
   position: absolute;
-  left: 10%;
+  left: 2%;
   bottom: 10%;
   width: 100px;
   border-radius: 15px;
 }
 
-.gif > img{
+.gif > img {
   width: 100px;
 }
 
@@ -130,9 +133,8 @@ h2 {
     font-size: 27px;
   }
 
-  .info{
+  .info {
     display: none;
-
   }
 
   .main-coin {
@@ -143,7 +145,7 @@ h2 {
     font-size: 16px;
   }
 
-  .gif{
+  .gif {
     margin-top: 40px;
     position: relative;
     bottom: 0;
@@ -152,15 +154,15 @@ h2 {
 }
 
 @media (max-width: 500px) {
-  .main-coin{
+  .main-coin {
     top: 45%;
     width: 190px;
   }
 
-  .button{
+  .button {
     display: flex;
   }
-  .gif{
+  .gif {
     align-self: center;
     position: relative;
     left: 0;
@@ -168,4 +170,3 @@ h2 {
     /* margin-top: 40px; */
   }
 }
-

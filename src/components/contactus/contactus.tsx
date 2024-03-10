@@ -3,6 +3,7 @@ import s from "./contactus.module.css";
 import TBetLogo from "../../assets/imgs/logo.svg";
 import Discord from "../../assets/imgs/discord.svg";
 import Telegram from "../../assets/imgs/tg.svg";
+import Youtube from "../../assets/imgs/youtube.svg";
 import X from "../../assets/imgs/x.svg";
 import Assure from "../../assets/imgs/assure.svg";
 import { PageSection } from "../../page-section";
@@ -26,27 +27,27 @@ export const ContactUs = () => {
         </div>
         <div className={s["aside-footer"]}>
           <div className={s["aside-links"]}>
-            <p>
-              <a href="#">Terms of Service</a>
-              <span>Development by:</span>
-            </p>
-            <p>
-              <a href="#">Privacy Policy</a>
-              <a href="#">FINPR Agency</a>
-            </p>
+            <a href="#">Terms of Service</a>
+
+            <a href="#">Privacy Policy</a>
+            <span>Development by:</span>
+            <a href="#">FINPR Agency</a>
           </div>
           <div className={s["aside-socials"]}>
-            <a href="#">
+            <a href="https://discord.com/invite/dxRQXn6F2S">
               <img src={Discord} alt="" />
             </a>
-            <a href="#">
+            <a href="https://t.me/TrustBetOC">
               <img src={Telegram} alt="" />
             </a>
-            <a href="#">
+            <a href="http://www.x.com/TrustBetOnChain">
               <img src={X} alt="" />
             </a>
-            <a href="#">
+            <a href="https://assuredefi.com/projects/trustbet-on-chain">
               <img src={Assure} alt="" />
+            </a>
+            <a href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D">
+              <img src={Youtube} alt="" />
             </a>
           </div>
         </div>

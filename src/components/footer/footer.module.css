@@ -15,3 +15,27 @@
   transform: translateX(-50%);
   z-index: 10000;
 }
+
+.visible{
+  transition: 1s;
+  pointer-events: all;
+  opacity: 1;
+}
+
+.non-visible{
+  transition: 1s;
+  pointer-events: none;
+  opacity: 0;
+}
+
+
+@media(max-width: 350px){
+  .button{
+    position: fixed;
+    width: 80%;
+    /* bottom: 0px; */
+    /* top: 100px; */
+    /* margin-top: 200px; */
+  }
+
+}

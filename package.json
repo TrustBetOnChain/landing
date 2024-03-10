@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@solana/wallet-adapter-base": "^0.9.23",
     "@solana/wallet-adapter-phantom": "^0.9.24",
     "@solana/wallet-adapter-react": "^0.15.35",
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.30",
     "@solana/web3.js": "^1.90.1",
+    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^1.0.63",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "swiper": "^11.0.7"
@@ -33,6 +36,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "prettier": "3.2.5",
     "typescript": "^5.2.2",
+    "unplugin-fonts": "^1.1.1",
     "vite": "^5.1.4"
   }
 }
