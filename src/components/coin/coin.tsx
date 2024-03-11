@@ -5,7 +5,11 @@ export const Coin = () => (
     <Spline
       style={{ width: "500px", height: "500px" }}
       className={s["main-coin"]}
-      scene="https://prod.spline.design/3gv92v6EJvS45AIL/scene.splinecode"
+      scene={
+        window.innerWidth > 500
+          ? "https://prod.spline.design/3gv92v6EJvS45AIL/scene.splinecode"
+          : "https://prod.spline.design/eVHNDmMg-5EMjId6/scene.splinecode"
+      }
     />
   </div>
 );

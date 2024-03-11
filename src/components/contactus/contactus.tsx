@@ -1,4 +1,5 @@
 import s from "./contactus.module.css";
+import React from "react";
 
 import TBetLogo from "../../assets/imgs/logo.svg";
 import Discord from "../../assets/imgs/discord.svg";
@@ -7,8 +8,35 @@ import Youtube from "../../assets/imgs/youtube.svg";
 import X from "../../assets/imgs/x.svg";
 import Assure from "../../assets/imgs/assure.svg";
 import { PageSection } from "../../page-section";
+import { useState } from "react";
+import { sendEmail } from "../../email/sendEmail";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const ContactUs = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [sended, setSended] = useState(false);
+  const [error, setError] = useState<Error>();
+  const [isSending, isSetSending] = useState(false);
+
+  const [refAnimate] = useAutoAnimate();
+
+  const isValidForm =
+    name.length > 3 && email.match(/^\S+@\S+\.\S+$/) && message.length > 3;
+
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!isValidForm) return;
+    isSetSending(true);
+    sendEmail({ fromEmail: email, fromName: name, text: message })
+      .then(() => {
+        setSended(true);
+        isSetSending(false);
+      })
+      .catch(setError);
+  };
+
   return (
     <section id={PageSection.CONTACT} className={`${s.contactus} container`}>
       <aside className={s["aside"]}>
@@ -76,13 +104,44 @@ export const ContactUs = () => {
         </div>
       </aside>
       <article className={s["article"]}>
-        <h2 className={s["title"]}>Have any questions?</h2>
-        <form className={s["form"]} action="">
-          <input className={s["input"]} type="text" placeholder="Your Name" />
-          <input className={s["input"]} type="email" placeholder="Email" />
-          <input className={s["input"]} type="text" placeholder="Message" />
-          <button className={s["button"]}>send</button>
-        </form>
+        <h2 className={s["title"]}>
+          {sended ? "Thank you!" : "Have any questions?"}
+        </h2>
+        {!sended && (
+          <form ref={refAnimate} className={s["form"]} action="">
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={s["input"]}
+              type="text"
+              placeholder="Your Name"
+            />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={s["input"]}
+              type="email"
+              placeholder="Email"
+            />
+            <input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className={s["input"]}
+              type="text"
+              placeholder="Message"
+            />
+            <button
+              onClick={onClick}
+              disabled={!name || !email.match(/^\S+@\S+\.\S+$/) || !message}
+              className={s["button"]}
+            >
+              {isSending ? "Sending..." : "Send"}
+              {error && (
+                <p>{error instanceof Error ? error.message : "Error"}</p>
+              )}
+            </button>
+          </form>
+        )}
       </article>
     </section>
   );
