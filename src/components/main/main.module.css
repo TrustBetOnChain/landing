@@ -114,6 +114,14 @@ h2 {
   width: 100px;
 }
 
+.info > span{
+  color: white !important;
+}
+
+.info > span {
+  color: white !important;
+}
+
 .button {
   display: none;
   justify-content: center;

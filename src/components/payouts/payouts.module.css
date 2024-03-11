@@ -72,13 +72,13 @@
   }
 
   .payouts > article > h3 {
-    width: 70%;
+    width: 100%;
+    text-align: center;
   }
 }
 
 @media (max-width: 500px) {
-  .payouts-card-img{
+  .payouts-card-img {
     width: 50px;
   }
 }
-

@@ -110,6 +110,9 @@
 }
 
 @media (max-width: 900px) {
+  .future {
+    margin-top: 0 !important;
+  }
   .future-title {
     height: fit-content;
   }

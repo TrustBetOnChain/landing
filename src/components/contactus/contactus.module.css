@@ -29,11 +29,6 @@
   gap: 20px;
 }
 
-.aside-header > div > a {
-  color: #88c13c;
-  font-size: 20px;
-}
-
 .aside-links {
   margin-top: 30px;
   width: 45%;
@@ -42,18 +37,24 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.aside-links > a,span {
+.aside-links > a,
+span {
   /* display: flex; */
   /* gap: 10px; */
-  color: #3C4141;
+  color: #3c4141;
 }
 
-.aside-links > a{
+.aside-links > a {
   text-decoration: underline;
 }
 
 .aside-socials {
   margin-top: 20px;
+}
+
+.aside-header > div > a {
+  color: #88c13c;
+  font-size: 20px;
 }
 
 .article {

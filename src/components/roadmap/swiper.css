@@ -95,6 +95,11 @@ button:hover {
   .mySwiper {
     padding-left: 20px;
     overflow-x: hidden;
+  }
+}
 
+@media (max-width: 370px) {
+  .swiper-slide-1 {
+    width: 280px !important;
   }
 }

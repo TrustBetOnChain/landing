@@ -60,6 +60,9 @@ p > a {
 }
 
 @media (max-width: 900px) {
+  .how-to-start > h2 {
+    text-align: center;
+  }
   .cards-wrapper {
     display: flex;
     flex-direction: column-reverse;
@@ -78,14 +81,12 @@ p > a {
 
   .how-to-start > h2 {
     font-size: 32px;
-    text-align: left;
     margin-left: 20px;
   }
 }
 
 @media (max-width: 570px) {
-  .article > img{
+  .article > img {
     width: 90%;
   }
 }
-
