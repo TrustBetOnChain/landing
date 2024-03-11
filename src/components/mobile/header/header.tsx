@@ -87,19 +87,25 @@ export const HeaderMobile = () => {
                 className={s["button"]}
               />
               <div className={s["aside-socials"]}>
-                <a href="https://discord.com/invite/dxRQXn6F2S">
+                <a target="_blank" href="https://discord.com/invite/dxRQXn6F2S">
                   <img src={Discord} alt="" />
                 </a>
-                <a href="https://t.me/TrustBetOC">
+                <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />
                 </a>
-                <a href="http://www.x.com/TrustBetOnChain">
+                <a target="_blank" href="http://www.x.com/TrustBetOnChain">
                   <img src={X} alt="" />
                 </a>
-                <a href="https://assuredefi.com/projects/trustbet-on-chain">
+                <a
+                  target="_blank"
+                  href="https://assuredefi.com/projects/trustbet-on-chain"
+                >
                   <img src={Assure} alt="" />
                 </a>
-                <a href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D">
+                <a
+                  target="_blank"
+                  href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D"
+                >
                   <img src={Youtube} alt="" />
                 </a>
               </div>

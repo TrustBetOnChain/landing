@@ -4,7 +4,11 @@ import CopyIcon from "../../assets/imgs/copy-icon.svg";
 import TBetIcon from "../../assets/imgs/t-bet-icon.svg";
 import TBetGif from "../../assets/imgs/t-bet-gif.gif";
 import { PageSection } from "../../page-section";
+import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 export const TokenDetails = () => {
+  const [copy, setCopy] = useState(false);
+  const [refAnimate] = useAutoAnimate();
   return (
     <section
       id={PageSection.TBET_TOKENS}
@@ -37,15 +41,21 @@ export const TokenDetails = () => {
                 </p>
               </li>
               <li className={s["token-details-header-card"]}>
-                <div className={s["card-head"]}>
+                <div ref={refAnimate} className={s["card-head"]}>
                   <h3>Contract Address</h3>
                   <img
-                    onClick={() =>
-                      navigator.clipboard.writeText("xpFbKJa92Ee1NSYEhc3b3BV")
-                    }
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigator.clipboard.writeText("xpFbKJa92Ee1NSYEhc3b3BV");
+                      setCopy(true);
+                      setTimeout(() => {
+                        setCopy(false);
+                      }, 1000);
+                    }}
                     src={CopyIcon}
                     alt=""
                   />
+                  {copy && <p>Copied!</p>}
                 </div>
                 <p>
                   xpFbKJa92Ee1NSYEhc3b3BV
