@@ -18,7 +18,7 @@ import { useState } from "react";
 import { Modal } from "./components/modal/modal";
 
 function App() {
-  const [modalIsOpen, setmodalIsOpen] = useState(false)
+  const [modalIsOpen, setmodalIsOpen] = useState(true);
   return (
     <>
       <WalletConnectProvider>
@@ -36,10 +36,7 @@ function App() {
           <ConnectWallet />
           <TokenDetails />
           <ContactUs />
-          <Modal 
-        isOpen={modalIsOpen}
-        onClose={() => setmodalIsOpen(false)}
-      />
+          <Modal isOpen={modalIsOpen} onClose={() => setmodalIsOpen(false)} />
         </main>
         <Footer />
       </WalletConnectProvider>
