@@ -3,7 +3,6 @@ import BenefitCard1 from "../../assets/imgs/benefit-img-1.png";
 import BenefitCard2 from "../../assets/imgs/benefit-img-2.png";
 import BenefitCard3 from "../../assets/imgs/benefit-img-3.png";
 import BenefitCard4 from "../../assets/imgs/benefit-img-4.png";
-import Loading from "../../assets/imgs/loading.png";
 import Solana from "../../assets/imgs/benefits-footer.png";
 
 export const Benefits = () => {
@@ -43,14 +42,20 @@ export const Benefits = () => {
           <h4 className={s["benefits-card-title"]}>
             Tier 1 listing announcement
           </h4>
-          <img className={s["benefits-card-img"]} src={Loading} alt="" />
+          <iframe
+            className={s["benefits-card-img"]}
+            src="https://lottie.host/embed/beca5cdd-25d8-48b9-a761-c139113b6df6/AOLw9IGBWP.json"
+          ></iframe>
           <p className={s.soon}>soon</p>
         </li>
         <li className={s["benefits-card"]}>
           <h4 className={s["benefits-card-title"]}>
             New Web 3.0 iGaming experiences
           </h4>
-          <img className={s["benefits-card-img"]} src={Loading} alt="" />
+          <iframe
+            className={s["benefits-card-img"]}
+            src="https://lottie.host/embed/beca5cdd-25d8-48b9-a761-c139113b6df6/AOLw9IGBWP.json"
+          ></iframe>
           <p className={s.soon}>soon</p>
         </li>
         <li className={s["benefits-card"]}>
