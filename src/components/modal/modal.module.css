@@ -1,0 +1,41 @@
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0F1716;
+    padding: 45px;
+    padding-bottom: 50px;
+    width: fit-content;
+    width: 700px;
+}
+
+
+
+.modal-header{
+    padding-bottom: 20px;
+    font-size: 52px;
+    color: white;
+    text-align: center;
+}
+
+.modal-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-item{
+    background: #FFFFFF0A;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.modal-item > a{
+    font-size: 17px;
+}
+
