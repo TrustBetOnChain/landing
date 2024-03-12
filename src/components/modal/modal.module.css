@@ -39,3 +39,15 @@
     font-size: 17px;
 }
 
+
+@media (max-width: 820px){
+    .modal{
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-header{
+        font-size: 26px;
+    }
+}
