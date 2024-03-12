@@ -14,11 +14,8 @@ import { Roadmap } from "./components/roadmap/roadmap";
 import { TBetModes } from "./components/trustbetmodes/tbetmodes";
 import { WalletConnectProvider } from "./WalletConnectProvider";
 import { HeaderMobile } from "./components/mobile/header/header";
-import { useState } from "react";
-import { Modal } from "./components/modal/modal";
 
 function App() {
-  const [modalIsOpen, setmodalIsOpen] = useState(true);
   return (
     <>
       <WalletConnectProvider>
@@ -36,7 +33,6 @@ function App() {
           <ConnectWallet />
           <TokenDetails />
           <ContactUs />
-          <Modal isOpen={modalIsOpen} onClose={() => setmodalIsOpen(false)} />
         </main>
         <Footer />
       </WalletConnectProvider>

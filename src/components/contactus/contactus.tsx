@@ -11,6 +11,7 @@ import { PageSection } from "../../page-section";
 import { useState } from "react";
 import { sendEmail } from "../../email/sendEmail";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { Modal } from "../modal/modal";
 
 export const ContactUs = () => {
   const [name, setName] = useState("");
@@ -20,6 +21,7 @@ export const ContactUs = () => {
   const [error, setError] = useState<Error>();
   const [isSending, isSetSending] = useState(false);
 
+  const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [refAnimate] = useAutoAnimate();
 
   const isValidForm =
@@ -49,7 +51,15 @@ export const ContactUs = () => {
             highlighting the concentration of profits in the hands of a few.
           </p>
           <div>
-            <a href="#">Go to Information Page</a>
+            <a
+              style={{ cursor: "pointer" }}
+              onClick={(e) => {
+                e.preventDefault();
+                setmodalIsOpen(true);
+              }}
+            >
+              Go to Information Page
+            </a>
             <a
               target="_blank"
               href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
@@ -143,6 +153,7 @@ export const ContactUs = () => {
           </form>
         )}
       </article>
+      <Modal isOpen={modalIsOpen} onClose={() => setmodalIsOpen(false)} />
     </section>
   );
 };
