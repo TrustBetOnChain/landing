@@ -38,12 +38,12 @@ export const Payouts = () => {
         <div className={s["payouts-card"]}>
           <h4>Web 3.0 Model</h4>
           <p>
-            Leveraging the power of Web 3.0 and advanced
-            <br /> artificial intelligence, TrustBet On-Chain revolutionizes
-            transaction processes, avoiding the need for traditional trust
-            mechanisms. This model guarantees fairness and facilitates immediate
-            payouts, showcasing the transformative benefits and capabilities of
-            these cutting-edge technologies.
+            Leveraging the power of Web 3.0 and advanced artificial
+            intelligence, TrustBet On-Chain revolutionizes transaction
+            processes, avoiding the need for traditional trust mechanisms. This
+            model guarantees fairness and facilitates immediate payouts,
+            showcasing the transformative benefits and capabilities of these
+            cutting-edge technologies.
           </p>
           <img className={s["payouts-card-img"]} src={PayoutsCard2} alt="" />
         </div>

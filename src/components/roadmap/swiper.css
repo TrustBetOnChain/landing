@@ -101,5 +101,6 @@ button:hover {
 @media (max-width: 370px) {
   .swiper-slide-1 {
     width: 280px !important;
+    height: 280px !important;
   }
 }

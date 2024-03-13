@@ -4,6 +4,7 @@ import BenefitCard2 from "../../assets/imgs/benefit-img-2.png";
 import BenefitCard3 from "../../assets/imgs/benefit-img-3.png";
 import BenefitCard4 from "../../assets/imgs/benefit-img-4.png";
 import Solana from "../../assets/imgs/benefits-footer.png";
+import { DotLottiePlayer, PlayMode } from "@dotlottie/react-player";
 
 export const Benefits = () => {
   return (
@@ -42,20 +43,32 @@ export const Benefits = () => {
           <h4 className={s["benefits-card-title"]}>
             Tier 1 listing announcement
           </h4>
-          <iframe
-            className={s["benefits-card-img"]}
-            src="https://lottie.host/embed/beca5cdd-25d8-48b9-a761-c139113b6df6/AOLw9IGBWP.json"
-          ></iframe>
+          <DotLottiePlayer
+            style={{ width: "140px", height: "140px" }}
+            src="https://lottie.host/734b0e3e-a18a-4223-82f6-a6f68bd64d98/U6zYS1aq6J.json"
+            background="transparent"
+            direction={1}
+            speed={1}
+            playMode={PlayMode.Normal}
+            loop
+            autoplay
+          />
           <p className={s.soon}>soon</p>
         </li>
         <li className={s["benefits-card"]}>
           <h4 className={s["benefits-card-title"]}>
             New Web 3.0 iGaming experiences
           </h4>
-          <iframe
-            className={s["benefits-card-img"]}
-            src="https://lottie.host/embed/beca5cdd-25d8-48b9-a761-c139113b6df6/AOLw9IGBWP.json"
-          ></iframe>
+          <DotLottiePlayer
+            style={{ width: "140px", height: "140px" }}
+            src="https://lottie.host/734b0e3e-a18a-4223-82f6-a6f68bd64d98/U6zYS1aq6J.json"
+            background="transparent"
+            direction={1}
+            speed={1}
+            playMode={PlayMode.Normal}
+            loop
+            autoplay
+          />
           <p className={s.soon}>soon</p>
         </li>
         <li className={s["benefits-card"]}>

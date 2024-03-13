@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./modal.module.css";
 import Logo from "../../assets/imgs/modal-img.svg";
-import { Dialog } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,48 +10,50 @@ interface ModalProps {
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
   return (
-    <Dialog open={isOpen} as="div" onClose={onClose}>
-      <Dialog.Panel>
-        <div className={s["modal-bg"]}></div>
-        <div className={s["modal"]}>
-          <Dialog.Title>
-            <h3 className={s["modal-header"]}>Documents</h3>
-          </Dialog.Title>
-          <ul className={s["modal-list"]}>
-            <li className={s["modal-item"]}>
-              <a
-                target="_blank"
-                href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
-              >
-                White Paper
-              </a>
-              <img src={Logo} alt="Logo" />
-            </li>
-            <li className={s["modal-item"]}>
-              <a href="#">Token Sale Agreement</a>
-              <img src={Logo} alt="Logo" />
-            </li>
-            <li className={s["modal-item"]}>
-              <a
-                target="_blank"
-                href="https://drive.google.com/file/d/1O338yHyAhKo9YNVNoVQhFZur6L0ScDg-/view?usp=drive_link"
-              >
-                Terms of Service
-              </a>
-              <img src={Logo} alt="Logo" />
-            </li>
-            <li className={s["modal-item"]}>
-              <a
-                target="_blank"
-                href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
-              >
-                Privacy Policy
-              </a>
-              <img src={Logo} alt="Logo" />
-            </li>
-          </ul>
-        </div>
-      </Dialog.Panel>
-    </Dialog>
+    <Transition appear show={isOpen} as={React.Fragment}>
+      <Dialog open={isOpen} as="div" onClose={onClose}>
+        <Dialog.Panel>
+          <div className={s["modal-bg"]}></div>
+          <div className={s["modal"]}>
+            <Dialog.Title>
+              <h3 className={s["modal-header"]}>Documents</h3>
+            </Dialog.Title>
+            <ul className={s["modal-list"]}>
+              <li className={s["modal-item"]}>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
+                >
+                  White Paper
+                </a>
+                <img src={Logo} alt="Logo" />
+              </li>
+              <li className={s["modal-item"]}>
+                <a href="#">Token Sale Agreement</a>
+                <img src={Logo} alt="Logo" />
+              </li>
+              <li className={s["modal-item"]}>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1O338yHyAhKo9YNVNoVQhFZur6L0ScDg-/view?usp=drive_link"
+                >
+                  Terms of Service
+                </a>
+                <img src={Logo} alt="Logo" />
+              </li>
+              <li className={s["modal-item"]}>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
+                >
+                  Privacy Policy
+                </a>
+                <img src={Logo} alt="Logo" />
+              </li>
+            </ul>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
+    </Transition>
   );
 };
