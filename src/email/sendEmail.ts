@@ -1,16 +1,16 @@
-import { Resend } from "resend";
-const resend = new Resend("re_csdUkveQ_Ng3fCRp2g7rMDkWjgwyYPCPZ");
-
 interface Email {
   fromName: string;
   fromEmail: string;
   text: string;
 }
 
-export const sendEmail = (email: Email) =>
-  resend.emails.send({
-    subject: `The question from ${email.fromName}`,
-    text: email.text,
-    to: "admin@trustbetonchain.com ",
-    from: email.fromEmail,
-  });
+export const sendEmail = async (email: Email) =>
+  (
+    await fetch(import.meta.env.VITE_API_URL + "/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(email),
+    })
+  ).ok;

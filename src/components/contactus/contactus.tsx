@@ -32,11 +32,15 @@ export const ContactUs = () => {
     if (!isValidForm) return;
     isSetSending(true);
     sendEmail({ fromEmail: email, fromName: name, text: message })
-      .then(() => {
-        setSended(true);
-        isSetSending(false);
+      .then((ok) => {
+        if (ok) {
+          setSended(true);
+        } else {
+          setError(new Error("Failed to send email"));
+        }
       })
-      .catch(setError);
+      .catch(setError)
+      .finally(() => isSetSending(false));
   };
 
   return (
