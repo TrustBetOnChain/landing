@@ -114,7 +114,7 @@ h2 {
   width: 100px;
 }
 
-.info > span{
+.info > span {
   color: white !important;
 }
 
@@ -168,6 +168,10 @@ h2 {
   .main-coin {
     top: 45%;
     width: 190px;
+  }
+
+  .main-section {
+    height: 110svh;
   }
 
   .button {
