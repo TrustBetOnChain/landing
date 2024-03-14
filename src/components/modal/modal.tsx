@@ -17,7 +17,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             <div className={s["modal-bg"]}></div>
             <div className={s["modal"]}>
               <Dialog.Title>
-                <h3 className={s["modal-header"]}>Documents</h3>
+                <h4 className={s["modal-header"]}>Documents</h4>
                 <button className={s["modal-close"]} onClick={onClose}>
                   X
                 </button>
