@@ -7,7 +7,7 @@ import { Coin } from "../coin/coin";
 export const Main = () => {
   return (
     <section className={s["main-section"]}>
-      <h1>
+      <h1 className={s["h1"]}>
         TrustBet On-Chain: revolution
         <br /> in the iGaming industry
       </h1>

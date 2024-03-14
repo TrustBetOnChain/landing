@@ -76,6 +76,10 @@ h2 {
   transform: translateY(-60px);
 }
 
+.h1 {
+  margin-top: 200px;
+}
+
 .info {
   display: inline;
   position: relative;
@@ -136,6 +140,15 @@ h2 {
   margin-top: 20px;
   /* width: 100%; */
   z-index: 10000;
+}
+
+@media (max-width: 1000px) {
+  .h1 {
+    font-size: 27px;
+  }
+  .main-coin {
+    width: 280px;
+  }
 }
 
 @media (max-width: 820px) {
