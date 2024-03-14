@@ -9,6 +9,7 @@
   padding-bottom: 50px;
   width: fit-content;
   width: 700px;
+  border-radius: 15px;
 }
 
 .modal-bg {
@@ -26,6 +27,13 @@
   font-size: 52px;
   color: white;
   text-align: center;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: #88c13c;
+  cursor: pointer;
 }
 
 .modal-list {
