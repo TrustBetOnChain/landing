@@ -2,7 +2,6 @@ import s from "./headermobile.module.css";
 
 import BurgerMenu from "../../../assets/imgs/burger-menu.svg";
 import Logo from "../../../assets/imgs/logo.svg";
-import Discord from "../../../assets/imgs/discord.svg";
 import Telegram from "../../../assets/imgs/tg.svg";
 import Youtube from "../../../assets/imgs/youtube.svg";
 import X from "../../../assets/imgs/x.svg";
@@ -87,9 +86,6 @@ export const HeaderMobile = () => {
                 className={s["button"]}
               />
               <div className={s["aside-socials"]}>
-                <a target="_blank" href="https://discord.com/invite/dxRQXn6F2S">
-                  <img src={Discord} alt="" />
-                </a>
                 <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />
                 </a>
