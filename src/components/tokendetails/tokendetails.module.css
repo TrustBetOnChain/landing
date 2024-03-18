@@ -93,13 +93,13 @@ article {
   margin-top: 30px;
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .article-footer > aside > h4 {
   font-weight: normal;
   color: #8b8f8f;
   margin-top: 130px;
-
 }
 .tbet-gif {
   width: 234px;
@@ -107,8 +107,8 @@ article {
   border-radius: 15px;
 }
 
-.green{
-  color: #88C13C;
+.green {
+  color: #88c13c;
 }
 
 @media (max-width: 1000px) {
