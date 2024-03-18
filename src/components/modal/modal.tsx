@@ -23,37 +23,34 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 </button>
               </Dialog.Title>
               <ul className={s["modal-list"]}>
-                <li className={s["modal-item"]}>
-                  <a
-                    target="_blank"
-                    href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
-                  >
-                    White Paper
-                  </a>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
+                  className={s["modal-item"]}
+                >
+                  White Paper
                   <img src={Logo} alt="Logo" />
-                </li>
-                <li className={s["modal-item"]}>
-                  <a href="#">Token Sale Agreement</a>
+                </a>
+                <a href="#" className={s["modal-item"]}>
+                  Token Sale Agreement
                   <img src={Logo} alt="Logo" />
-                </li>
-                <li className={s["modal-item"]}>
-                  <a
-                    target="_blank"
-                    href="https://drive.google.com/file/d/1O338yHyAhKo9YNVNoVQhFZur6L0ScDg-/view?usp=drive_link"
-                  >
-                    Terms of Service
-                  </a>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1O338yHyAhKo9YNVNoVQhFZur6L0ScDg-/view?usp=drive_link"
+                  className={s["modal-item"]}
+                >
+                  Terms of Service
                   <img src={Logo} alt="Logo" />
-                </li>
-                <li className={s["modal-item"]}>
-                  <a
-                    target="_blank"
-                    href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
-                  >
-                    Privacy Policy
-                  </a>
+                </a>
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
+                  className={s["modal-item"]}
+                >
+                  Privacy Policy
                   <img src={Logo} alt="Logo" />
-                </li>
+                </a>
               </ul>
             </div>
           </Dialog.Panel>
