@@ -18,17 +18,15 @@ export const Benefits = () => {
             Take advantage of our exclusive pre-sale opportunity to gain early
             access to the TrustBet On-Chain platform. This is your chance to be
             among the first to experience the future of blockchain technology in
-            gaming.
+            iGaming.
           </p>
         </li>
         <li className={s["benefits-card"]}>
-          <h4 className={s["benefits-card-title"]}>Exclusive Access</h4>
+          <h4 className={s["benefits-card-title"]}>Special Bonuses</h4>
           <img className={s["benefits-card-img"]} src={BenefitCard2} alt="" />
           <p>
-            Take advantage of our exclusive pre-sale opportunity to gain early
-            access to the TrustBet On-Chain platform. This is your chance to be
-            among the first to experience the future of blockchain technology in
-            gaming.
+            Participate in our presale to access a range of unique bonuses and
+            promotions, designed to enrich your experience from the outset.
           </p>
         </li>
         <li className={s["benefits-card"]}>
