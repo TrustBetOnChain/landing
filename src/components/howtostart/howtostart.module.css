@@ -3,6 +3,10 @@
   margin-top: 150px !important;
 }
 
+.how-to-start-card > p {
+  font-weight: 300;
+}
+
 .how-to-start > article {
   position: relative;
 }
@@ -32,6 +36,7 @@
 
 .how-to-start-card > ul > li {
   list-style: inside;
+  font-weight: 300;
 }
 
 p > a {

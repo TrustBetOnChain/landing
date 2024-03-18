@@ -47,8 +47,7 @@ export const Roadmap = () => {
             <h2>TrustBet On-Chain's roadmap</h2>
             <SwiperButtons />
           </div>
-          {/*  mobile: 320px */}
-          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+          <SwiperSlide className="swiper-slide-1">
             <h3>Q1 2024</h3>
             <div className="swiper-line"></div>
             <ul>
@@ -90,7 +89,7 @@ export const Roadmap = () => {
               </li>
             </ul>
           </SwiperSlide>
-          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+          <SwiperSlide className="swiper-slide-1">
             <h3>Q2 2024</h3>
             <div className="swiper-line"></div>
             <ul>
@@ -133,7 +132,7 @@ export const Roadmap = () => {
               </li>
             </ul>
           </SwiperSlide>
-          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+          <SwiperSlide className="swiper-slide-1">
             <h3>Q3 2024</h3>
             <div className="swiper-line"></div>
             <ul>
@@ -155,7 +154,7 @@ export const Roadmap = () => {
               </li>
             </ul>
           </SwiperSlide>
-          <SwiperSlide style={{ width: "500px" }} className="swiper-slide-1">
+          <SwiperSlide className="swiper-slide-1">
             <h3>Q4 2024</h3>
             <div className="swiper-line"></div>
             <ul>

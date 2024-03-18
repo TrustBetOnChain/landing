@@ -69,3 +69,7 @@ h2 {
     overflow-x: hidden;
   }
 }
+
+.wallet-adapter-modal-button-close {
+  z-index: 10000;
+}
