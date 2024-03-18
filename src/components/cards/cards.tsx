@@ -10,13 +10,13 @@ export const Cards = () => {
     <section id={PageSection.ABOUT}>
       <h2 className={s["section-title"]}>
         TrustBet On-Chain is a gamechanger in the online iGaming industry
-        designed to transform the conventional iGaming experience.
+        designed to transform the conventional iGaming experience
       </h2>
       <div className={s["section-subtitle"]}>
         Discover the groundbreaking potential of TrustBet On-Chain (TBET), where
         token holders are catapulted into a realm of thrilling financial
         possibilities! With TBET, you're not just an investor; you're a pivotal
-        decision-maker, steering the DAO with your vote. Imagine a world where
+        decision maker, steering the DAO with your vote. Imagine a world where
         half of a bustling casino's profits flow directly into your wallet.
         That's right, 50% of casino profits are distributed as passive income
         exclusively to staked TBET holders within the DAO, revolutionizing the
@@ -28,8 +28,8 @@ export const Cards = () => {
           <p>
             Through its Decentralized Autonomous Organization (DAO) structure on
             the Solana blockchain, TrustBet On-Chain breaks the existing
-            practices by implementing transparency, fairness and
-            community-driven decision making.
+            practices by implementing transparency, fairness and community
+            driven decision making.
           </p>
         </div>
         <div className={s["card"]}>

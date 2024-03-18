@@ -17,7 +17,7 @@ export const TBetModes = () => {
           experience.
         </h3>
         <p>
-          Utilizing industry-leading and highly reputable
+          Utilizing industry leading and highly reputable
           <br /> gaming software, our platform offers an extensive
           <br /> array of gaming options.{" "}
         </p>

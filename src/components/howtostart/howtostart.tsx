@@ -33,16 +33,19 @@ export const HowToStart = () => {
                 <li>BTC</li>
                 <li>ETH</li>
                 <li>SOL</li>
-                <li>USDT (ETH Chain)</li>
+                <li>USDT (ETH and SOL Chains)</li>
                 <li>USDC (ETH and SOL Chains)</li>
               </ul>
             </div>
             <div className={s["how-to-start-card"]}>
               <h3>3. Claim Tokens</h3>
               <p>
-                Congratulations! You can claim your TBET after the presale ends
-                with an unlock schedule of 10% per month from TGE to protect
-                your investment.
+                Once the presale concludes, you'll be eligible to claim your
+                TBET tokens, with a safeguarding strategic unlock schedule
+                commencing one month after the Token Generation Event (TGE),
+                followed by a consistent 10% monthly release. This carefully
+                crafted strategy is tailored to maximize and protect the value
+                of your investment.
               </p>
             </div>
           </div>

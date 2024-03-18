@@ -89,11 +89,11 @@ export const Benefits = () => {
           <p>
             TrustBet On-Chain delivers instant and transparent payouts through
             Smart Contracts on the Solana blockchain. Our DAO framework ensures
-            decision-making driven by our community, coupled with
-            profit-sharing. Payments to non-custodial wallets address the
-            challenges commonly encountered in traditional platforms,
-            positioning TrustBet as a paradigm of trust and reliability in the
-            online iGaming industry.
+            decision making driven by our community, coupled with profit
+            sharing. Payments to non-custodial wallets address the challenges
+            commonly encountered in traditional platforms, positioning TrustBet
+            as a paradigm of trust and reliability in the online iGaming
+            industry.
           </p>
         </div>
       </div>

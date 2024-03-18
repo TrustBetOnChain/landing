@@ -67,18 +67,21 @@ export const TokenDetails = () => {
             <div className={s["token-details-footer"]}>
               <h3>Pre-Sale Details</h3>
               <p>
-                Phase of the presale will remain active until it is fully
-                allocated or in the event of a significant announcement.
-                Following this, we will transition to the second phase to
+                The presale phase will remain active until it is either fully
+                allocated or if there is a significant announcement. Following
+                this, we will transition to the next phase, which will more
                 accurately reflect our developmental progress.
                 <br /> <br />
-                <span className={s["green"]}>Current Stage Price</span> - Please
-                note, as our circulating supply is significantly smaller than
-                most projects and capped at 100 million, with an initial
-                circulating supply of 55 million, 30 million to treasury and
-                liquidity and 15 million locked in staking for up to 2 years
-                with a slow unlock schedule the presale stage 1 price is 0.50
-                cents USD.
+                <span className={s["green"]}>Current Stage Price</span> - The
+                presale Tier 1 price is set at a discounted $0.48 USD per token
+                for a limited first 2 million TBET only. Our project
+                distinguishes itself with a limited circulating supply capped at
+                100 million tokens, significantly lower than typical offerings.
+                Initially, 55 million tokens are in circulation, 30 million are
+                allocated to our treasury and liquidity, and 15 million are
+                locked in staking with a gradual release over two years. This
+                structure underscores our commitment to stability and long-term
+                value.
               </p>
             </div>
           </div>
@@ -89,7 +92,7 @@ export const TokenDetails = () => {
               <span>Please note:</span> You will need to manually add the TBET
               details to all wallets EXCEPT Phantom Wallet. Phantom Wallet has
               been updated automatically being a native wallet to Solana DAO
-              interaction. All other wallets will show TBET as an SPL picture
+              interaction. All other wallets will show TBET as an SPL picture.
             </p>
             <p className={s["text"]}>
               Phantom Wallet will show the following:
