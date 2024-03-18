@@ -8,21 +8,21 @@ body {
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Geometria";
   src: url("/fonts/geometria_bold.otf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Roboto";
+  font-family: "Geometria";
   src: url("/fonts/geometria_light.otf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 
 * {
-  font-family: "Roboto", sans-serif;
+  font-family: "Geometria", sans-serif;
   margin: 0;
   padding: 0;
   list-style: none;
