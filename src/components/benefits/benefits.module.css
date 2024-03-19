@@ -27,6 +27,7 @@
 
 .benefits-card > p {
   font-size: 17px;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -84,6 +85,10 @@ li.benefits-card:nth-child(2) > img:nth-child(2) {
 
 .benefits-footer-side > h5 {
   font-size: 24px;
+}
+
+.benefits-footer-side > p {
+  font-weight: 300;
 }
 
 @media (max-width: 1200px) {

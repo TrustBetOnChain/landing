@@ -19,7 +19,7 @@ export const TBetModes = () => {
         <p>
           Utilizing industry leading and highly reputable
           <br /> gaming software, our platform offers an extensive
-          <br /> array of gaming options.{" "}
+          <br /> array of gaming options.
         </p>
         <div className={s["trustbet-modes-cards"]}>
           <div className={s["trustbet-modes-card"]}>

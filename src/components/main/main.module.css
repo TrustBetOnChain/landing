@@ -20,6 +20,7 @@
   width: 400px;
   margin-top: 10px;
   font-weight: normal;
+  font-weight: 300;
 }
 
 .main-section::after {
