@@ -79,14 +79,14 @@ export const ContactUs = () => {
             >
               Terms of Service
             </a>
-
+            <span>Development by:</span>
             <a
               target="_blank"
               href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
             >
               Privacy Policy
             </a>
-            <span>Development by:</span>
+
             <a target="_blank" href="https://finpr.agency/">
               FINPR Agency
             </a>

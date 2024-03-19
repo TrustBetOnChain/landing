@@ -43,6 +43,10 @@ article {
   border-radius: 15px;
 }
 
+.token-details-header-card > p {
+  font-weight: 300;
+}
+
 .card-head {
   display: flex;
   justify-content: space-between;
@@ -59,6 +63,9 @@ article {
   border-radius: 15px;
 }
 
+.token-details-footer > p {
+  font-weight: 300;
+}
 .token-details-footer > h3 {
   text-align: left;
   color: #8b8f8f;
@@ -83,6 +90,11 @@ article {
 
 .article-footer > aside > p {
   margin-top: 30px;
+  font-weight: 300;
+}
+
+.article > div > p {
+  font-weight: 300;
 }
 
 .article > div > p > span {
@@ -97,7 +109,7 @@ article {
 }
 
 .article-footer > aside > h4 {
-  font-weight: normal;
+  font-weight: 300;
   color: #8b8f8f;
   margin-top: 130px;
 }
@@ -109,6 +121,7 @@ article {
 
 .green {
   color: #88c13c;
+  font-weight: bold;
 }
 
 @media (max-width: 1000px) {

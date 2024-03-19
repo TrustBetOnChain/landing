@@ -35,17 +35,18 @@
 
 .aside-links {
   margin-top: 30px;
-  width: 45%;
+  width: 46%;
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
+  font-weight: 300;
 }
 
 .aside-links > a,
 span {
   /* display: flex; */
   /* gap: 10px; */
-  color: white;
+  color: #3c4141;
 }
 
 .aside-links > a {
@@ -68,6 +69,10 @@ span {
 .title {
   transform: none;
   margin-top: 20px;
+}
+
+.aside-header > div > a {
+  font-weight: 300;
 }
 
 .form {
