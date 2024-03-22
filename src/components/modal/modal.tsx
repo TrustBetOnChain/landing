@@ -25,7 +25,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               <ul className={s["modal-list"]}>
                 <a
                   target="_blank"
-                  href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/1lfuu-qc4zeHDIIbHhZeAvclROMDtUfnR/view?usp=sharing"
                   className={s["modal-item"]}
                 >
                   White Paper
