@@ -73,3 +73,9 @@ h2 {
 .wallet-adapter-modal-button-close {
   z-index: 10000;
 }
+
+@media (max-width: 500px) {
+  .gt_switcher_wrapper {
+    max-width: 1px;
+  }
+}
