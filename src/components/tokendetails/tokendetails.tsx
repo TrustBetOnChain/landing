@@ -65,13 +65,7 @@ export const TokenDetails = () => {
               </li>
             </ul>
             <div className={s["token-details-footer"]}>
-              <h3>Pre-Sale Details</h3>
               <p>
-                The presale phase will remain active until it is either fully
-                allocated or if there is a significant announcement. Following
-                this, we will transition to the next phase, which will more
-                accurately reflect our developmental progress.
-                <br /> <br />
                 <span className={s["green"]}>Current Stage Price</span> - The
                 first stage of presale will commence at a price of 0.10 USDT
                 (Ten cents) for the first 5 million TBET tokens sold and will

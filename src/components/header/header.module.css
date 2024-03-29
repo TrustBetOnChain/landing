@@ -1,6 +1,6 @@
 header {
   position: absolute;
-  top: 0;
+  top: 1;
   left: 0;
   z-index: 1;
   width: 100%;
@@ -19,8 +19,7 @@ header {
 }
 
 @media (max-width: 820px) {
-  .header{
+  .header {
     display: none;
   }
 }
-
