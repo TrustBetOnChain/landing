@@ -18,6 +18,7 @@ export const HeaderMobile = () => {
   return (
     <header ref={refAnimate} className={s["header"]}>
       <nav className={s["nav"]}>
+        <div className="gtranslate_wrapper"></div>
         <ul className={s["nav-list"]}>
           <li className={s["nav-list"]}>
             <img src={Logo} alt="" />

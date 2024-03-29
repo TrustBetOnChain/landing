@@ -73,15 +73,24 @@ export const TokenDetails = () => {
                 accurately reflect our developmental progress.
                 <br /> <br />
                 <span className={s["green"]}>Current Stage Price</span> - The
-                presale Tier 1 price is set at a discounted $0.48 USD per token
-                for a limited first 2 million TBET only. Our project
-                distinguishes itself with a limited circulating supply capped at
-                100 million tokens, significantly lower than typical offerings.
-                Initially, 55 million tokens are in circulation, 30 million are
-                allocated to our treasury and liquidity, and 15 million are
-                locked in staking with a gradual release over two years. This
-                structure underscores our commitment to stability and long-term
-                value.
+                first stage of presale will commence at a price of 0.10 USDT
+                (Ten cents) for the first 5 million TBET tokens sold and will
+                increase in 2 cent increments thereafter. For example, Stage 2
+                presale will be set at 0.12 USDT (Twelve cents) for the second 5
+                million TBET allotment and will continue at the same incremental
+                rate with a maximum target of 55 million TBET tokens to be sold
+                or until its manual completion. TrustBet distinguishes itself
+                with a limited maximum supply capped at 100 million tokens,
+                significantly lower than typical offerings. This makes the
+                Presale price point very lucrative for early adopters who
+                recognize before others the immense potential of the TrustBet
+                ecosystem and its extremely generous rewards system for staked
+                holders of TBET tokens, whereby, they will be paid 50% of a
+                bustling Casino's profits as a form of passive income directly
+                into their wallet in USDT. Such a high rate of Casino profits
+                paid out in USDT is unprecedented and underscores our commitment
+                to rewarding our community and providing long term value to our
+                holders.
               </p>
             </div>
           </div>

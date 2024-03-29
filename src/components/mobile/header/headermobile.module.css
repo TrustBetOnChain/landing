@@ -6,7 +6,8 @@
 }
 
 .nav {
-  padding: 40px;
+  padding-top: 40px;
+  padding-left: 20px;
 }
 
 .nav-list {
@@ -91,7 +92,7 @@
 
   .nav-list > li:nth-child(2) {
     position: fixed;
-    right: 40px;
+    right: 20px;
   }
 }
 
