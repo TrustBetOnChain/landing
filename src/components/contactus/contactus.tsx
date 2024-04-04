@@ -65,7 +65,7 @@ export const ContactUs = () => {
             </a>
             <a
               target="_blank"
-              href="https://drive.google.com/file/d/11bgcCf_e5tFLujVJBE2ySoRFblyVrxLe/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1lfuu-qc4zeHDIIbHhZeAvclROMDtUfnR/view?usp=sharing"
             >
               Whitepaper
             </a>
