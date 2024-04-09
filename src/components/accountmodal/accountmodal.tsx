@@ -4,7 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 
 import s from "./accountmodal.module.scss";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-// import { TestPrices } from "../testprices/testprices";
+import { TestPrices } from "../testprices/testprices";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
 
 interface Props {
@@ -28,7 +28,7 @@ export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   X
                 </button>
               </Dialog.Title>
-              {/* {wallet && <TestPrices wallet={wallet} />} */}
+              {wallet && <TestPrices wallet={wallet} />}
             </div>
           </Dialog.Panel>
         </Transition.Child>
