@@ -12,30 +12,27 @@ import { TokenDetails } from "./components/tokendetails/tokendetails";
 import { ContactUs } from "./components/contactus/contactus";
 import { Roadmap } from "./components/roadmap/roadmap";
 import { TBetModes } from "./components/trustbetmodes/tbetmodes";
-import { WalletConnectProvider } from "./WalletConnectProvider";
 import { HeaderMobile } from "./components/mobile/header/header";
 
 function App() {
   return (
     <>
-      <WalletConnectProvider>
-        <Header />
-        <HeaderMobile />
-        <main>
-          <Main />
-          <Cards />
-          <Future />
-          <Benefits />
-          <TBetModes />
-          <Payouts />
-          <HowToStart />
-          <Roadmap />
-          <ConnectWallet />
-          <TokenDetails />
-          <ContactUs />
-        </main>
-        <Footer />
-      </WalletConnectProvider>
+      <Header />
+      <HeaderMobile />
+      <main>
+        <Main />
+        <Cards />
+        <Future />
+        <Benefits />
+        <TBetModes />
+        <Payouts />
+        <HowToStart />
+        <Roadmap />
+        <ConnectWallet />
+        <TokenDetails />
+        <ContactUs />
+      </main>
+      <Footer />
     </>
   );
 }
