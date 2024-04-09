@@ -2,7 +2,7 @@ import { Keypair, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
 export const KEYPAIR_PATH = "/Users/yanmarinich/.config/solana/id.json";
 export const PRIVATE_FOLDER_PATH = ".private";
-import { IDL } from "../types/pre_sale_program";
+// import { IDL } from "../types/pre_sale_program";
 
 export const CLUSTER = import.meta.env.VITE_CLUSTER;
 
@@ -15,7 +15,7 @@ export const PROGRAM_ID = new PublicKey(
   "6cfTEqLuafN5gGVtqnbLwfdLJUXhqd2WnzRUMqAEej48",
 );
 
-export const PROGRAM_IDL = IDL;
+// export const PROGRAM_IDL = IDL;
 
 export const WSOL_ADDRESS = new PublicKey(
   "So11111111111111111111111111111111111111112",
