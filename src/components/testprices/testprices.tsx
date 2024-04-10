@@ -20,6 +20,7 @@ import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { useEffect, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
 import { PrimaryButton } from "../primarybutton/primarybutton";
+import { WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 
 export type RadioOption<T extends string = string> = {
   id: T;
@@ -160,6 +161,7 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
           </div>
         </div>
       </fieldset>
+      <WalletDisconnectButton />
     </form>
   );
 }
