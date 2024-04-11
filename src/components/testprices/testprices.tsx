@@ -8,19 +8,18 @@ import { AnchorWallet } from "@solana/wallet-adapter-react";
 import { useConnection } from "@solana/wallet-adapter-react";
 import { AnchorProvider, BN, Program } from "@coral-xyz/anchor";
 
-import {
-  CHAINLINK_PROGRAM_ID,
-  CLUSTER_URL,
-  PROGRAM_ID,
-  PROGRAM_IDL,
-  SOL_USD_FEED_DEV,
-  WSOL_DEV,
-} from "../../presale/config";
 import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { useEffect, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
 import { PrimaryButton } from "../primarybutton/primarybutton";
 import { WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
+import {
+  CHAINLINK_PROGRAM,
+  PRE_SALE_PROGRAM,
+  tokens,
+} from "../../presale/config/address";
+import { PROGRAM_IDL } from "../../presale/config";
+import { getPriceFeed } from "../../presale/config/price-feed";
 
 export type RadioOption<T extends string = string> = {
   id: T;
@@ -76,8 +75,18 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
     control,
   });
 
+  const vaultMintAddress = new PublicKey(
+    "J6uwcX3KXnA7xJj1v2HZVGKgQpyvxk2mQmxMaBYhD7bF",
+  );
+
   const { connection } = useConnection();
   const [tokenAmount, setTokenAmount] = useState(0);
+
+  // useEffect(() => {
+  //   connection
+  //     .getParsedAccountInfo(vaultMintAddress)
+  //     .then((vaultMint) => console.log(vaultMint));
+  // }, []);
 
   useEffect(() => {
     setTokenAmount(0);
@@ -90,14 +99,12 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
   const fetchPrice = async (amount: number) => {
     const provider = new AnchorProvider(connection, wallet, {});
 
+    const feedInfo = getPriceFeed("SOL", "devnet");
+
     const program = new Program<PreSaleProgram>(
       PROGRAM_IDL,
-      PROGRAM_ID,
+      PRE_SALE_PROGRAM,
       provider,
-    );
-
-    const vaultMint = new PublicKey(
-      "J6uwcX3KXnA7xJj1v2HZVGKgQpyvxk2mQmxMaBYhD7bF",
     );
 
     let [programConfigAddress] = PublicKey.findProgramAddressSync(
@@ -106,19 +113,18 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
     );
 
     const result = await program.methods
-      .getTokenAmount({
-        payerMintAmount: new BN(amount * Math.pow(10, 9)),
-      })
+      .getTokenAmount({ amount: new BN(`${amount * Math.pow(10, 6)}`) })
       .accounts({
         programConfig: programConfigAddress,
-        vaultMint: vaultMint,
-        chainlinkProgram: CHAINLINK_PROGRAM_ID,
-        payerMint: WSOL_DEV,
-        chainlinkFeed: SOL_USD_FEED_DEV,
+        vaultMint: vaultMintAddress,
+        chainlinkProgram: CHAINLINK_PROGRAM,
+        payerMint: feedInfo.asset,
+        chainlinkFeed: feedInfo.dataFeed,
       })
       .view();
 
-    const formattedResult = result.toNumber() / Math.pow(10, 6);
+    const formattedResult =
+      result.toNumber() / Math.pow(10, tokens.devnet.SOL.decimals);
 
     setTokenAmount(formattedResult);
   };
@@ -131,7 +137,7 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <RadioButton
                 options={typeRadioOptions}
-                legend="Choose coin"
+                legend="Choose coin that you wanna use for payment"
                 description="Price will be estimated based on the selection (TBET price: $0.1)"
                 className="col-span-full"
                 {...register("coin")}
@@ -142,15 +148,14 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
               <TextInput
                 {...register("value", { valueAsNumber: true })}
                 error={errors.value}
-                label={`Enter the amount of ${values.coin} you wanna spend for TBET`}
+                label={`Enter the amount of TBET you wanna buy`}
                 className="sm:col-span-3"
                 type="number"
-                step="0.000001"
               />
             </div>
 
             <div className="mt-5 text-md font-semibold leading-6 text-white">
-              TBET coins = {tokenAmount}
+              {values.coin} coins = {tokenAmount}
             </div>
 
             <PrimaryButton
