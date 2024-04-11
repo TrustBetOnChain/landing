@@ -18,7 +18,7 @@ export function getPriceFeeds(chain: SupportedNetwork): PriceFeeds {
 
 export function getPriceFeed(
   token: SupportedToken,
-  chain: SupportedNetwork
+  chain: SupportedNetwork,
 ): PriceFeed<typeof token> {
   return {
     asset: tokens[chain][token].pubkey,

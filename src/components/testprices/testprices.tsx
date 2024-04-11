@@ -20,6 +20,7 @@ import {
 } from "../../presale/config/address";
 import { PROGRAM_IDL } from "../../presale/config";
 import { getPriceFeed } from "../../presale/config/price-feed";
+import { SupportedToken } from "../../presale/types";
 
 export type RadioOption<T extends string = string> = {
   id: T;
@@ -27,14 +28,16 @@ export type RadioOption<T extends string = string> = {
 };
 
 export const Coin = {
-  WSOL: "WSOL",
+  SOL: "SOL",
   ETH: "ETH",
   BTC: "BTC",
   USDC: "USDC",
   USDT: "USDT",
-} as const;
+} satisfies Record<SupportedToken, SupportedToken>;
 
 export type Coin = (typeof Coin)[keyof typeof Coin];
+
+Coin;
 
 export const PriceSchema = z.object({
   coin: z.nativeEnum(Coin),
@@ -44,7 +47,7 @@ export const PriceSchema = z.object({
 export type PriceForm = z.infer<typeof PriceSchema>;
 
 const priceDefaultValues: Partial<PriceForm> = {
-  coin: Coin.WSOL,
+  coin: Coin.SOL,
   value: 0,
 };
 
@@ -56,11 +59,11 @@ export function usePriceForm() {
 }
 
 export const typeRadioOptions: RadioOption<Coin>[] = [
-  { id: Coin.WSOL, name: "SOL" },
-  // { id: Coin.ETH, name: "ETH" },
-  // { id: Coin.USDT, name: "USDT" },
-  // { id: Coin.USDC, name: "USDC" },
-  // { id: Coin.BTC, name: "BTC" },
+  { id: Coin.SOL, name: "SOL" },
+  { id: Coin.ETH, name: "ETH" },
+  { id: Coin.USDT, name: "USDT" },
+  { id: Coin.USDC, name: "USDC" },
+  { id: Coin.BTC, name: "BTC" },
 ];
 
 export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
@@ -93,13 +96,15 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
   }, [values.value, values.coin]);
 
   const submitHandler = (data: PriceForm) => {
-    fetchPrice(data.value);
+    if (values.coin) {
+      fetchPrice(data.value, values.coin);
+    }
   };
 
-  const fetchPrice = async (amount: number) => {
+  const fetchPrice = async (amount: number, coin: SupportedToken) => {
     const provider = new AnchorProvider(connection, wallet, {});
 
-    const feedInfo = getPriceFeed("SOL", "devnet");
+    const feedInfo = getPriceFeed(coin, "devnet");
 
     const program = new Program<PreSaleProgram>(
       PROGRAM_IDL,
@@ -124,7 +129,7 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
       .view();
 
     const formattedResult =
-      result.toNumber() / Math.pow(10, tokens.devnet.SOL.decimals);
+      result.toNumber() / Math.pow(10, tokens.devnet[coin].decimals);
 
     setTokenAmount(formattedResult);
   };
