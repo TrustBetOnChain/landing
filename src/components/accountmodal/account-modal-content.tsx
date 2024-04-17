@@ -80,7 +80,7 @@ const availableCoins = [Coin.SOL, Coin.ETH, Coin.BTC, Coin.USDC, Coin.USDT].map<
   RadioOption<Coin> & { address: PublicKey }
 >((coin) => ({ id: coin, name: coin, address: tokens[CLUSTER][coin].pubkey }));
 
-export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
+export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
   const {
     register,
     control,
