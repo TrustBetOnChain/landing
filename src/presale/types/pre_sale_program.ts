@@ -149,8 +149,8 @@ export type PreSaleProgram = {
           isSigner: false;
         },
         {
-          name: "collectedFundsAccount";
-          isMut: false;
+          name: "collectedFundsTokenAccount";
+          isMut: true;
           isSigner: false;
         },
         {
@@ -171,6 +171,11 @@ export type PreSaleProgram = {
         {
           name: "chainlinkProgram";
           isMut: false;
+          isSigner: false;
+        },
+        {
+          name: "collectedFundsAccount";
+          isMut: true;
           isSigner: false;
         },
         {
@@ -267,7 +272,7 @@ export type PreSaleProgram = {
         kind: "struct";
         fields: [
           {
-            name: "payerMintAmount";
+            name: "amount";
             type: "u64";
           },
         ];
@@ -389,33 +394,43 @@ export type PreSaleProgram = {
     },
     {
       code: 6002;
-      name: "InvalidTokenAmount";
-      msg: "Token amount should be greater than 0";
-    },
-    {
-      code: 6003;
       name: "InvalidPriceFeed";
       msg: "Provided price feed account is invalid";
     },
     {
-      code: 6004;
+      code: 6003;
       name: "InvalidChainlinkProgram";
       msg: "Invalid Chainlink program account";
     },
     {
-      code: 6005;
+      code: 6004;
       name: "InvalidChainlinkFeed";
       msg: "Invalid chainlink_feed account or payer_mint and chainlink_feed don't match";
     },
     {
-      code: 6006;
+      code: 6005;
       name: "MathOverflow";
       msg: "Math operation overflow";
     },
     {
-      code: 6007;
+      code: 6006;
       name: "LessThanMinimalValue";
       msg: "Payer value is less than minimal";
+    },
+    {
+      code: 6007;
+      name: "IvalidCollectedFundsAccount";
+      msg: "Collected funds account invalid";
+    },
+    {
+      code: 6008;
+      name: "InsufficientVaultBalance";
+      msg: "Amount of purchase is bigger than the amount in the treasury";
+    },
+    {
+      code: 6009;
+      name: "ConversionError";
+      msg: "Error occurred while converting mints";
     },
   ];
 };
@@ -571,8 +586,8 @@ export const IDL: PreSaleProgram = {
           isSigner: false,
         },
         {
-          name: "collectedFundsAccount",
-          isMut: false,
+          name: "collectedFundsTokenAccount",
+          isMut: true,
           isSigner: false,
         },
         {
@@ -593,6 +608,11 @@ export const IDL: PreSaleProgram = {
         {
           name: "chainlinkProgram",
           isMut: false,
+          isSigner: false,
+        },
+        {
+          name: "collectedFundsAccount",
+          isMut: true,
           isSigner: false,
         },
         {
@@ -689,7 +709,7 @@ export const IDL: PreSaleProgram = {
         kind: "struct",
         fields: [
           {
-            name: "payerMintAmount",
+            name: "amount",
             type: "u64",
           },
         ],
@@ -811,33 +831,43 @@ export const IDL: PreSaleProgram = {
     },
     {
       code: 6002,
-      name: "InvalidTokenAmount",
-      msg: "Token amount should be greater than 0",
-    },
-    {
-      code: 6003,
       name: "InvalidPriceFeed",
       msg: "Provided price feed account is invalid",
     },
     {
-      code: 6004,
+      code: 6003,
       name: "InvalidChainlinkProgram",
       msg: "Invalid Chainlink program account",
     },
     {
-      code: 6005,
+      code: 6004,
       name: "InvalidChainlinkFeed",
       msg: "Invalid chainlink_feed account or payer_mint and chainlink_feed don't match",
     },
     {
-      code: 6006,
+      code: 6005,
       name: "MathOverflow",
       msg: "Math operation overflow",
     },
     {
-      code: 6007,
+      code: 6006,
       name: "LessThanMinimalValue",
       msg: "Payer value is less than minimal",
+    },
+    {
+      code: 6007,
+      name: "IvalidCollectedFundsAccount",
+      msg: "Collected funds account invalid",
+    },
+    {
+      code: 6008,
+      name: "InsufficientVaultBalance",
+      msg: "Amount of purchase is bigger than the amount in the treasury",
+    },
+    {
+      code: 6009,
+      name: "ConversionError",
+      msg: "Error occurred while converting mints",
     },
   ],
 };

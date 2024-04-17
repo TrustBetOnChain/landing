@@ -3,24 +3,19 @@ import classNames from "classnames";
 
 import s from "./primarybutton.module.scss";
 
-export const PrimaryButton = ({
-  className,
-  onClick,
-  label,
-  icon,
-}: {
+type Props = {
   className?: string;
   onClick?: () => void;
-  label: string;
-  icon: ReactNode;
-}) => {
+  children: ReactNode;
+};
+
+export const PrimaryButton = ({ className, children, onClick }: Props) => {
   return (
     <button
       className={classNames(className, s.primaryButton)}
       onClick={onClick}
     >
-      {label}
-      {icon}
+      {children}
     </button>
   );
 };

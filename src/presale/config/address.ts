@@ -39,6 +39,11 @@ export const CHAINLINK_OFFCHAIN_PROGRAM = new PublicKey(
   "cjg3oHmg9uuPsP8D6g29NWvhySJkdYdAo9D25PRbKXJ",
 );
 
+export const tokenVaultAddress = PublicKey.findProgramAddressSync(
+  [Buffer.from("vault")],
+  PRE_SALE_PROGRAM,
+)[0];
+
 const devnet_tokens: Record<SupportedToken, SplToken> = {
   SOL: {
     pubkey: new PublicKey("So11111111111111111111111111111111111111112"),

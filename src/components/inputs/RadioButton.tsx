@@ -17,9 +17,9 @@ export const RadioButton = React.forwardRef<HTMLInputElement, Props>(
           {legend}
         </legend>
         <p className="mt-1 text-sm leading-6 text-white">{description}</p>
-        <div className="mt-6 space-y-6">
+        <div className="mt-6 flex items-center gap-8 flex-wrap">
           {options.map(({ name, id }) => (
-            <div key={id} className="flex items-center gap-x-3">
+            <div key={id} className="flex flex-1 items-center gap-x-3">
               <input
                 ref={ref}
                 {...props}

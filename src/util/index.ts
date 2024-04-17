@@ -1,4 +1,5 @@
 import Identicon from "identicon.js";
+export * from "./web3";
 
 export function getTruncatedHash(
   address: string,

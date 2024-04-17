@@ -37,8 +37,6 @@ export const Coin = {
 
 export type Coin = (typeof Coin)[keyof typeof Coin];
 
-Coin;
-
 export const PriceSchema = z.object({
   coin: z.nativeEnum(Coin),
   value: z.number().min(0),
@@ -163,11 +161,7 @@ export function TestPrices({ wallet }: { wallet: AnchorWallet }) {
               {values.coin} coins = {tokenAmount}
             </div>
 
-            <PrimaryButton
-              className="mt-4"
-              icon={undefined}
-              label="Estimate price"
-            />
+            <PrimaryButton className="mt-4">Estimate price</PrimaryButton>
           </div>
         </div>
       </fieldset>
