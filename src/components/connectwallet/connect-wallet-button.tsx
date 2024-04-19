@@ -41,9 +41,9 @@ export const ConnectWalletButton = ({
     <>
       <PrimaryButton className={className} onClick={handleClick}>
         <div className={s.account}>
-          {label}
-          <img src={ConnectWalletImg} alt="" />
-          {showBalance && Number(balance)}
+          <div>{label}</div>
+          <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
+          {showBalance && <div>{Number(balance)}</div>}
         </div>
       </PrimaryButton>
       <AccountModal

@@ -32,6 +32,10 @@ export const PRE_SALE_PROGRAM = new PublicKey(
   "AUAfQQmCDmzKn3hLBPPPUq5E2Z1FwY6eETkAg1qmQfEm",
 );
 
+export const COLLECTOR_ADDRESS = new PublicKey(
+  "9StLPqawgBnTXVUkJ5eDCVj2Nnsdjuz2is9cAkKGQJqM",
+);
+
 export const CHAINLINK_PROGRAM = new PublicKey(
   "HEvSKofvBgfaexv23kMabbYqxasxU3mQ4ibBMEmJWHny",
 );
@@ -50,19 +54,19 @@ const devnet_tokens: Record<SupportedToken, SplToken> = {
     decimals: 9,
   },
   BTC: {
-    pubkey: new PublicKey("35h7rFm5bB9kR2amEkVZQiZcKEo6KD3defaSHyqEGg26"),
+    pubkey: new PublicKey("CuSb9ZG6jNeaazooumpG5qKVJP66JshVh7hkCByhS2yh"),
     decimals: 8,
   },
   ETH: {
-    pubkey: new PublicKey("H72Lhqv8fAdfjmSZUb3eC83726oyWnJzDvhcM29AyzFF"),
+    pubkey: new PublicKey("Aia2XxNLCcn4ACCMV5UQsRA4a5DvB3bdR7TD9zYEDXi"),
     decimals: 8,
   },
   USDC: {
-    pubkey: new PublicKey("oRuPRQHaqGmG3PZhUF2h1ksu3yy55ZRKUfWZkF9xajP"),
+    pubkey: new PublicKey("7o3cpYj6EYKGUuHugpJUU15Jj9jcnwvpBgRFTKkQdD38"),
     decimals: 6,
   },
   USDT: {
-    pubkey: new PublicKey("3xodkBPNWnp7ff6heRYZTfdUUCofbaWEVksmAT54ayrA"),
+    pubkey: new PublicKey("6BgzDTkhAWTKzF83Y8gRotLGjDbjfrU1TLWL2J7QTCBG"),
     decimals: 6,
   },
 };

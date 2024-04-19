@@ -1,33 +1,58 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, RadioGroup, Transition } from "@headlessui/react";
+import { RadioGroup } from "@headlessui/react";
 import {
   ShieldCheckIcon,
   XMarkIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 
-import {
-  CheckIcon,
-  QuestionMarkCircleIcon,
-  StarIcon,
-} from "@heroicons/react/20/solid";
+import { CheckIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import { AnchorWallet, useAnchorWallet } from "@solana/wallet-adapter-react";
+import { AnchorWallet } from "@solana/wallet-adapter-react";
 import TbetImage from "../../assets/tbet-icon.svg";
 import {
+  CHAINLINK_PROGRAM,
   PRE_SALE_PROGRAM,
   tokenVaultAddress,
   tokens,
 } from "../../presale/config/address";
-import { PublicKey } from "@solana/web3.js";
+import {
+  PublicKey,
+  Transaction,
+  TransactionInstruction,
+  TransactionMessage,
+  VersionedTransaction,
+} from "@solana/web3.js";
 import { useTbetBalance } from "../../hooks/use-tbet-balance";
-import { CLUSTER, connection } from "../../presale/config";
+import { CLUSTER, PROGRAM_IDL, connection } from "../../presale/config";
 import { PrimaryButton } from "../primarybutton/primarybutton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useWatch } from "react-hook-form";
 import { SupportedToken } from "../../presale/types";
 import { z } from "zod";
 import { TextInput } from "../inputs/TextInput";
+import { AnchorProvider, BN, Program, web3 } from "@coral-xyz/anchor";
+import { PreSaleProgram } from "../../presale/types/pre_sale_program";
+import { getPriceFeeds } from "../../presale/config/price-feed";
+import { buyTokensInstruction } from "../../presale/instructions/buy-tokens";
+import {
+  createAssociatedTokenAccountInstruction,
+  getAccount,
+  getAssociatedTokenAddress,
+} from "@solana/spl-token";
+import { encode } from "bs58";
+
+const vaultMintAddress = new PublicKey(
+  "J6uwcX3KXnA7xJj1v2HZVGKgQpyvxk2mQmxMaBYhD7bF",
+);
+
+async function checkTransactionStatus(txSignature: string) {
+  try {
+    const signatureStatus = await connection.getSignatureStatus(txSignature);
+    console.log("Transaction status:", signatureStatus);
+  } catch (err) {
+    console.error("Error checking transaction status:", err);
+  }
+}
 
 interface Props {
   onClose: () => void;
@@ -51,14 +76,14 @@ export type Coin = (typeof Coin)[keyof typeof Coin];
 
 export const PriceSchema = z.object({
   coin: z.nativeEnum(Coin),
-  value: z.number().min(0),
+  value: z.number().min(1, { message: "Shouldn't be zero" }),
 });
 
 export type PriceForm = z.infer<typeof PriceSchema>;
 
 const priceDefaultValues: Partial<PriceForm> = {
   coin: Coin.SOL,
-  value: 0,
+  value: 1,
 };
 
 export function usePriceForm() {
@@ -80,7 +105,7 @@ const availableCoins = [Coin.SOL, Coin.ETH, Coin.BTC, Coin.USDC, Coin.USDT].map<
   RadioOption<Coin> & { address: PublicKey }
 >((coin) => ({ id: coin, name: coin, address: tokens[CLUSTER][coin].pubkey }));
 
-export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
+export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
   const {
     register,
     control,
@@ -95,6 +120,123 @@ export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
   const price = 0.1;
 
   const vaultBalance = useTbetBalance(tokenVaultAddress);
+
+  const submitHandler = (data: PriceForm) => {
+    buyTokens(data.value, data.coin).then();
+  };
+
+  const buyTokens = async (amount: number, coin: SupportedToken) => {
+    const provider = new AnchorProvider(connection, wallet, {});
+    // const vaultAccount = await getAccount(connection, tokenVaultAddress);
+    const vaultMintDecimals = 6;
+
+    const program = new Program<PreSaleProgram>(
+      PROGRAM_IDL,
+      PRE_SALE_PROGRAM,
+      provider,
+    );
+
+    let [programConfigAddress] = PublicKey.findProgramAddressSync(
+      [Buffer.from("config")],
+      program.programId,
+    );
+
+    const programConfig =
+      await program.account.programConfig.fetch(programConfigAddress);
+
+    const [userVaultAddress] = PublicKey.findProgramAddressSync(
+      [Buffer.from("user_vault"), wallet.publicKey.toBuffer()],
+      program.programId,
+    );
+
+    const feed = getPriceFeeds(CLUSTER)[coin];
+
+    const [ataForPayment, paymentAtaCreationInstruction] =
+      await geTokenAddressWithCreationInstruction(wallet.publicKey, feed.asset);
+
+    const [ataForCollecting, collectingAtaCreationInstruction] =
+      await geTokenAddressWithCreationInstruction(
+        programConfig.collectedFundsAccount,
+        feed.asset,
+      );
+
+    // console.log("p", paymentAtaCreationInstruction);
+    // console.log("c", collectingAtaCreationInstruction);
+
+    const instruction = await buyTokensInstruction({
+      accounts: {
+        signer: wallet.publicKey,
+        programConfig: programConfigAddress,
+        vaultAccount: tokenVaultAddress,
+        vaultMint: vaultMintAddress,
+        userVaultAccount: userVaultAddress,
+        payerTokenAccount: ataForPayment,
+        collectedFundsTokenAccount: ataForCollecting,
+        collectedFundsAccount: programConfig.collectedFundsAccount,
+        payerMint: feed.asset,
+        chainlinkFeed: feed.dataFeed,
+        chainlinkProgram: CHAINLINK_PROGRAM,
+      },
+      args: { amount: new BN(amount * 10 ** vaultMintDecimals) },
+      program,
+    });
+
+    const instructions = [];
+
+    if (paymentAtaCreationInstruction) {
+      instructions.push(paymentAtaCreationInstruction);
+    }
+
+    if (collectingAtaCreationInstruction) {
+      instructions.push(collectingAtaCreationInstruction);
+    }
+    instructions.push(instruction);
+
+    const { blockhash, lastValidBlockHeight } =
+      await connection.getLatestBlockhash();
+
+    const messageV0 = new TransactionMessage({
+      payerKey: wallet.publicKey,
+      recentBlockhash: blockhash,
+      instructions,
+    }).compileToV0Message();
+
+    // make a versioned transaction
+    const transactionV0 = new VersionedTransaction(messageV0);
+
+    const simulationResult =
+      await connection.simulateTransaction(transactionV0);
+
+    console.log(simulationResult);
+
+    // return;
+
+    const signedTx = await wallet.signTransaction(transactionV0);
+
+    const res = await provider.sendAndConfirm(signedTx);
+    console.log("result", res);
+  };
+
+  async function geTokenAddressWithCreationInstruction(
+    address: PublicKey,
+    mint: PublicKey,
+  ): Promise<[PublicKey, TransactionInstruction | null]> {
+    const ata = await getAssociatedTokenAddress(mint, address);
+    let instruction: TransactionInstruction | null = null;
+
+    try {
+      await getAccount(connection, ata);
+    } catch (e) {
+      instruction = createAssociatedTokenAccountInstruction(
+        wallet.publicKey,
+        ata,
+        address,
+        mint,
+      );
+    }
+
+    return [ata, instruction];
+  }
 
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
@@ -155,7 +297,7 @@ export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
               Product options
             </h3>
 
-            <form>
+            <form onSubmit={handleSubmit(submitHandler)}>
               <div className="sm:flex sm:flex-col sm:justify-between">
                 <RadioGroup
                   value={values.coin}
@@ -216,7 +358,12 @@ export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
                 </RadioGroup>
 
                 <TextInput
-                  {...register("value", { valueAsNumber: true })}
+                  {...register("value", {
+                    valueAsNumber: true,
+                    required: true,
+                    min: 1,
+                    max: 10_000_000,
+                  })}
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
                   className="mt-5 mb-5 sm:col-span-3"
@@ -235,7 +382,7 @@ export const AccountModalContent: React.FC<Props> = ({ onClose }) => {
                   />
                 </a>
               </div> */}
-              <div className="mt-6">
+              <div className="mt-6 flex justify-center">
                 <PrimaryButton className="w-[150px]">Buy</PrimaryButton>
               </div>
               <div className="mt-6 text-center">
