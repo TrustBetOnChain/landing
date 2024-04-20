@@ -45,15 +45,6 @@ const vaultMintAddress = new PublicKey(
   "J6uwcX3KXnA7xJj1v2HZVGKgQpyvxk2mQmxMaBYhD7bF",
 );
 
-async function checkTransactionStatus(txSignature: string) {
-  try {
-    const signatureStatus = await connection.getSignatureStatus(txSignature);
-    console.log("Transaction status:", signatureStatus);
-  } catch (err) {
-    console.error("Error checking transaction status:", err);
-  }
-}
-
 interface Props {
   onClose: () => void;
   wallet: AnchorWallet;

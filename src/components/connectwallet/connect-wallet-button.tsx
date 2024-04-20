@@ -8,6 +8,9 @@ import { getTruncatedHash } from "../../util";
 
 import s from "./connectwallet.module.scss";
 import { useTbetBalance } from "../../hooks/use-tbet-balance";
+import { PublicKey } from "@solana/web3.js";
+import { getProgram } from "../../presale/config";
+import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 
 export const ConnectWalletButton = ({
   className,
@@ -19,7 +22,15 @@ export const ConnectWalletButton = ({
   const { setVisible } = useWalletModal();
   const { connected, disconnect, publicKey } = useWallet();
   const [isAccountOpen, setIsAccountOpen] = useState(false);
-  const balance = useTbetBalance(publicKey);
+
+  const userVaultAddress = publicKey
+    ? PublicKey.findProgramAddressSync(
+        [Buffer.from("user_vault"), publicKey.toBuffer()],
+        PRE_SALE_PROGRAM,
+      )[0]
+    : null;
+
+  const balance = useTbetBalance(userVaultAddress);
 
   const handleClick = () => {
     onClick?.();
@@ -43,7 +54,7 @@ export const ConnectWalletButton = ({
         <div className={s.account}>
           <div>{label}</div>
           <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
-          {showBalance && <div>{Number(balance)}</div>}
+          {showBalance && <div>{Number(Number(balance) / 10 ** 6)}</div>}
         </div>
       </PrimaryButton>
       <AccountModal
