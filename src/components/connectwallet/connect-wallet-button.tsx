@@ -1,4 +1,4 @@
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { PrimaryButton } from "../primarybutton/primarybutton";
@@ -7,9 +7,8 @@ import { AccountModal } from "../accountmodal/accountmodal";
 import { getTruncatedHash } from "../../util";
 
 import s from "./connectwallet.module.scss";
-import { useTbetBalance } from "../../hooks/use-tbet-balance";
+import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { PublicKey } from "@solana/web3.js";
-import { getProgram } from "../../presale/config";
 import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 
 export const ConnectWalletButton = ({
@@ -21,16 +20,17 @@ export const ConnectWalletButton = ({
 }) => {
   const { setVisible } = useWalletModal();
   const { connected, disconnect, publicKey } = useWallet();
+  const wallet = useAnchorWallet();
   const [isAccountOpen, setIsAccountOpen] = useState(false);
 
-  const userVaultAddress = publicKey
+  const userInfoAddress = publicKey
     ? PublicKey.findProgramAddressSync(
-        [Buffer.from("user_vault"), publicKey.toBuffer()],
+        [Buffer.from("user_info"), publicKey.toBuffer()],
         PRE_SALE_PROGRAM,
       )[0]
     : null;
 
-  const balance = useTbetBalance(userVaultAddress);
+  const balance = useTbetStake(userInfoAddress, "userInfo", wallet);
 
   const handleClick = () => {
     onClick?.();

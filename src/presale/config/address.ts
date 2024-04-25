@@ -29,7 +29,7 @@ export const chainlink_price_feed: Record<SupportedNetwork, ChainlinkFeed> = {
 };
 
 export const PRE_SALE_PROGRAM = new PublicKey(
-  "AUAfQQmCDmzKn3hLBPPPUq5E2Z1FwY6eETkAg1qmQfEm",
+  "CksdmMwTMoiotvYaNhXt8yUTYWHG4z8bBDvnq3cGY1EC",
 );
 
 export const COLLECTOR_ADDRESS = new PublicKey(
@@ -44,7 +44,7 @@ export const CHAINLINK_OFFCHAIN_PROGRAM = new PublicKey(
 );
 
 export const tokenVaultAddress = PublicKey.findProgramAddressSync(
-  [Buffer.from("vault")],
+  [Buffer.from("vault_info")],
   PRE_SALE_PROGRAM,
 )[0];
 

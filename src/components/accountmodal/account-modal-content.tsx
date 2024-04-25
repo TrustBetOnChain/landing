@@ -22,7 +22,7 @@ import {
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { useTbetBalance } from "../../hooks/use-tbet-balance";
+import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { CLUSTER, PROGRAM_IDL, connection } from "../../presale/config";
 import { PrimaryButton } from "../primarybutton/primarybutton";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -40,10 +40,6 @@ import {
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { encode } from "bs58";
-
-const vaultMintAddress = new PublicKey(
-  "J6uwcX3KXnA7xJj1v2HZVGKgQpyvxk2mQmxMaBYhD7bF",
-);
 
 interface Props {
   onClose: () => void;
@@ -96,6 +92,11 @@ const availableCoins = [Coin.SOL, Coin.ETH, Coin.BTC, Coin.USDC, Coin.USDT].map<
   RadioOption<Coin> & { address: PublicKey }
 >((coin) => ({ id: coin, name: coin, address: tokens[CLUSTER][coin].pubkey }));
 
+const [vaultAddress] = PublicKey.findProgramAddressSync(
+  [Buffer.from("vault_info")],
+  PRE_SALE_PROGRAM,
+);
+
 export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
   const {
     register,
@@ -110,7 +111,7 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
   });
   const price = 0.1;
 
-  const vaultBalance = useTbetBalance(tokenVaultAddress);
+  const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", wallet);
 
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
@@ -135,8 +136,8 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
     const programConfig =
       await program.account.programConfig.fetch(programConfigAddress);
 
-    const [userVaultAddress] = PublicKey.findProgramAddressSync(
-      [Buffer.from("user_vault"), wallet.publicKey.toBuffer()],
+    const [userInfoAddress] = PublicKey.findProgramAddressSync(
+      [Buffer.from("user_info"), wallet.publicKey.toBuffer()],
       program.programId,
     );
 
@@ -151,16 +152,15 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
         feed.asset,
       );
 
-    // console.log("p", paymentAtaCreationInstruction);
-    // console.log("c", collectingAtaCreationInstruction);
+    console.log("p", paymentAtaCreationInstruction);
+    console.log("c", collectingAtaCreationInstruction);
 
     const instruction = await buyTokensInstruction({
       accounts: {
         signer: wallet.publicKey,
         programConfig: programConfigAddress,
         vaultAccount: tokenVaultAddress,
-        vaultMint: vaultMintAddress,
-        userVaultAccount: userVaultAddress,
+        userInfoAccount: userInfoAddress,
         payerTokenAccount: ataForPayment,
         collectedFundsTokenAccount: ataForCollecting,
         collectedFundsAccount: programConfig.collectedFundsAccount,
@@ -183,8 +183,7 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
     }
     instructions.push(instruction);
 
-    const { blockhash, lastValidBlockHeight } =
-      await connection.getLatestBlockhash();
+    const { blockhash } = await connection.getLatestBlockhash();
 
     const messageV0 = new TransactionMessage({
       payerKey: wallet.publicKey,
@@ -195,10 +194,13 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
     // make a versioned transaction
     const transactionV0 = new VersionedTransaction(messageV0);
 
-    const simulationResult =
-      await connection.simulateTransaction(transactionV0);
-
-    console.log(simulationResult);
+    try {
+      const simulationResult =
+        await connection.simulateTransaction(transactionV0);
+      console.log(simulationResult);
+    } catch (e) {
+      console.log(e);
+    }
 
     // return;
 

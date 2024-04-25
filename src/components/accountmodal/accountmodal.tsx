@@ -14,7 +14,7 @@ import {
   tokenVaultAddress,
 } from "../../presale/config/address";
 import { PublicKey } from "@solana/web3.js";
-import { useTbetBalance } from "../../hooks/use-tbet-balance";
+import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { connection } from "../../presale/config";
 import { AccountModalContent } from "./account-modal-content";
 
