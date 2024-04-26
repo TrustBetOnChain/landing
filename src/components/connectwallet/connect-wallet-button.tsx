@@ -36,7 +36,11 @@ export const ConnectWalletButton = ({
   const handleClick = () => {
     onClick?.();
 
-    connected ? openAccountModal() : setVisible(true);
+    if (CLUSTER === "devnet") {
+      connected ? openAccountModal() : setVisible(true);
+    } else {
+      connected ? disconnect() : setVisible(true);
+    }
   };
 
   const openAccountModal = () => {
