@@ -6,13 +6,13 @@ import {
 import {
   PhantomWalletAdapter,
   TrustWalletAdapter,
-  WalletConnectWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 
 import { NETWORK, ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { Adapter } from "@solana/wallet-adapter-base";
 
 export const WalletConnectProvider = ({
   children,
@@ -22,22 +22,22 @@ export const WalletConnectProvider = ({
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => clusterApiUrl(NETWORK), []);
 
-  const wallets = useMemo(
+  const wallets: Adapter[] = useMemo(
     () => [
-      new WalletConnectWalletAdapter({
-        network: NETWORK,
-        options: {
-          relayUrl: "wss://relay.walletconnect.com",
-          // example WC app project ID
-          projectId: WALLETCONNECT_PROJECT_ID,
-          metadata: {
-            name: "TrustBet",
-            description: "TrustBet",
-            icons: ["https://avatars.githubusercontent.com/u/37784886"],
-            url: ORIGIN,
-          },
-        },
-      }),
+      // new WalletConnectWalletAdapter({
+      //   network: NETWORK,
+      //   options: {
+      //     relayUrl: "wss://relay.walletconnect.com",
+      //     // example WC app project ID
+      //     projectId: WALLETCONNECT_PROJECT_ID,
+      //     metadata: {
+      //       name: "TrustBet",
+      //       description: "TrustBet",
+      //       icons: ["https://avatars.githubusercontent.com/u/37784886"],
+      //       url: ORIGIN,
+      //     },
+      //   },
+      // }),
       new PhantomWalletAdapter(),
       new TrustWalletAdapter(),
     ],
