@@ -7,7 +7,11 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import {
+  useAnchorWallet,
+  useConnection,
+  useWallet,
+} from "@solana/wallet-adapter-react";
 import TbetImage from "../../assets/tbet-icon.svg";
 import {
   PRE_SALE_PROGRAM,
@@ -25,6 +29,12 @@ interface Props {
 
 export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
   const wallet = useAnchorWallet();
+  const { connected, disconnect, publicKey } = useWallet();
+
+  function handleDisconnect() {
+    disconnect();
+    onClose();
+  }
 
   return (
     <Transition.Root show={isOpen} as={Fragment}>
@@ -54,7 +64,11 @@ export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
             >
               <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
                 {isOpen && wallet && (
-                  <AccountModalContent wallet={wallet} onClose={onClose} />
+                  <AccountModalContent
+                    wallet={wallet}
+                    disconnect={handleDisconnect}
+                    onClose={onClose}
+                  />
                 )}
               </Dialog.Panel>
             </Transition.Child>

@@ -42,6 +42,7 @@ import {
 import { encode } from "bs58";
 
 interface Props {
+  disconnect: () => void;
   onClose: () => void;
   wallet: AnchorWallet;
 }
@@ -97,7 +98,11 @@ const [vaultAddress] = PublicKey.findProgramAddressSync(
   PRE_SALE_PROGRAM,
 );
 
-export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
+export const AccountModalContent: React.FC<Props> = ({
+  disconnect,
+  onClose,
+  wallet,
+}) => {
   const {
     register,
     control,
@@ -115,6 +120,10 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
 
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
+  };
+
+  const dissconnect = () => {
+    disconnect();
   };
 
   const buyTokens = async (amount: number, coin: SupportedToken) => {
@@ -375,8 +384,11 @@ export const AccountModalContent: React.FC<Props> = ({ onClose, wallet }) => {
                   />
                 </a>
               </div> */}
-              <div className="mt-6 flex justify-center">
+              <div className="mt-6 flex gap-2 justify-center">
                 <PrimaryButton className="w-[150px]">Buy</PrimaryButton>
+                <PrimaryButton onClick={dissconnect} className="w-[150px]">
+                  Dissconnect
+                </PrimaryButton>
               </div>
               <div className="mt-6 text-center">
                 <a
