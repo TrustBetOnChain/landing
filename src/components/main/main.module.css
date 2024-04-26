@@ -185,11 +185,12 @@ h2 {
   }
 
   .main-section {
-    height: 110svh;
+    height: 130svh;
   }
 
   .button {
     display: flex;
+    margin-top: 40px;
   }
   .gif {
     align-self: center;
