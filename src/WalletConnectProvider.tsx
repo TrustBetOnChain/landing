@@ -23,16 +23,13 @@ import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { Adapter } from "@solana/wallet-adapter-base";
-import { CLUSTER } from "./presale/config";
+import { CLUSTER, ENDPOINT } from "./presale/config";
 
 export const WalletConnectProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  // You can also provide a custom RPC endpoint.
-  const endpoint = useMemo(() => clusterApiUrl(CLUSTER), []);
-
   const wallets: Adapter[] = useMemo(() => {
     return [
       // new WalletConnectWalletAdapter({
@@ -66,7 +63,7 @@ export const WalletConnectProvider = ({
   }, []);
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={ENDPOINT}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>

@@ -1,10 +1,9 @@
 import { Connection } from "@solana/web3.js";
-import { CLUSTER_URL } from ".";
+import { ENDPOINT } from "./vars";
 
 const getConnection = () => {
-  return new Connection(CLUSTER_URL, {
+  return new Connection(ENDPOINT, {
     commitment: "confirmed",
-    // confirmTransactionInitialTimeout: 70 * 1000,
   });
 };
 
