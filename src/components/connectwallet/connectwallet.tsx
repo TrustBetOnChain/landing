@@ -1,4 +1,4 @@
-import s from "./connectwallet.module.css";
+import s from "./connectwallet.module.scss";
 import Info from "../../assets/imgs/info.webp";
 import { ConnectWalletButton } from "./connect-wallet-button";
 
@@ -15,7 +15,7 @@ export const ConnectWallet = () => {
         the digital iGaming realm. Be part of this exciting journey as we
         redefine the iGaming experience.
       </p>
-      <ConnectWalletButton className="connect-wallet-btn" />
+      <ConnectWalletButton />
     </section>
   );
 };

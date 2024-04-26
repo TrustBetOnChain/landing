@@ -77,6 +77,8 @@
 
 .btns {
   display: flex;
+  gap: 40px;
+  padding: 16px;
 }
 
 .btn {
@@ -86,7 +88,6 @@
 
 .btn:nth-child(1) {
   transform: rotate(180deg);
-  padding: 10px;
 }
 
 .btn:hover {
