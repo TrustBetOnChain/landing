@@ -4,12 +4,23 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import {
+  BitgetWalletAdapter,
+  CloverWalletAdapter,
+  Coin98WalletAdapter,
+  CoinbaseWalletAdapter,
+  HuobiWalletAdapter,
+  MathWalletAdapter,
+  NekoWalletAdapter,
+  NightlyWalletAdapter,
   PhantomWalletAdapter,
+  SalmonWalletAdapter,
+  SolflareWalletAdapter,
+  TorusWalletAdapter,
   TrustWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 
-import { NETWORK, ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
+import { NETWORK } from "./constants";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { Adapter } from "@solana/wallet-adapter-base";
@@ -22,8 +33,8 @@ export const WalletConnectProvider = ({
   // You can also provide a custom RPC endpoint.
   const endpoint = useMemo(() => clusterApiUrl(NETWORK), []);
 
-  const wallets: Adapter[] = useMemo(
-    () => [
+  const wallets: Adapter[] = useMemo(() => {
+    return [
       // new WalletConnectWalletAdapter({
       //   network: NETWORK,
       //   options: {
@@ -40,9 +51,19 @@ export const WalletConnectProvider = ({
       // }),
       new PhantomWalletAdapter(),
       new TrustWalletAdapter(),
-    ],
-    [],
-  );
+      new SolflareWalletAdapter(),
+      new TorusWalletAdapter(),
+      new MathWalletAdapter(),
+      new Coin98WalletAdapter(),
+      new CloverWalletAdapter(),
+      new HuobiWalletAdapter(),
+      new CoinbaseWalletAdapter(),
+      new BitgetWalletAdapter(),
+      new NekoWalletAdapter(),
+      new NightlyWalletAdapter(),
+      new SalmonWalletAdapter(),
+    ];
+  }, []);
 
   return (
     <ConnectionProvider endpoint={endpoint}>
