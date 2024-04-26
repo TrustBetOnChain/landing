@@ -83,3 +83,9 @@ h2 {
     max-width: 1px;
   }
 }
+
+@media (max-width: 500px) {
+  .gt_switcher_wrapper {
+    max-width: 1px;
+  }
+}
