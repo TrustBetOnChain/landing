@@ -10,6 +10,7 @@ import s from "./connectwallet.module.scss";
 import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { PublicKey } from "@solana/web3.js";
 import { PRE_SALE_PROGRAM } from "../../presale/config/address";
+import { CLUSTER } from "../../presale/config";
 
 export const ConnectWalletButton = ({
   className,
@@ -57,10 +58,12 @@ export const ConnectWalletButton = ({
           {showBalance && <div>{Number(Number(balance) / 10 ** 6)}</div>}
         </div>
       </PrimaryButton>
-      <AccountModal
-        isOpen={isAccountOpen}
-        onClose={() => setIsAccountOpen(false)}
-      />
+      {CLUSTER === "devnet" && (
+        <AccountModal
+          isOpen={isAccountOpen}
+          onClose={() => setIsAccountOpen(false)}
+        />
+      )}
     </>
   );
 };
