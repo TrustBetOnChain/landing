@@ -11,6 +11,7 @@
   flex-direction: column;
   font-size: 20px;
   width: 500px;
+min-height: 640px;
   color: #333;
   padding: 30px;
   /* height: 560px; */
