@@ -1,7 +1,7 @@
 .header {
   display: none;
   position: absolute;
-  z-index: 100000;
+  z-index: 1000;
   /* padding: 40px; */
 }
 
@@ -24,7 +24,7 @@
   height: 120svh;
   top: 0;
   right: 0;
-  z-index: 100000;
+  z-index: 1000;
 }
 
 .aside {
