@@ -122,10 +122,6 @@ export const AccountModalContent: React.FC<Props> = ({
     buyTokens(data.value, data.coin).then();
   };
 
-  const disconnect = () => {
-    disconnect();
-  };
-
   const buyTokens = async (amount: number, coin: SupportedToken) => {
     const provider = new AnchorProvider(connection, wallet, {});
     // const vaultAccount = await getAccount(connection, tokenVaultAddress);
