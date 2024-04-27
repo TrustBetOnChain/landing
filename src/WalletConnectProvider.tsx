@@ -35,7 +35,7 @@ import {
   //@ts-ignore
 } from "@solana-mobile/wallet-adapter-mobile";
 
-const ICON = `${ENDPOINT}logo.svg`;
+const ICON = `${ORIGIN}logo.svg`;
 
 export const WalletConnectProvider = ({
   children,
@@ -56,7 +56,7 @@ export const WalletConnectProvider = ({
             name: "Trust Bet On-Chain",
             description: "Trust Bet On-Chain",
             icons: [ICON],
-            url: ENDPOINT,
+            url: ORIGIN,
           },
         },
       }),
@@ -64,7 +64,7 @@ export const WalletConnectProvider = ({
         addressSelector: createDefaultAddressSelector(),
         appIdentity: {
           name: "rust Bet On-Chain",
-          uri: ENDPOINT,
+          uri: ORIGIN,
           icon: ICON,
         },
         authorizationResultCache: createDefaultAuthorizationResultCache(),
