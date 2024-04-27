@@ -42,8 +42,7 @@
   font-weight: 300;
 }
 
-.aside-links > a,
-span {
+.aside-links >  {
   /* display: flex; */
   /* gap: 10px; */
   color: #3c4141;
