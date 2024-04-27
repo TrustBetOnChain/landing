@@ -22,11 +22,20 @@ import {
 import { clusterApiUrl } from "@solana/web3.js";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { CLUSTER, ENDPOINT } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
+
+import {
+  SolanaMobileWalletAdapter,
+  createDefaultAddressSelector,
+  createDefaultAuthorizationResultCache,
+  createDefaultWalletNotFoundHandler,
+  //@ts-ignore
+} from "@solana-mobile/wallet-adapter-mobile";
+
+const ICON = `${ENDPOINT}logo.svg`;
 
 export const WalletConnectProvider = ({
   children,
@@ -44,12 +53,23 @@ export const WalletConnectProvider = ({
         options: {
           projectId: WALLETCONNECT_PROJECT_ID,
           metadata: {
-            name: "TrustBet",
-            description: "TrustBet",
-            icons: ["https://avatars.githubusercontent.com/u/37784886"],
+            name: "Trust Bet On-Chain",
+            description: "Trust Bet On-Chain",
+            icons: [ICON],
             url: ENDPOINT,
           },
         },
+      }),
+      new SolanaMobileWalletAdapter({
+        addressSelector: createDefaultAddressSelector(),
+        appIdentity: {
+          name: "rust Bet On-Chain",
+          uri: ENDPOINT,
+          icon: ICON,
+        },
+        authorizationResultCache: createDefaultAuthorizationResultCache(),
+        cluster: CLUSTER,
+        onWalletNotFound: createDefaultWalletNotFoundHandler(),
       }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
