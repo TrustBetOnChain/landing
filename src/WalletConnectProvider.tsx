@@ -55,7 +55,7 @@ export const WalletConnectProvider = ({
           metadata: {
             name: "Trust Bet On-Chain",
             description: "Trust Bet On-Chain",
-            icons: [ICON],
+            icons: [],
             url: ORIGIN,
           },
         },
