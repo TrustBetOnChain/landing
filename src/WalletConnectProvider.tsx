@@ -17,13 +17,16 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
   TrustWalletAdapter,
+  WalletConnectWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import { Adapter } from "@solana/wallet-adapter-base";
+import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { CLUSTER, ENDPOINT } from "./presale/config";
+import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
+import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
 export const WalletConnectProvider = ({
   children,
@@ -32,22 +35,22 @@ export const WalletConnectProvider = ({
 }) => {
   const wallets: Adapter[] = useMemo(() => {
     return [
-      // new WalletConnectWalletAdapter({
-      //   network: NETWORK,
-      //   options: {
-      //     relayUrl: "wss://relay.walletconnect.com",
-      //     // example WC app project ID
-      //     projectId: WALLETCONNECT_PROJECT_ID,
-      //     metadata: {
-      //       name: "TrustBet",
-      //       description: "TrustBet",
-      //       icons: ["https://avatars.githubusercontent.com/u/37784886"],
-      //       url: ORIGIN,
-      //     },
-      //   },
-      // }),
       new SolflareWalletAdapter(),
       new PhantomWalletAdapter(),
+      new WalletConnectWalletAdapter({
+        network: CLUSTER as
+          | WalletAdapterNetwork.Devnet
+          | WalletAdapterNetwork.Mainnet,
+        options: {
+          projectId: WALLETCONNECT_PROJECT_ID,
+          metadata: {
+            name: "TrustBet",
+            description: "TrustBet",
+            icons: ["https://avatars.githubusercontent.com/u/37784886"],
+            url: ENDPOINT,
+          },
+        },
+      }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
       new CoinbaseWalletAdapter(),
@@ -63,10 +66,24 @@ export const WalletConnectProvider = ({
   }, []);
 
   return (
-    <ConnectionProvider endpoint={ENDPOINT}>
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+    <UnifiedWalletProvider
+      wallets={wallets}
+      config={{
+        theme: "dark",
+        autoConnect: false,
+        env: CLUSTER,
+        metadata: {
+          name: "Trustbetonchain",
+          description: "Trustbetonchain",
+          url: ORIGIN,
+          iconUrls: [],
+        },
+        walletlistExplanation: {
+          href: "https://station.jup.ag/docs/additional-topics/wallet-list",
+        },
+      }}
+    >
+      {children}
+    </UnifiedWalletProvider>
   );
 };

@@ -1,8 +1,6 @@
-import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { PrimaryButton } from "../primarybutton/primarybutton";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { AccountModal } from "../accountmodal/accountmodal";
 import { getTruncatedHash } from "../../util";
 
@@ -11,6 +9,11 @@ import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { PublicKey } from "@solana/web3.js";
 import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 import { CLUSTER } from "../../presale/config";
+import {
+  useUnifiedWalletContext,
+  useUnifiedWallet,
+} from "@jup-ag/wallet-adapter";
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
 
 export const ConnectWalletButton = ({
   className,
@@ -19,10 +22,22 @@ export const ConnectWalletButton = ({
   className?: string;
   onClick?: () => void;
 }) => {
-  const { setVisible } = useWalletModal();
-  const { connected, disconnect, publicKey } = useWallet();
-  const wallet = useAnchorWallet();
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+
+  const { setShowModal, theme } = useUnifiedWalletContext();
+  const { disconnect, connect, connecting, connected, publicKey } =
+    useUnifiedWallet();
+  const wallet = useAnchorWallet();
+
+  const handleClick = useCallback(async () => {
+    onClick?.();
+
+    if (CLUSTER === "devnet") {
+      connected ? openAccountModal() : setShowModal(true);
+    } else {
+      connected ? disconnect() : setShowModal(true);
+    }
+  }, [wallet, connect]);
 
   const userInfoAddress = publicKey
     ? PublicKey.findProgramAddressSync(
@@ -32,16 +47,6 @@ export const ConnectWalletButton = ({
     : null;
 
   const balance = useTbetStake(userInfoAddress, "userInfo", wallet);
-
-  const handleClick = () => {
-    onClick?.();
-
-    if (CLUSTER === "devnet") {
-      connected ? openAccountModal() : setVisible(true);
-    } else {
-      connected ? disconnect() : setVisible(true);
-    }
-  };
 
   const openAccountModal = () => {
     setIsAccountOpen(true);
