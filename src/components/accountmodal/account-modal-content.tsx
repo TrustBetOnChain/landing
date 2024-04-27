@@ -122,7 +122,7 @@ export const AccountModalContent: React.FC<Props> = ({
     buyTokens(data.value, data.coin).then();
   };
 
-  const dissconnect = () => {
+  const disconnect = () => {
     disconnect();
   };
 
@@ -386,8 +386,8 @@ export const AccountModalContent: React.FC<Props> = ({
               </div> */}
               <div className="mt-6 flex gap-2 justify-center">
                 <PrimaryButton className="w-[150px]">Buy</PrimaryButton>
-                <PrimaryButton onClick={dissconnect} className="w-[150px]">
-                  Dissconnect
+                <PrimaryButton onClick={disconnect} className="w-[150px]">
+                  Disconnect
                 </PrimaryButton>
               </div>
               <div className="mt-6 text-center">
