@@ -71,6 +71,7 @@ export const WalletConnectProvider = ({
     <UnifiedWalletProvider
       wallets={wallets}
       config={{
+        theme: "dark",
         autoConnect: false,
         env: CLUSTER,
         metadata: {
