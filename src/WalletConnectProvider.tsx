@@ -37,6 +37,20 @@ export const WalletConnectProvider = ({
     return [
       new SolflareWalletAdapter(),
       new PhantomWalletAdapter(),
+      new WalletConnectWalletAdapter({
+        network: CLUSTER as
+          | WalletAdapterNetwork.Devnet
+          | WalletAdapterNetwork.Mainnet,
+        options: {
+          projectId: WALLETCONNECT_PROJECT_ID,
+          metadata: {
+            name: "TrustBet",
+            description: "TrustBet",
+            icons: ["https://avatars.githubusercontent.com/u/37784886"],
+            url: ENDPOINT,
+          },
+        },
+      }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
       new CoinbaseWalletAdapter(),
@@ -48,22 +62,6 @@ export const WalletConnectProvider = ({
       new NekoWalletAdapter(),
       new NightlyWalletAdapter(),
       new SalmonWalletAdapter(),
-      // new WalletConnectWalletAdapter({
-      //   network: CLUSTER as
-      //     | WalletAdapterNetwork.Devnet
-      //     | WalletAdapterNetwork.Mainnet,
-      //   options: {
-      //     relayUrl: "wss://relay.walletconnect.com",
-      //     // example WC app project ID
-      //     projectId: WALLETCONNECT_PROJECT_ID,
-      //     metadata: {
-      //       name: "TrustBet",
-      //       description: "TrustBet",
-      //       icons: ["https://avatars.githubusercontent.com/u/37784886"],
-      //       url: ENDPOINT,
-      //     },
-      //   },
-      // }),
     ];
   }, []);
 
