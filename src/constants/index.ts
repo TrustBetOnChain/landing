@@ -1,5 +1,3 @@
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-
 export const ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT;
 export const WALLETCONNECT_PROJECT_ID = import.meta.env
   .VITE_WALLETCONNECT_PROJECT_ID;
