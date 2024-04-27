@@ -14,6 +14,12 @@ import {
   useUnifiedWallet,
 } from "@jup-ag/wallet-adapter";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import {
+  SolanaMobileWalletAdapterWalletName,
+  //@ts-ignore
+} from "@solana-mobile/wallet-adapter-mobile";
+
+export const MWA_NOT_FOUND_ERROR = "MWA_NOT_FOUND_ERROR";
 
 export const ConnectWalletButton = ({
   className,
@@ -25,19 +31,36 @@ export const ConnectWalletButton = ({
   const [isAccountOpen, setIsAccountOpen] = useState(false);
 
   const { setShowModal, theme } = useUnifiedWalletContext();
+  const { wallet } = useUnifiedWallet();
   const { disconnect, connect, connecting, connected, publicKey } =
     useUnifiedWallet();
-  const wallet = useAnchorWallet();
+  const anchorWallet = useAnchorWallet();
+
+  const tryToConnect = useCallback(async () => {
+    try {
+      if (wallet?.adapter?.name === SolanaMobileWalletAdapterWalletName) {
+        await connect();
+
+        return;
+      } else {
+        setShowModal(true);
+      }
+    } catch (error) {
+      if (error instanceof Error && error.message === MWA_NOT_FOUND_ERROR) {
+        setShowModal(true);
+      }
+    }
+  }, [anchorWallet, connect]);
 
   const handleClick = useCallback(async () => {
     onClick?.();
 
     if (CLUSTER === "devnet") {
-      connected ? openAccountModal() : setShowModal(true);
+      connected ? openAccountModal() : tryToConnect();
     } else {
-      connected ? disconnect() : setShowModal(true);
+      connected ? disconnect() : tryToConnect();
     }
-  }, [wallet, connect]);
+  }, [anchorWallet, connect]);
 
   const userInfoAddress = publicKey
     ? PublicKey.findProgramAddressSync(
@@ -46,7 +69,7 @@ export const ConnectWalletButton = ({
       )[0]
     : null;
 
-  const balance = useTbetStake(userInfoAddress, "userInfo", wallet);
+  const balance = useTbetStake(userInfoAddress, "userInfo", anchorWallet);
 
   const openAccountModal = () => {
     setIsAccountOpen(true);
