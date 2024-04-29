@@ -60,17 +60,17 @@ export const WalletConnectProvider = ({
           },
         },
       }),
-      new SolanaMobileWalletAdapter({
-        addressSelector: createDefaultAddressSelector(),
-        appIdentity: {
-          name: "rust Bet On-Chain",
-          uri: ORIGIN,
-          icon: ICON,
-        },
-        authorizationResultCache: createDefaultAuthorizationResultCache(),
-        cluster: CLUSTER,
-        onWalletNotFound: createDefaultWalletNotFoundHandler(),
-      }),
+      // new SolanaMobileWalletAdapter({
+      //   addressSelector: createDefaultAddressSelector(),
+      //   appIdentity: {
+      //     name: "rust Bet On-Chain",
+      //     uri: ORIGIN,
+      //     icon: ICON,
+      //   },
+      //   authorizationResultCache: createDefaultAuthorizationResultCache(),
+      //   cluster: CLUSTER,
+      //   onWalletNotFound: createDefaultWalletNotFoundHandler(),
+      // }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
       new CoinbaseWalletAdapter(),
