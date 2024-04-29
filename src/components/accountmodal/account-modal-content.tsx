@@ -40,6 +40,7 @@ import {
   getAssociatedTokenAddress,
 } from "@solana/spl-token";
 import { encode } from "bs58";
+import { useEffect } from "react";
 
 interface Props {
   disconnect: () => void;
@@ -118,6 +119,10 @@ export const AccountModalContent: React.FC<Props> = ({
 
   const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", wallet);
 
+  useEffect(() => {
+    console.log(vaultBalance);
+  }, [vaultBalance]);
+
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
   };
@@ -156,9 +161,6 @@ export const AccountModalContent: React.FC<Props> = ({
         programConfig.collectedFundsAccount,
         feed.asset,
       );
-
-    console.log("p", paymentAtaCreationInstruction);
-    console.log("c", collectingAtaCreationInstruction);
 
     const instruction = await buyTokensInstruction({
       accounts: {
@@ -274,19 +276,6 @@ export const AccountModalContent: React.FC<Props> = ({
 
             <div className="flex items-center">
               <p className="text-lg text-white sm:text-xl">Price: ${price}</p>
-
-              {!!Number(vaultBalance) && (
-                <div className="ml-4 flex border-l border-gray-300 pl-4">
-                  <CheckIcon
-                    className="h-5 w-5 flex-shrink-0"
-                    aria-hidden="true"
-                  />
-
-                  <p className="ml-2 font-medium text-white">
-                    {Number(vaultBalance) / 10 ** 6} available for purchase
-                  </p>
-                </div>
-              )}
             </div>
           </section>
 
@@ -388,7 +377,7 @@ export const AccountModalContent: React.FC<Props> = ({
               </div>
               <div className="mt-6 text-center">
                 <a
-                  href="https://content.assuredefi.com/verification-package-content/trustbet-on-chain"
+                  href="https://nft.assuredefi.com/?token=177"
                   className="group inline-flex text-base font-medium"
                   target="_blank"
                 >
