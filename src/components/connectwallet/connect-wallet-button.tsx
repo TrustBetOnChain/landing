@@ -14,6 +14,7 @@ import {
   useUnifiedWallet,
 } from "@jup-ag/wallet-adapter";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
+
 import {
   SolanaMobileWalletAdapterWalletName,
   //@ts-ignore
@@ -38,13 +39,7 @@ export const ConnectWalletButton = ({
 
   const tryToConnect = useCallback(async () => {
     try {
-      if (wallet?.adapter?.name === SolanaMobileWalletAdapterWalletName) {
-        await connect();
-
-        return;
-      } else {
-        setShowModal(true);
-      }
+      setShowModal(true);
     } catch (error) {
       if (error instanceof Error && error.message === MWA_NOT_FOUND_ERROR) {
         setShowModal(true);
@@ -56,9 +51,9 @@ export const ConnectWalletButton = ({
     onClick?.();
 
     if (CLUSTER === "devnet") {
-      connected ? openAccountModal() : tryToConnect();
+      connected ? openAccountModal() : setShowModal(true);
     } else {
-      connected ? disconnect() : tryToConnect();
+      connected ? disconnect() : setShowModal(true);
     }
   }, [anchorWallet, connect]);
 

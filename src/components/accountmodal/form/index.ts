@@ -1,0 +1,51 @@
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Coin } from "../enum";
+import { PublicKey } from "@solana/web3.js";
+import { tokens } from "../../../presale/config/address";
+import { CLUSTER } from "../../../presale/config/vars";
+
+export const PriceSchema = z.object({
+  coin: z.nativeEnum(Coin),
+  value: z.number().min(1, { message: "Shouldn't be zero" }),
+});
+
+export type RadioOption<T extends string = string> = {
+  id: T;
+  name: string;
+};
+
+export type PriceForm = z.infer<typeof PriceSchema>;
+
+const priceDefaultValues: Partial<PriceForm> = {
+  coin: Coin.SOL,
+  value: 1,
+};
+
+export function usePriceForm() {
+  return useForm<PriceForm>({
+    defaultValues: priceDefaultValues,
+    resolver: zodResolver(PriceSchema),
+  });
+}
+
+export const typeRadioOptions: RadioOption<Coin>[] = [
+  { id: Coin.SOL, name: "SOL" },
+  { id: Coin.ETH, name: "ETH" },
+  { id: Coin.USDT, name: "USDT" },
+  { id: Coin.USDC, name: "USDC" },
+  { id: Coin.BTC, name: "BTC" },
+];
+
+export const availableCoins = [
+  Coin.SOL,
+  Coin.ETH,
+  Coin.BTC,
+  Coin.USDC,
+  Coin.USDT,
+].map<RadioOption<Coin> & { address: PublicKey }>((coin) => ({
+  id: coin,
+  name: coin,
+  address: tokens[CLUSTER][coin].pubkey,
+}));

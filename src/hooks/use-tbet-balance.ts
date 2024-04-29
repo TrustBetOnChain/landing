@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
-import { PROGRAM_IDL, connection, getProgram } from "../presale/config";
+import { PROGRAM_IDL, connection } from "../presale/config";
 import { PRE_SALE_PROGRAM } from "../presale/config/address";
 import { getTokenBalance } from "../util";
 import { AnchorProvider, BN, Program } from "@coral-xyz/anchor";
-import { AnchorWallet } from "@solana/wallet-adapter-react";
+import { AnchorWallet, Wallet } from "@solana/wallet-adapter-react";
 import { PreSaleProgram } from "../presale/types/pre_sale_program";
 
 export function useTbetStake(
@@ -25,9 +25,7 @@ export function useTbetStake(
             PRE_SALE_PROGRAM,
             provider,
           );
-
           const info = await program.account[type].fetch(accountAddress);
-
           setBalance(info.stake);
         } catch (e) {
           console.log(e);

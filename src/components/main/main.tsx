@@ -25,10 +25,7 @@ export const Main = () => {
         </div>
       </div>
       <Coin />
-      <a
-        target="_blank"
-        href="https://content.assuredefi.com/verification-package-content/trustbet-on-chain"
-      >
+      <a target="_blank" href="https://nft.assuredefi.com/?token=177">
         <img src={TBetGif} className={s["gif"]} alt="" />
       </a>
       <ConnectWalletButton className={s["button"]} />

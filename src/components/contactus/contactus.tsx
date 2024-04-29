@@ -13,34 +13,11 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Modal } from "../modal/modal";
 
 export const ContactUs = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [sended, setSended] = useState(false);
-  const [error, setError] = useState<Error>();
-  const [isSending, isSetSending] = useState(false);
+  const [subject, setSubject] = useState("");
 
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [refAnimate] = useAutoAnimate();
-
-  const isValidForm =
-    name.length > 3 && email.match(/^\S+@\S+\.\S+$/) && message.length > 3;
-
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!isValidForm) return;
-    isSetSending(true);
-    sendEmail({ fromEmail: email, fromName: name, text: message })
-      .then((ok) => {
-        if (ok) {
-          setSended(true);
-        } else {
-          setError(new Error("Failed to send email"));
-        }
-      })
-      .catch(setError)
-      .finally(() => isSetSending(false));
-  };
 
   return (
     <section id={PageSection.CONTACT} className={`${s.contactus} container`}>
@@ -55,11 +32,8 @@ export const ContactUs = () => {
           </p>
           <div>
             <a
-              style={{ cursor: "pointer" }}
-              onClick={(e) => {
-                e.preventDefault();
-                setmodalIsOpen(true);
-              }}
+              target="_blank"
+              href="https://drive.google.com/file/d/16UHbchyN24CgOac8_7F_ln0BZUvTNdIx/view?usp=sharing"
             >
               Go to Information Page
             </a>
@@ -79,79 +53,40 @@ export const ContactUs = () => {
             >
               Terms of Service
             </a>
-            <span>Development by:</span>
             <a
               target="_blank"
               href="https://drive.google.com/file/d/1ZWo6ucHm0Cu9ZaHVuu6NHRdxx-HI2fkx/view?usp=drive_link"
             >
               Privacy Policy
             </a>
-
-            <a target="_blank" href="https://finpr.agency/">
-              FINPR Agency
-            </a>
-          </div>
-          <div className={s["aside-socials"]}>
-            <a target="_blank" href="https://t.me/TrustBetOC">
-              <img src={Telegram} alt="" />
-            </a>
-            <a target="_blank" href="http://www.x.com/TrustBetOnChain">
-              <img src={X} alt="" />
-            </a>
-            <a
-              target="_blank"
-              href="https://assuredefi.com/projects/trustbet-on-chain"
-            >
-              <img src={Assure} alt="" />
-            </a>
-            <a
-              target="_blank"
-              href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D"
-            >
-              <img src={Youtube} alt="" />
-            </a>
           </div>
         </div>
       </aside>
       <article className={s["article"]}>
-        <h2 className={s["title"]}>
-          {sended ? "Thank you!" : "Have any questions?"}
-        </h2>
-        {!sended && (
-          <form ref={refAnimate} className={s["form"]} action="">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={s["input"]}
-              type="text"
-              placeholder="Your Name"
-            />
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={s["input"]}
-              type="email"
-              placeholder="Email"
-            />
-            <input
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className={s["input"]}
-              type="text"
-              placeholder="Message"
-            />
-            <button
-              onClick={onClick}
-              disabled={!name || !email.match(/^\S+@\S+\.\S+$/) || !message}
-              className={s["button"]}
-            >
-              {isSending ? "Sending..." : "Send"}
-              {error && (
-                <p>{error instanceof Error ? error.message : "Error"}</p>
-              )}
-            </button>
-          </form>
-        )}
+        <h2 className={s["title"]}>Have any questions?</h2>
+        <span>
+          Please join our Telegram and Twitter and we would be happy to answer
+        </span>
+        <div className={s["aside-socials"]}>
+          <a target="_blank" href="https://t.me/TrustBetOC">
+            <img src={Telegram} alt="" />
+          </a>
+          <a target="_blank" href="http://www.x.com/TrustBetOnChain">
+            <img src={X} alt="" />
+          </a>
+          <a
+            target="_blank"
+            href="https://assuredefi.com/projects/trustbet-on-chain"
+          >
+            <img src={Assure} alt="" />
+          </a>
+          <a
+            target="_blank"
+            href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D"
+          >
+            <img src={Youtube} alt="" />
+          </a>
+        </div>
       </article>
       <Modal isOpen={modalIsOpen} onClose={() => setmodalIsOpen(false)} />
     </section>
