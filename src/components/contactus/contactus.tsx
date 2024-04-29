@@ -32,11 +32,8 @@ export const ContactUs = () => {
           </p>
           <div>
             <a
-              style={{ cursor: "pointer" }}
-              onClick={(e) => {
-                e.preventDefault();
-                setmodalIsOpen(true);
-              }}
+              target="_blank"
+              href="https://drive.google.com/file/d/16UHbchyN24CgOac8_7F_ln0BZUvTNdIx/view?usp=sharing"
             >
               Go to Information Page
             </a>
