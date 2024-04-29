@@ -5,9 +5,8 @@ import {
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 
-import { CheckIcon } from "@heroicons/react/20/solid";
 import classNames from "classnames";
-import { AnchorWallet } from "@solana/wallet-adapter-react";
+import { AnchorWallet, Wallet } from "@solana/wallet-adapter-react";
 import TbetImage from "../../assets/tbet-icon.svg";
 import {
   CHAINLINK_PROGRAM,
@@ -17,82 +16,35 @@ import {
 } from "../../presale/config/address";
 import {
   PublicKey,
-  Transaction,
-  TransactionInstruction,
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
 import { useTbetStake } from "../../hooks/use-tbet-balance";
-import { CLUSTER, PROGRAM_IDL, connection } from "../../presale/config";
+import {
+  CLUSTER,
+  PROGRAM_IDL,
+  connection,
+  price,
+  vaultMintDecimals,
+} from "../../presale/config";
 import { PrimaryButton } from "../primarybutton/primarybutton";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useWatch } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 import { SupportedToken } from "../../presale/types";
-import { z } from "zod";
 import { TextInput } from "../inputs/TextInput";
-import { AnchorProvider, BN, Program, web3 } from "@coral-xyz/anchor";
+import { AnchorProvider, BN, Program } from "@coral-xyz/anchor";
 import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { getPriceFeeds } from "../../presale/config/price-feed";
 import { buyTokensInstruction } from "../../presale/instructions/buy-tokens";
-import {
-  createAssociatedTokenAccountInstruction,
-  getAccount,
-  getAssociatedTokenAddress,
-} from "@solana/spl-token";
-import { encode } from "bs58";
 import { useEffect } from "react";
+import { geTokenAddressWithCreationInstruction } from "../../util";
+import { PriceForm, availableCoins, usePriceForm } from "./form";
 
 interface Props {
   disconnect: () => void;
   onClose: () => void;
-  wallet: AnchorWallet;
+  wallet: Wallet;
+  anchorWallet: AnchorWallet;
 }
-
-export type RadioOption<T extends string = string> = {
-  id: T;
-  name: string;
-};
-
-export const Coin = {
-  SOL: "SOL",
-  ETH: "ETH",
-  BTC: "BTC",
-  USDC: "USDC",
-  USDT: "USDT",
-} satisfies Record<SupportedToken, SupportedToken>;
-
-export type Coin = (typeof Coin)[keyof typeof Coin];
-
-export const PriceSchema = z.object({
-  coin: z.nativeEnum(Coin),
-  value: z.number().min(1, { message: "Shouldn't be zero" }),
-});
-
-export type PriceForm = z.infer<typeof PriceSchema>;
-
-const priceDefaultValues: Partial<PriceForm> = {
-  coin: Coin.SOL,
-  value: 1,
-};
-
-export function usePriceForm() {
-  return useForm<PriceForm>({
-    defaultValues: priceDefaultValues,
-    resolver: zodResolver(PriceSchema),
-  });
-}
-
-export const typeRadioOptions: RadioOption<Coin>[] = [
-  { id: Coin.SOL, name: "SOL" },
-  { id: Coin.ETH, name: "ETH" },
-  { id: Coin.USDT, name: "USDT" },
-  { id: Coin.USDC, name: "USDC" },
-  { id: Coin.BTC, name: "BTC" },
-];
-
-const availableCoins = [Coin.SOL, Coin.ETH, Coin.BTC, Coin.USDC, Coin.USDT].map<
-  RadioOption<Coin> & { address: PublicKey }
->((coin) => ({ id: coin, name: coin, address: tokens[CLUSTER][coin].pubkey }));
 
 const [vaultAddress] = PublicKey.findProgramAddressSync(
   [Buffer.from("vault_info")],
@@ -103,6 +55,7 @@ export const AccountModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
   wallet,
+  anchorWallet,
 }) => {
   const {
     register,
@@ -115,22 +68,19 @@ export const AccountModalContent: React.FC<Props> = ({
   const values = useWatch({
     control,
   });
-  const price = 0.1;
 
-  const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", wallet);
+  const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", anchorWallet);
 
   useEffect(() => {
     console.log(vaultBalance);
-  }, [vaultBalance]);
+  }, [vaultBalance.valueOf]);
 
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
   };
 
   const buyTokens = async (amount: number, coin: SupportedToken) => {
-    const provider = new AnchorProvider(connection, wallet, {});
-    // const vaultAccount = await getAccount(connection, tokenVaultAddress);
-    const vaultMintDecimals = 6;
+    const provider = new AnchorProvider(connection, anchorWallet, {});
 
     const program = new Program<PreSaleProgram>(
       PROGRAM_IDL,
@@ -147,24 +97,29 @@ export const AccountModalContent: React.FC<Props> = ({
       await program.account.programConfig.fetch(programConfigAddress);
 
     const [userInfoAddress] = PublicKey.findProgramAddressSync(
-      [Buffer.from("user_info"), wallet.publicKey.toBuffer()],
+      [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
       program.programId,
     );
 
     const feed = getPriceFeeds(CLUSTER)[coin];
 
     const [ataForPayment, paymentAtaCreationInstruction] =
-      await geTokenAddressWithCreationInstruction(wallet.publicKey, feed.asset);
+      await geTokenAddressWithCreationInstruction(
+        anchorWallet.publicKey,
+        feed.asset,
+        connection,
+      );
 
     const [ataForCollecting, collectingAtaCreationInstruction] =
       await geTokenAddressWithCreationInstruction(
         programConfig.collectedFundsAccount,
         feed.asset,
+        connection,
       );
 
     const instruction = await buyTokensInstruction({
       accounts: {
-        signer: wallet.publicKey,
+        signer: anchorWallet.publicKey,
         programConfig: programConfigAddress,
         vaultAccount: tokenVaultAddress,
         userInfoAccount: userInfoAddress,
@@ -193,50 +148,21 @@ export const AccountModalContent: React.FC<Props> = ({
     const { blockhash } = await connection.getLatestBlockhash();
 
     const messageV0 = new TransactionMessage({
-      payerKey: wallet.publicKey,
+      payerKey: anchorWallet.publicKey,
       recentBlockhash: blockhash,
       instructions,
     }).compileToV0Message();
 
-    // make a versioned transaction
     const transactionV0 = new VersionedTransaction(messageV0);
 
-    try {
-      const simulationResult =
-        await connection.simulateTransaction(transactionV0);
-      console.log(simulationResult);
-    } catch (e) {
-      console.log(e);
-    }
+    const signedTx = await wallet.adapter.sendTransaction(
+      transactionV0,
+      connection,
+    );
 
-    // return;
-
-    const signedTx = await wallet.signTransaction(transactionV0);
-
-    const res = await provider.sendAndConfirm(signedTx);
-    console.log("result", res);
+    // const res = await provider.sendAndConfirm(signedTx);
+    // console.log("result", res);
   };
-
-  async function geTokenAddressWithCreationInstruction(
-    address: PublicKey,
-    mint: PublicKey,
-  ): Promise<[PublicKey, TransactionInstruction | null]> {
-    const ata = await getAssociatedTokenAddress(mint, address);
-    let instruction: TransactionInstruction | null = null;
-
-    try {
-      await getAccount(connection, ata);
-    } catch (e) {
-      instruction = createAssociatedTokenAccountInstruction(
-        wallet.publicKey,
-        ata,
-        address,
-        mint,
-      );
-    }
-
-    return [ata, instruction];
-  }
 
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
@@ -357,18 +283,6 @@ export const AccountModalContent: React.FC<Props> = ({
                   type="number"
                 />
               </div>
-              {/* <div className="mt-4 flex">
-                <a
-                  href="#"
-                  className="group flex text-sm text-gray-500 hover:text-gray-700"
-                >
-                  <span>What size should I buy?</span>
-                  <QuestionMarkCircleIcon
-                    className="ml-2 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                    aria-hidden="true"
-                  />
-                </a>
-              </div> */}
               <div className="mt-6 flex gap-2 justify-center">
                 <PrimaryButton className="w-[150px]">Buy</PrimaryButton>
                 <PrimaryButton onClick={disconnect} className="w-[150px]">

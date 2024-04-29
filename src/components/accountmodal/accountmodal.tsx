@@ -28,8 +28,8 @@ interface Props {
 }
 
 export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
-  const wallet = useAnchorWallet();
-  const { connected, disconnect, publicKey } = useWallet();
+  const anchorWallet = useAnchorWallet();
+  const { connected, disconnect, publicKey, wallet } = useWallet();
 
   function handleDisconnect() {
     disconnect();
@@ -63,8 +63,9 @@ export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
               <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
-                {isOpen && wallet && (
+                {isOpen && anchorWallet && wallet && (
                   <AccountModalContent
+                    anchorWallet={anchorWallet}
                     wallet={wallet}
                     disconnect={handleDisconnect}
                     onClose={onClose}

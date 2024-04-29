@@ -11,3 +11,6 @@ export const PRIVATE_CLUSTER_URL =
 export const PROGRAM_IDL = IDL;
 
 export const ENDPOINT = clusterApiUrl(CLUSTER);
+
+export const price = 0.1;
+export const vaultMintDecimals = 6;
