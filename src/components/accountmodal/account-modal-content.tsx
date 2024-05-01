@@ -230,20 +230,23 @@ export const AccountModalContent: React.FC<Props> = ({
                         className={({ active }) =>
                           classNames(
                             active ? "ring-2 ring-indigo-500" : "",
-                            "relative block cursor-pointer rounded-lg border border-gray-300 p-4 focus:outline-none",
+                            "relative block cursor-pointer rounded-lg border p-2 border-gray-300 focus:outline-none",
                           )
                         }
                       >
                         {({ checked }) => (
                           <>
                             <RadioGroup.Label
-                              as="p"
-                              className="text-base flex justify-center items-center gap-3 font-medium text-white"
+                              as="div"
+                              className="text-base flex justify-between items-center font-medium text-white"
                             >
-                              {token.name}{" "}
+                              <span className="text-center p-2 flex-1">
+                                {token.name}
+                              </span>
                               <ArrowTopRightOnSquareIcon
                                 height={16}
                                 width={16}
+                                className="flex-0 self-start"
                                 onClick={(e) => {
                                   e.preventDefault();
                                   window.open(

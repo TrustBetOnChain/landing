@@ -48,14 +48,6 @@ import { CLUSTER, ENDPOINT } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
-import {
-  SolanaMobileWalletAdapter,
-  createDefaultAddressSelector,
-  createDefaultAuthorizationResultCache,
-  createDefaultWalletNotFoundHandler,
-  //@ts-ignore
-} from "@solana-mobile/wallet-adapter-mobile";
-
 const ICON = `${ORIGIN}logo.svg`;
 
 export const WalletConnectProvider = ({
