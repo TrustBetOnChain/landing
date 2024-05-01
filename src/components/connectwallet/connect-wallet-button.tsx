@@ -50,11 +50,7 @@ export const ConnectWalletButton = ({
   const handleClick = useCallback(async () => {
     onClick?.();
 
-    if (CLUSTER === "devnet") {
-      connected ? openAccountModal() : setShowModal(true);
-    } else {
-      connected ? disconnect() : setShowModal(true);
-    }
+    connected ? openAccountModal() : setShowModal(true);
   }, [anchorWallet, connect]);
 
   const userInfoAddress = publicKey
