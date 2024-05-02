@@ -18,6 +18,7 @@ export async function geTokenAddressWithCreationInstruction(
   address: PublicKey,
   mint: PublicKey,
   connection: Connection,
+  feePayer?: PublicKey,
 ): Promise<[PublicKey, TransactionInstruction | null]> {
   const ata = await getAssociatedTokenAddress(mint, address);
   let instruction: TransactionInstruction | null = null;
@@ -26,7 +27,7 @@ export async function geTokenAddressWithCreationInstruction(
     await getAccount(connection, ata);
   } catch (e) {
     instruction = createAssociatedTokenAccountInstruction(
-      address,
+      feePayer ? feePayer : address,
       ata,
       address,
       mint,

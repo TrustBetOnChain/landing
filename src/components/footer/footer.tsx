@@ -21,6 +21,7 @@ export const Footer = () => {
   return (
     <footer>
       <ConnectWalletButton
+        showBalance={true}
         className={
           s["button"] + " " + (showButton ? s["non-visible"] : s["visible"])
         }
