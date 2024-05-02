@@ -30,11 +30,9 @@ export const HowToStart = () => {
               <h3>2. Confirm Transaction</h3>
               <p>Accepted payments are</p>
               <ul>
-                <li>BTC</li>
-                <li>ETH</li>
                 <li>SOL</li>
-                <li>USDT (ETH and SOL Chains)</li>
-                <li>USDC (ETH and SOL Chains)</li>
+                <li>USDT</li>
+                <li>USDC</li>
               </ul>
             </div>
             <div className={s["how-to-start-card"]}>
