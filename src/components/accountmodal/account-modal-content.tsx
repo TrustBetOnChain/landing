@@ -65,12 +65,6 @@ export const AccountModalContent: React.FC<Props> = ({
     control,
   });
 
-  // const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", anchorWallet);
-
-  // useEffect(() => {
-  //   console.log(vaultBalance);
-  // }, [vaultBalance.valueOf]);
-
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
   };

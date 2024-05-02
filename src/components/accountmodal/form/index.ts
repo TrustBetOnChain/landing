@@ -30,21 +30,9 @@ export function usePriceForm() {
   });
 }
 
-export const typeRadioOptions: RadioOption<Coin>[] = [
-  { id: Coin.SOL, name: "SOL" },
-  { id: Coin.ETH, name: "ETH" },
-  { id: Coin.USDT, name: "USDT" },
-  { id: Coin.USDC, name: "USDC" },
-  { id: Coin.BTC, name: "BTC" },
-];
-
-export const availableCoins = [
-  Coin.SOL,
-  Coin.ETH,
-  Coin.BTC,
-  Coin.USDC,
-  Coin.USDT,
-].map<RadioOption<Coin> & { address: PublicKey }>((coin) => ({
+export const availableCoins = [Coin.SOL, Coin.USDC, Coin.USDT].map<
+  RadioOption<Coin> & { address: PublicKey }
+>((coin) => ({
   id: coin,
   name: coin,
   address: tokens[CLUSTER][coin].pubkey,
