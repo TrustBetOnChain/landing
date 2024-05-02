@@ -10,7 +10,10 @@ export const PRIVATE_CLUSTER_URL =
 
 export const PROGRAM_IDL = IDL;
 
-export const ENDPOINT = clusterApiUrl(CLUSTER);
+export const ENDPOINT =
+  CLUSTER === "devnet"
+    ? clusterApiUrl(CLUSTER)
+    : "https://solana-mainnet.g.alchemy.com/v2/DBnynQyLa1gy-Mp2Xu1TjwlkQTfrDZMQ";
 
 export const price = 0.1;
 export const vaultMintDecimals = 6;

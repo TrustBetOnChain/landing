@@ -4,6 +4,8 @@
   margin-top: 200px;
   right: 5%;
   z-index: 10;
+  display: flex;
+  gap: 4px;
 }
 
 .visible {

@@ -38,6 +38,7 @@ import { buyTokensInstruction } from "../../presale/instructions/buy-tokens";
 import { useEffect } from "react";
 import { geTokenAddressWithCreationInstruction } from "../../util";
 import { PriceForm, availableCoins, usePriceForm } from "./form";
+import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 
 interface Props {
   disconnect: () => void;
@@ -45,11 +46,6 @@ interface Props {
   wallet: Wallet;
   anchorWallet: AnchorWallet;
 }
-
-const [vaultAddress] = PublicKey.findProgramAddressSync(
-  [Buffer.from("vault_info")],
-  PRE_SALE_PROGRAM,
-);
 
 export const AccountModalContent: React.FC<Props> = ({
   disconnect,
@@ -69,11 +65,11 @@ export const AccountModalContent: React.FC<Props> = ({
     control,
   });
 
-  const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", anchorWallet);
+  // const vaultBalance = useTbetStake(vaultAddress, "vaultInfo", anchorWallet);
 
-  useEffect(() => {
-    console.log(vaultBalance);
-  }, [vaultBalance.valueOf]);
+  // useEffect(() => {
+  //   console.log(vaultBalance);
+  // }, [vaultBalance.valueOf]);
 
   const submitHandler = (data: PriceForm) => {
     buyTokens(data.value, data.coin).then();
@@ -96,10 +92,22 @@ export const AccountModalContent: React.FC<Props> = ({
     const programConfig =
       await program.account.programConfig.fetch(programConfigAddress);
 
+    const [vaultInfoAddress] = PublicKey.findProgramAddressSync(
+      [Buffer.from("vault_info")],
+      program.programId,
+    );
+
+    const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
+
     const [userInfoAddress] = PublicKey.findProgramAddressSync(
       [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
       program.programId,
     );
+
+    console.log("vault", [
+      Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
+      vaultInfo.decimals,
+    ]);
 
     const feed = getPriceFeeds(CLUSTER)[coin];
 
@@ -108,6 +116,7 @@ export const AccountModalContent: React.FC<Props> = ({
         anchorWallet.publicKey,
         feed.asset,
         connection,
+        anchorWallet.publicKey,
       );
 
     const [ataForCollecting, collectingAtaCreationInstruction] =
@@ -115,6 +124,7 @@ export const AccountModalContent: React.FC<Props> = ({
         programConfig.collectedFundsAccount,
         feed.asset,
         connection,
+        anchorWallet.publicKey,
       );
 
     const instruction = await buyTokensInstruction({
@@ -155,13 +165,18 @@ export const AccountModalContent: React.FC<Props> = ({
 
     const transactionV0 = new VersionedTransaction(messageV0);
 
+    // // Simulate the versioned transaction
+    // const simulateResult = await connection.simulateTransaction(transactionV0);
+
+    // // Print the simulation result
+    // console.log("Simulation Result:", simulateResult);
+
     const signedTx = await wallet.adapter.sendTransaction(
       transactionV0,
       connection,
     );
 
-    // const res = await provider.sendAndConfirm(signedTx);
-    // console.log("result", res);
+    console.log(signedTx);
   };
 
   return (
