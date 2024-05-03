@@ -14,7 +14,6 @@ import {
 console.log("CLUSTER:", CLUSTER);
 console.log("ORIGIN:", ORIGIN);
 console.log("ENVIRONEMNT:", ENVIRONMENT);
-console.log("WALLETCONNECT_ID:", WALLETCONNECT_PROJECT_ID);
 console.log("ENDPOINT:", ENDPOINT);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
