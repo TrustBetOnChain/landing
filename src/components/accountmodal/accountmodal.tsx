@@ -25,9 +25,14 @@ import { AccountModalContent } from "./account-modal-content";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  onTransactionConfirmation: (sig: string) => void;
 }
 
-export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export const AccountModal: React.FC<Props> = ({
+  isOpen,
+  onClose,
+  onTransactionConfirmation,
+}) => {
   const anchorWallet = useAnchorWallet();
   const { connected, disconnect, publicKey, wallet } = useWallet();
 
@@ -69,6 +74,7 @@ export const AccountModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     wallet={wallet}
                     disconnect={handleDisconnect}
                     onClose={onClose}
+                    onTransactionConfirmation={onTransactionConfirmation}
                   />
                 )}
               </Dialog.Panel>

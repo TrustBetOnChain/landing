@@ -23,6 +23,7 @@ import {
   connection,
   vaultMintDecimals,
 } from "../../presale/config";
+import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 
 export const MWA_NOT_FOUND_ERROR = "MWA_NOT_FOUND_ERROR";
 
@@ -36,6 +37,7 @@ export const ConnectWalletButton = ({
   showBalance?: boolean;
 }) => {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
 
   const { setShowModal, theme } = useUnifiedWalletContext();
@@ -119,6 +121,11 @@ export const ConnectWalletButton = ({
       <AccountModal
         isOpen={isAccountOpen}
         onClose={() => setIsAccountOpen(false)}
+        onTransactionConfirmation={() => setIsConfirmationOpen(true)}
+      />
+      <ConfirmationModal
+        isOpen={isConfirmationOpen}
+        onClose={() => setIsConfirmationOpen(false)}
       />
     </>
   );

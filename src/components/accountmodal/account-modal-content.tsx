@@ -43,6 +43,7 @@ import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 interface Props {
   disconnect: () => void;
   onClose: () => void;
+  onTransactionConfirmation: (sig: string) => void;
   wallet: Wallet;
   anchorWallet: AnchorWallet;
 }
@@ -52,6 +53,7 @@ export const AccountModalContent: React.FC<Props> = ({
   onClose,
   wallet,
   anchorWallet,
+  onTransactionConfirmation,
 }) => {
   const {
     register,
@@ -171,6 +173,8 @@ export const AccountModalContent: React.FC<Props> = ({
     );
 
     console.log(signedTx);
+    onClose();
+    onTransactionConfirmation(signedTx);
   };
 
   return (
