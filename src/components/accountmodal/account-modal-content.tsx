@@ -16,9 +16,11 @@ import {
 } from "../../presale/config/address";
 import {
   PublicKey,
+  Transaction,
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
+import { useTbetStake } from "../../hooks/use-tbet-balance";
 import {
   CLUSTER,
   PROGRAM_IDL,
@@ -38,6 +40,7 @@ import { useEffect } from "react";
 import { geTokenAddressWithCreationInstruction } from "../../util";
 import { PriceForm, availableCoins, usePriceForm } from "./form";
 import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
+import { TrustWalletName } from "@solana/wallet-adapter-wallets";
 
 interface Props {
   disconnect: () => void;
@@ -50,6 +53,7 @@ interface Props {
 export const AccountModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
+  wallet,
   anchorWallet,
   onTransactionConfirmation,
 }) => {
@@ -159,20 +163,33 @@ export const AccountModalContent: React.FC<Props> = ({
 
     const transactionV0 = new VersionedTransaction(messageV0);
 
-    // Simulate the versioned transaction
+    // // Simulate the versioned transaction
     // const simulateResult = await connection.simulateTransaction(transactionV0);
 
-    // Print the simulation result
+    // // Print the simulation result
     // console.log("Simulation Result:", simulateResult);
 
-    const signedTx = await anchorWallet.signTransaction(transactionV0);
+    const signedTx =
+      wallet.adapter.name === TrustWalletName
+        ? await signAndSendWithTrustWallet(transactionV0)
+        : await sendTransaction(transactionV0);
 
-    const sig = await connection.sendTransaction(signedTx);
-
-    console.log(sig);
+    console.log(signedTx);
     onClose();
-    onTransactionConfirmation(sig);
+    onTransactionConfirmation(signedTx);
   };
+
+  async function sendTransaction(tx: VersionedTransaction): Promise<string> {
+    return wallet.adapter.sendTransaction(tx, connection);
+  }
+
+  async function signAndSendWithTrustWallet(
+    tx: VersionedTransaction,
+  ): Promise<string> {
+    const signedTx = await anchorWallet.signTransaction(tx);
+
+    return connection.sendTransaction(signedTx);
+  }
 
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
