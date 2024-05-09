@@ -103,7 +103,7 @@ export const WalletConnectProvider = ({
 
   return (
     <UnifiedWalletProvider
-      wallets={[]}
+      wallets={wallets}
       config={{
         theme: "dark",
         autoConnect: false,
