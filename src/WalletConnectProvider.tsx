@@ -1,9 +1,5 @@
 import React, { useMemo } from "react";
 import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react";
-import {
   BitgetWalletAdapter,
   CloverWalletAdapter,
   Coin98WalletAdapter,
@@ -40,9 +36,6 @@ import {
   TokenPocketWalletAdapter,
   XDEFIWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
-
-import "@solana/wallet-adapter-react-ui/styles.css";
 import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { CLUSTER, ENDPOINT } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
@@ -73,17 +66,6 @@ export const WalletConnectProvider = ({
           },
         },
       }),
-      // new SolanaMobileWalletAdapter({
-      //   addressSelector: createDefaultAddressSelector(),
-      //   appIdentity: {
-      //     name: "rust Bet On-Chain",
-      //     uri: ORIGIN,
-      //     icon: ICON,
-      //   },
-      //   authorizationResultCache: createDefaultAuthorizationResultCache(),
-      //   cluster: CLUSTER,
-      //   onWalletNotFound: createDefaultWalletNotFoundHandler(),
-      // }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
       new CoinbaseWalletAdapter(),
@@ -121,7 +103,7 @@ export const WalletConnectProvider = ({
 
   return (
     <UnifiedWalletProvider
-      wallets={wallets}
+      wallets={[]}
       config={{
         theme: "dark",
         autoConnect: false,

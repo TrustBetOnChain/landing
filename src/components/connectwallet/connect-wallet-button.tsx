@@ -41,9 +41,9 @@ export const ConnectWalletButton = ({
   const [balance, setBalance] = useState(0);
 
   const { setShowModal, theme } = useUnifiedWalletContext();
-  const { wallet } = useUnifiedWallet();
-  const { disconnect, connect, connecting, connected, publicKey } =
+  const { disconnect, connect, connecting, connected, publicKey, wallet } =
     useUnifiedWallet();
+
   const anchorWallet = useAnchorWallet();
 
   const handleClick = useCallback(async () => {
@@ -51,13 +51,6 @@ export const ConnectWalletButton = ({
 
     connected ? openAccountModal() : setShowModal(true);
   }, [anchorWallet, connect]);
-
-  const userInfoAddress = publicKey
-    ? PublicKey.findProgramAddressSync(
-        [Buffer.from("user_info"), publicKey.toBuffer()],
-        PRE_SALE_PROGRAM,
-      )[0]
-    : null;
 
   const openAccountModal = () => {
     setIsAccountOpen(true);

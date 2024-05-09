@@ -19,7 +19,6 @@ import {
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
 import {
   CLUSTER,
   PROGRAM_IDL,
@@ -161,20 +160,19 @@ export const AccountModalContent: React.FC<Props> = ({
 
     const transactionV0 = new VersionedTransaction(messageV0);
 
-    // // Simulate the versioned transaction
+    // Simulate the versioned transaction
     // const simulateResult = await connection.simulateTransaction(transactionV0);
 
-    // // Print the simulation result
+    // Print the simulation result
     // console.log("Simulation Result:", simulateResult);
 
-    const signedTx = await wallet.adapter.sendTransaction(
-      transactionV0,
-      connection,
-    );
+    const signedTx = await anchorWallet.signTransaction(transactionV0);
 
-    console.log(signedTx);
+    const sig = await connection.sendTransaction(signedTx);
+
+    console.log(sig);
     onClose();
-    onTransactionConfirmation(signedTx);
+    onTransactionConfirmation(sig);
   };
 
   return (
