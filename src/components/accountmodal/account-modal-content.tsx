@@ -50,7 +50,6 @@ interface Props {
 export const AccountModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
-  wallet,
   anchorWallet,
   onTransactionConfirmation,
 }) => {
