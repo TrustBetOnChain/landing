@@ -23,6 +23,7 @@ import {
   connection,
   vaultMintDecimals,
 } from "../../presale/config";
+import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 
 export const MWA_NOT_FOUND_ERROR = "MWA_NOT_FOUND_ERROR";
 
@@ -36,12 +37,13 @@ export const ConnectWalletButton = ({
   showBalance?: boolean;
 }) => {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
 
   const { setShowModal, theme } = useUnifiedWalletContext();
-  const { wallet } = useUnifiedWallet();
-  const { disconnect, connect, connecting, connected, publicKey } =
+  const { disconnect, connect, connecting, connected, publicKey, wallet } =
     useUnifiedWallet();
+
   const anchorWallet = useAnchorWallet();
 
   const handleClick = useCallback(async () => {
@@ -49,13 +51,6 @@ export const ConnectWalletButton = ({
 
     connected ? openAccountModal() : setShowModal(true);
   }, [anchorWallet, connect]);
-
-  const userInfoAddress = publicKey
-    ? PublicKey.findProgramAddressSync(
-        [Buffer.from("user_info"), publicKey.toBuffer()],
-        PRE_SALE_PROGRAM,
-      )[0]
-    : null;
 
   const openAccountModal = () => {
     setIsAccountOpen(true);
@@ -119,6 +114,11 @@ export const ConnectWalletButton = ({
       <AccountModal
         isOpen={isAccountOpen}
         onClose={() => setIsAccountOpen(false)}
+        onTransactionConfirmation={() => setIsConfirmationOpen(true)}
+      />
+      <ConfirmationModal
+        isOpen={isConfirmationOpen}
+        onClose={() => setIsConfirmationOpen(false)}
       />
     </>
   );

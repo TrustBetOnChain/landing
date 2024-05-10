@@ -16,6 +16,7 @@ import {
 } from "../../presale/config/address";
 import {
   PublicKey,
+  Transaction,
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
@@ -39,10 +40,12 @@ import { useEffect } from "react";
 import { geTokenAddressWithCreationInstruction } from "../../util";
 import { PriceForm, availableCoins, usePriceForm } from "./form";
 import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
+import { TrustWalletName } from "@solana/wallet-adapter-wallets";
 
 interface Props {
   disconnect: () => void;
   onClose: () => void;
+  onTransactionConfirmation: (sig: string) => void;
   wallet: Wallet;
   anchorWallet: AnchorWallet;
 }
@@ -52,6 +55,7 @@ export const AccountModalContent: React.FC<Props> = ({
   onClose,
   wallet,
   anchorWallet,
+  onTransactionConfirmation,
 }) => {
   const {
     register,
@@ -165,13 +169,27 @@ export const AccountModalContent: React.FC<Props> = ({
     // // Print the simulation result
     // console.log("Simulation Result:", simulateResult);
 
-    const signedTx = await wallet.adapter.sendTransaction(
-      transactionV0,
-      connection,
-    );
+    const signedTx =
+      wallet.adapter.name === TrustWalletName
+        ? await signAndSendWithTrustWallet(transactionV0)
+        : await sendTransaction(transactionV0);
 
     console.log(signedTx);
+    onClose();
+    onTransactionConfirmation(signedTx);
   };
+
+  async function sendTransaction(tx: VersionedTransaction): Promise<string> {
+    return wallet.adapter.sendTransaction(tx, connection);
+  }
+
+  async function signAndSendWithTrustWallet(
+    tx: VersionedTransaction,
+  ): Promise<string> {
+    const signedTx = await anchorWallet.signTransaction(tx);
+
+    return connection.sendTransaction(signedTx);
+  }
 
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
