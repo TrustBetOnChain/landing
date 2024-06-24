@@ -35,5 +35,5 @@ export const availableCoins = [Coin.SOL, Coin.USDC, Coin.USDT].map<
 >((coin) => ({
   id: coin,
   name: coin,
-  address: tokens[CLUSTER][coin].pubkey,
+  address: tokens?.[CLUSTER]?.[coin]?.pubkey,
 }));

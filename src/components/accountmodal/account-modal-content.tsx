@@ -12,15 +12,15 @@ import {
   CHAINLINK_PROGRAM,
   PRE_SALE_PROGRAM,
   tokenVaultAddress,
-  tokens,
+  // tokens,
 } from "../../presale/config/address";
 import {
   PublicKey,
-  Transaction,
+  // Transaction,
   TransactionMessage,
   VersionedTransaction,
 } from "@solana/web3.js";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
+// import { useTbetStake } from "../../hooks/use-tbet-balance";
 import {
   CLUSTER,
   PROGRAM_IDL,
@@ -36,11 +36,12 @@ import { AnchorProvider, BN, Program } from "@coral-xyz/anchor";
 import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { getPriceFeeds } from "../../presale/config/price-feed";
 import { buyTokensInstruction } from "../../presale/instructions/buy-tokens";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { geTokenAddressWithCreationInstruction } from "../../util";
 import { PriceForm, availableCoins, usePriceForm } from "./form";
-import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
+// import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 import { TrustWalletName } from "@solana/wallet-adapter-wallets";
+import { useState } from "react";
 
 interface Props {
   disconnect: () => void;
@@ -57,6 +58,7 @@ export const AccountModalContent: React.FC<Props> = ({
   anchorWallet,
   onTransactionConfirmation,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     control,
@@ -74,109 +76,116 @@ export const AccountModalContent: React.FC<Props> = ({
   };
 
   const buyTokens = async (amount: number, coin: SupportedToken) => {
-    const provider = new AnchorProvider(connection, anchorWallet, {});
+    try {
+      setIsLoading(true);
+      const provider = new AnchorProvider(connection, anchorWallet, {});
 
-    const program = new Program<PreSaleProgram>(
-      PROGRAM_IDL,
-      PRE_SALE_PROGRAM,
-      provider,
-    );
-
-    let [programConfigAddress] = PublicKey.findProgramAddressSync(
-      [Buffer.from("config")],
-      program.programId,
-    );
-
-    const programConfig =
-      await program.account.programConfig.fetch(programConfigAddress);
-
-    const [vaultInfoAddress] = PublicKey.findProgramAddressSync(
-      [Buffer.from("vault_info")],
-      program.programId,
-    );
-
-    const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
-
-    const [userInfoAddress] = PublicKey.findProgramAddressSync(
-      [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
-      program.programId,
-    );
-
-    console.log("vault", [
-      Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
-      vaultInfo.decimals,
-    ]);
-
-    const feed = getPriceFeeds(CLUSTER)[coin];
-
-    const [ataForPayment, paymentAtaCreationInstruction] =
-      await geTokenAddressWithCreationInstruction(
-        anchorWallet.publicKey,
-        feed.asset,
-        connection,
-        anchorWallet.publicKey,
+      const program = new Program<PreSaleProgram>(
+        PROGRAM_IDL,
+        PRE_SALE_PROGRAM,
+        provider,
       );
 
-    const [ataForCollecting, collectingAtaCreationInstruction] =
-      await geTokenAddressWithCreationInstruction(
-        programConfig.collectedFundsAccount,
-        feed.asset,
-        connection,
-        anchorWallet.publicKey,
+      const [programConfigAddress] = PublicKey.findProgramAddressSync(
+        [Buffer.from("config")],
+        program.programId,
       );
 
-    const instruction = await buyTokensInstruction({
-      accounts: {
-        signer: anchorWallet.publicKey,
-        programConfig: programConfigAddress,
-        vaultAccount: tokenVaultAddress,
-        userInfoAccount: userInfoAddress,
-        payerTokenAccount: ataForPayment,
-        collectedFundsTokenAccount: ataForCollecting,
-        collectedFundsAccount: programConfig.collectedFundsAccount,
-        payerMint: feed.asset,
-        chainlinkFeed: feed.dataFeed,
-        chainlinkProgram: CHAINLINK_PROGRAM,
-      },
-      args: { amount: new BN(amount * 10 ** vaultMintDecimals) },
-      program,
-    });
+      const programConfig =
+        await program.account.programConfig.fetch(programConfigAddress);
 
-    const instructions = [];
+      const [vaultInfoAddress] = PublicKey.findProgramAddressSync(
+        [Buffer.from("vault_info")],
+        program.programId,
+      );
 
-    if (paymentAtaCreationInstruction) {
-      instructions.push(paymentAtaCreationInstruction);
+      const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
+
+      const [userInfoAddress] = PublicKey.findProgramAddressSync(
+        [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
+        program.programId,
+      );
+
+      console.log("vault", [
+        Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
+        vaultInfo.decimals,
+      ]);
+
+      const feed = getPriceFeeds(CLUSTER)[coin];
+
+      const [ataForPayment, paymentAtaCreationInstruction] =
+        await geTokenAddressWithCreationInstruction(
+          anchorWallet.publicKey,
+          feed.asset,
+          connection,
+          anchorWallet.publicKey,
+        );
+
+      const [ataForCollecting, collectingAtaCreationInstruction] =
+        await geTokenAddressWithCreationInstruction(
+          programConfig.collectedFundsAccount,
+          feed.asset,
+          connection,
+          anchorWallet.publicKey,
+        );
+
+      const instruction = await buyTokensInstruction({
+        accounts: {
+          signer: anchorWallet.publicKey,
+          programConfig: programConfigAddress,
+          vaultAccount: tokenVaultAddress,
+          userInfoAccount: userInfoAddress,
+          payerTokenAccount: ataForPayment,
+          collectedFundsTokenAccount: ataForCollecting,
+          collectedFundsAccount: programConfig.collectedFundsAccount,
+          payerMint: feed.asset,
+          chainlinkFeed: feed.dataFeed,
+          chainlinkProgram: CHAINLINK_PROGRAM,
+        },
+        args: { amount: new BN(amount * 10 ** vaultMintDecimals) },
+        program,
+      });
+
+      const instructions = [];
+
+      if (paymentAtaCreationInstruction) {
+        instructions.push(paymentAtaCreationInstruction);
+      }
+
+      if (collectingAtaCreationInstruction) {
+        instructions.push(collectingAtaCreationInstruction);
+      }
+      instructions.push(instruction);
+
+      const { blockhash } = await connection.getLatestBlockhash();
+
+      const messageV0 = new TransactionMessage({
+        payerKey: anchorWallet.publicKey,
+        recentBlockhash: blockhash,
+        instructions,
+      }).compileToV0Message();
+
+      const transactionV0 = new VersionedTransaction(messageV0);
+
+      // // Simulate the versioned transaction
+      // const simulateResult = await connection.simulateTransaction(transactionV0);
+
+      // // Print the simulation result
+      // console.log("Simulation Result:", simulateResult);
+
+      const signedTx =
+        wallet.adapter.name === TrustWalletName
+          ? await signAndSendWithTrustWallet(transactionV0)
+          : await sendTransaction(transactionV0);
+
+      console.log(signedTx);
+      onClose();
+      onTransactionConfirmation(signedTx);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      console.log({ err });
     }
-
-    if (collectingAtaCreationInstruction) {
-      instructions.push(collectingAtaCreationInstruction);
-    }
-    instructions.push(instruction);
-
-    const { blockhash } = await connection.getLatestBlockhash();
-
-    const messageV0 = new TransactionMessage({
-      payerKey: anchorWallet.publicKey,
-      recentBlockhash: blockhash,
-      instructions,
-    }).compileToV0Message();
-
-    const transactionV0 = new VersionedTransaction(messageV0);
-
-    // // Simulate the versioned transaction
-    // const simulateResult = await connection.simulateTransaction(transactionV0);
-
-    // // Print the simulation result
-    // console.log("Simulation Result:", simulateResult);
-
-    const signedTx =
-      wallet.adapter.name === TrustWalletName
-        ? await signAndSendWithTrustWallet(transactionV0)
-        : await sendTransaction(transactionV0);
-
-    console.log(signedTx);
-    onClose();
-    onTransactionConfirmation(signedTx);
   };
 
   async function sendTransaction(tx: VersionedTransaction): Promise<string> {
@@ -310,11 +319,13 @@ export const AccountModalContent: React.FC<Props> = ({
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
                   className="mt-5 mb-5 sm:col-span-3"
-                  type="number"
+                  // type="number"
                 />
               </div>
               <div className="mt-6 flex gap-2 justify-center">
-                <PrimaryButton className="w-[150px]">Buy</PrimaryButton>
+                <PrimaryButton className="w-[150px]">
+                  {isLoading ? "Loading..." : "Buy"}
+                </PrimaryButton>
                 <PrimaryButton onClick={disconnect} className="w-[150px]">
                   Disconnect
                 </PrimaryButton>
