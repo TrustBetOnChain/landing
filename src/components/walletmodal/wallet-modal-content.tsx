@@ -51,7 +51,7 @@ interface Props {
   anchorWallet: AnchorWallet;
 }
 
-export const AccountModalContent: React.FC<Props> = ({
+export const WalletModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
   wallet,
