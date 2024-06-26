@@ -1,27 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, RadioGroup, Transition } from "@headlessui/react";
-import { ShieldCheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  CheckIcon,
-  QuestionMarkCircleIcon,
-  StarIcon,
-} from "@heroicons/react/20/solid";
-import classNames from "classnames";
-import {
-  useAnchorWallet,
-  useConnection,
-  useWallet,
-} from "@solana/wallet-adapter-react";
-import TbetImage from "../../assets/tbet-icon.svg";
-import {
-  PRE_SALE_PROGRAM,
-  tokenVaultAddress,
-} from "../../presale/config/address";
-import { PublicKey } from "@solana/web3.js";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
-import { connection } from "../../presale/config";
-import { AccountModalContent } from "./account-modal-content";
-import usePhantomContext from "../../Context/usePhantomContext";
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
+import { WalletModalContent } from "./wallet-modal-content";
 
 interface Props {
   isOpen: boolean;
@@ -29,17 +9,16 @@ interface Props {
   onTransactionConfirmation: (sig: string) => void;
 }
 
-export const AccountModal: React.FC<Props> = ({
+export const WalletModal: React.FC<Props> = ({
   isOpen,
   onClose,
   onTransactionConfirmation,
 }) => {
   const anchorWallet = useAnchorWallet();
-  const { wallet } = useWallet();
-  const { DisConnect } = usePhantomContext();
+  const { disconnect, wallet } = useWallet();
 
   function handleDisconnect() {
-    DisConnect();
+    disconnect();
     onClose();
   }
 
@@ -70,10 +49,10 @@ export const AccountModal: React.FC<Props> = ({
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
               <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
-                {isOpen && (
-                  <AccountModalContent
-                    anchorWallet={anchorWallet!}
-                    wallet={wallet!}
+                {isOpen && anchorWallet && wallet && (
+                  <WalletModalContent
+                    anchorWallet={anchorWallet}
+                    wallet={wallet}
                     disconnect={handleDisconnect}
                     onClose={onClose}
                     onTransactionConfirmation={onTransactionConfirmation}
