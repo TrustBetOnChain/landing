@@ -15,6 +15,7 @@ import {
   // tokens,
 } from "../../presale/config/address";
 import {
+  Connection,
   PublicKey,
   // Transaction,
   TransactionMessage,
@@ -23,6 +24,7 @@ import {
 // import { useTbetStake } from "../../hooks/use-tbet-balance";
 import {
   CLUSTER,
+  ENDPOINT,
   PROGRAM_IDL,
   connection,
   price,
@@ -42,6 +44,9 @@ import { PriceForm, availableCoins, usePriceForm } from "./form";
 // import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 import { TrustWalletName } from "@solana/wallet-adapter-wallets";
 import { useState } from "react";
+import usePhantomContext from "../../Context/usePhantomContext";
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import { toast } from "react-toastify";
 
 interface Props {
   disconnect: () => void;
@@ -51,7 +56,7 @@ interface Props {
   anchorWallet: AnchorWallet;
 }
 
-export const AccountModalContent: React.FC<Props> = ({
+export const MyAccountModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
   wallet,
@@ -59,6 +64,7 @@ export const AccountModalContent: React.FC<Props> = ({
   onTransactionConfirmation,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const { account, getProvider } = usePhantomContext();
   const {
     register,
     control,
@@ -85,7 +91,6 @@ export const AccountModalContent: React.FC<Props> = ({
         PRE_SALE_PROGRAM,
         provider,
       );
-
       const [programConfigAddress] = PublicKey.findProgramAddressSync(
         [Buffer.from("config")],
         program.programId,
@@ -98,13 +103,12 @@ export const AccountModalContent: React.FC<Props> = ({
         [Buffer.from("vault_info")],
         program.programId,
       );
-
       const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
-
       const [userInfoAddress] = PublicKey.findProgramAddressSync(
-        [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
+        [Buffer.from("user_info")],
         program.programId,
       );
+
 
       console.log("vault", [
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
@@ -112,26 +116,42 @@ export const AccountModalContent: React.FC<Props> = ({
       ]);
 
       const feed = getPriceFeeds(CLUSTER)[coin];
+      console.log({
+        account,
+        asset: feed.asset,
+        connection,
+      });
 
       const [ataForPayment, paymentAtaCreationInstruction] =
         await geTokenAddressWithCreationInstruction(
-          anchorWallet.publicKey,
+          new PublicKey(account),
           feed.asset,
           connection,
-          anchorWallet.publicKey,
+          new PublicKey(account),
         );
 
+      // console.log({
+      //   programConfigAddress,
+      //   programConfig,
+      //   vaultInfo,
+      //   vaultInfoAddress,
+      //   userInfoAddress,
+      //   feed,
+      //   ataForPayment,
+      //   paymentAtaCreationInstruction,
+      //   account,
+      // });
       const [ataForCollecting, collectingAtaCreationInstruction] =
         await geTokenAddressWithCreationInstruction(
           programConfig.collectedFundsAccount,
           feed.asset,
           connection,
-          anchorWallet.publicKey,
+          new PublicKey(account),
         );
 
       const instruction = await buyTokensInstruction({
         accounts: {
-          signer: anchorWallet.publicKey,
+          signer: new PublicKey(account),
           programConfig: programConfigAddress,
           vaultAccount: tokenVaultAddress,
           userInfoAccount: userInfoAddress,
@@ -156,11 +176,11 @@ export const AccountModalContent: React.FC<Props> = ({
         instructions.push(collectingAtaCreationInstruction);
       }
       instructions.push(instruction);
-
       const { blockhash } = await connection.getLatestBlockhash();
 
+
       const messageV0 = new TransactionMessage({
-        payerKey: anchorWallet.publicKey,
+        payerKey: new PublicKey(account),
         recentBlockhash: blockhash,
         instructions,
       }).compileToV0Message();
@@ -172,7 +192,6 @@ export const AccountModalContent: React.FC<Props> = ({
 
       // // Print the simulation result
       // console.log("Simulation Result:", simulateResult);
-
       const signedTx =
         wallet.adapter.name === TrustWalletName
           ? await signAndSendWithTrustWallet(transactionV0)
@@ -184,12 +203,27 @@ export const AccountModalContent: React.FC<Props> = ({
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-      console.log({ err });
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        console.log("An unknown error occurred:", err);
+      }
     }
   };
 
   async function sendTransaction(tx: VersionedTransaction): Promise<string> {
-    return wallet.adapter.sendTransaction(tx, connection);
+    // return wallet.adapter.sendTransaction(tx, connection);
+    const provider = getProvider(); // see "Detecting the Provider"
+    const network = ENDPOINT;
+    const connection = new Connection(network, "confirmed");
+    const { signature } = await provider.request({
+      method: "signAndSendTransaction",
+      params: {
+        message: bs58.encode(tx.serialize()),
+      },
+    });
+    const txhash = await connection.getSignatureStatus(signature);
+    return txhash;
   }
 
   async function signAndSendWithTrustWallet(
@@ -319,7 +353,6 @@ export const AccountModalContent: React.FC<Props> = ({
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
                   className="mt-5 mb-5 sm:col-span-3"
-                // type="number"
                 />
               </div>
               <div className="mt-6 flex gap-2 justify-center">

@@ -5,8 +5,8 @@ export function getTruncatedHash(
   address: string,
   partLength: number = 6,
 ): string {
-  return `${address.substring(0, partLength)}...${address.substring(
-    address.length - partLength,
+  return `${address?.substring(0, partLength)}...${address?.substring(
+    address?.length - partLength,
   )}`;
 }
 
