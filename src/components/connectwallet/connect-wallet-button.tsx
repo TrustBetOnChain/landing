@@ -40,9 +40,8 @@ export const ConnectWalletButton = ({
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
 
-  const { setShowModal, theme } = useUnifiedWalletContext();
-  const { disconnect, connect, connecting, connected, publicKey, wallet } =
-    useUnifiedWallet();
+  const { setShowModal } = useUnifiedWalletContext();
+  const { connect, connected, publicKey } = useUnifiedWallet();
 
   const anchorWallet = useAnchorWallet();
 

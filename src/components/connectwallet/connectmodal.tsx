@@ -1,50 +1,36 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable prettier/prettier */
+
 import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
 import { PrimaryButton } from "../primarybutton/primarybutton";
-import { useCallback, useEffect, useState } from "react";
-import { AccountModal } from "../accountmodal/accountmodal";
+import { useEffect, useState } from "react";
 import { getTruncatedHash } from "../../util";
 
 import s from "./connectwallet.module.scss";
 // import { useTbetStake } from "../../hooks/use-tbet-balance";
-import { PublicKey } from "@solana/web3.js";
-import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 import TBetIcon from "../../assets/imgs/t-bet-icon.svg";
-import {
-  useUnifiedWalletContext,
-  useUnifiedWallet,
-} from "@jup-ag/wallet-adapter";
-import { AnchorWallet, useAnchorWallet } from "@solana/wallet-adapter-react";
 
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { PreSaleProgram } from "../../presale/types/pre_sale_program";
-import { AnchorProvider, Program } from "@coral-xyz/anchor";
-import {
-  PROGRAM_IDL,
-  connection,
-  vaultMintDecimals,
-} from "../../presale/config";
 import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModal } from "../accountmodal/myaccountmodal";
 
 export const ConnectModal = ({
   className,
-  onClick,
-  showBalance = false,
 }: {
   className?: string;
   onClick?: () => void;
   showBalance?: boolean;
 }) => {
   const {
-    getProvider,
+    // @ts-ignore
     account,
+    // @ts-ignore
     isConnected,
+    // @ts-ignore
     Connect,
+    // @ts-ignore
     getBalance,
-    provider,
-    DisConnect,
   } = usePhantomContext()
   const [balance, setBalance] = useState()
   const showbalance = async () => {

@@ -1,26 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, RadioGroup, Transition } from "@headlessui/react";
-import { ShieldCheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-    CheckIcon,
-    QuestionMarkCircleIcon,
-    StarIcon,
-} from "@heroicons/react/20/solid";
-import classNames from "classnames";
-import {
-    useAnchorWallet,
-    useConnection,
-    useWallet,
-} from "@solana/wallet-adapter-react";
-import TbetImage from "../../assets/tbet-icon.svg";
-import {
-    PRE_SALE_PROGRAM,
-    tokenVaultAddress,
-} from "../../presale/config/address";
-import { PublicKey } from "@solana/web3.js";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
-import { connection } from "../../presale/config";
-import { AccountModalContent } from "./account-modal-content";
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+
+import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
+
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModalContent } from "./myaccount-modal-content";
 
@@ -37,6 +19,8 @@ export const MyAccountModal: React.FC<Props> = ({
 }) => {
     const anchorWallet = useAnchorWallet();
     const { wallet } = useWallet();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const { DisConnect } = usePhantomContext();
     console.log(anchorWallet);
 

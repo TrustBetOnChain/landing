@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
@@ -13,6 +14,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [isConnected, setisConnected] = useState(false);
   const getProvider = () => {
     if ("phantom" in window) {
+      // @ts-ignore
       const provider = window.phantom?.solana as any;
       if (provider?.isPhantom) {
         return provider;
@@ -92,6 +94,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     };
     // Select the wallet and connect if not already connected
     if (!connected) {
+      // @ts-ignore
       select(wallet[walletName]);
     }
   }, [select, connect, connected]);

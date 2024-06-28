@@ -15,9 +15,7 @@ import {
   // tokens,
 } from "../../presale/config/address";
 import {
-  Connection,
   PublicKey,
-  Transaction,
   // Transaction,
   TransactionMessage,
   VersionedTransaction,
@@ -25,7 +23,6 @@ import {
 // import { useTbetStake } from "../../hooks/use-tbet-balance";
 import {
   CLUSTER,
-  ENDPOINT,
   PROGRAM_IDL,
   connection,
   price,
@@ -46,7 +43,6 @@ import { PriceForm, availableCoins, usePriceForm } from "./form";
 import { TrustWalletName } from "@solana/wallet-adapter-wallets";
 import { useState } from "react";
 import usePhantomContext from "../../Context/usePhantomContext";
-import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -67,7 +63,9 @@ export const MyAccountModalContent: React.FC<Props> = ({
   console.log({ wallet });
 
   const [isLoading, setIsLoading] = useState(false);
-  const { account, getProvider } = usePhantomContext();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { account } = usePhantomContext();
   const {
     register,
     control,
