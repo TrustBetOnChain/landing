@@ -58,8 +58,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const Connect = async () => {
     if (!("phantom" in window)) {
       window.open(
-        "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        // "https://phantom.app/ul/browse/http://192.168.0.105:5173//?ref=http://192.168.0.105:5173/",
+        // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
+        "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=landing-git-feature-fixtransaction-trust-bet.vercel.app/",
         "_blank",
       );
     }
