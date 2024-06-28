@@ -38,6 +38,7 @@ export const MyAccountModal: React.FC<Props> = ({
     const anchorWallet = useAnchorWallet();
     const { wallet } = useWallet();
     const { DisConnect } = usePhantomContext();
+    console.log(anchorWallet);
 
     function handleDisconnect() {
         DisConnect();

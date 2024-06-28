@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { ENDPOINT } from "../presale/config";
+import { useWallet } from "@solana/wallet-adapter-react";
+import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
   const [provider, setProvider] = useState<any>(null);
+  const { select, connect, connected } = useWallet();
   const [isConnected, setisConnected] = useState(false);
   const getProvider = () => {
     if ("phantom" in window) {
@@ -15,11 +18,11 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         return provider;
       }
     }
-    window.open("https://phantom.app/", "_blank");
   };
   useEffect(() => {
     if (sessionStorage.getItem("isConnected")) {
       Connect();
+      connect();
     }
     setProvider(getProvider());
   }, []);
@@ -28,6 +31,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     provider?.on("connect", (publicKey: string) => {
       setisConnected(true);
       setAccount(publicKey.toString());
+      connect();
     });
 
     // Forget user's public key once they disconnect
@@ -50,12 +54,20 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
   const Connect = async () => {
+    if (!("phantom" in window)) {
+      window.open(
+        "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
+        // "https://phantom.app/ul/browse/http://192.168.0.105:5173//?ref=http://192.168.0.105:5173/",
+        "_blank",
+      );
+    }
     const provider = getProvider(); // see "Detecting the Provider"
     if (provider === null) {
       setProvider(provider);
     }
     try {
       const resp = await provider.request({ method: "connect" });
+      connectPhantom();
       console.log(resp.publicKey.toString());
       sessionStorage.setItem("isConnected", "true");
     } catch (err) {
@@ -68,6 +80,21 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     _provider!.disconnect()!;
     sessionStorage.clear();
   };
+  const connectPhantom = useCallback(async () => {
+    // Retrieve the wallet name from local storage
+    let walletName = window.localStorage.getItem("walletName");
+    // Default to Phantom if no wallet name is found or if it's undefined
+    walletName =
+      !walletName || walletName === "undefined" ? "Phantom" : walletName;
+    // Map of wallet names to wallet adapter constants
+    const wallet = {
+      Phantom: PhantomWalletName,
+    };
+    // Select the wallet and connect if not already connected
+    if (!connected) {
+      select(wallet[walletName]);
+    }
+  }, [select, connect, connected]);
   return (
     <PhantomContext.Provider
       value={{

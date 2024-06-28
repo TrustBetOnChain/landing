@@ -17,6 +17,7 @@ import {
 import {
   Connection,
   PublicKey,
+  Transaction,
   // Transaction,
   TransactionMessage,
   VersionedTransaction,
@@ -63,6 +64,8 @@ export const MyAccountModalContent: React.FC<Props> = ({
   anchorWallet,
   onTransactionConfirmation,
 }) => {
+  console.log({ wallet });
+
   const [isLoading, setIsLoading] = useState(false);
   const { account, getProvider } = usePhantomContext();
   const {
@@ -91,6 +94,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
         PRE_SALE_PROGRAM,
         provider,
       );
+
       const [programConfigAddress] = PublicKey.findProgramAddressSync(
         [Buffer.from("config")],
         program.programId,
@@ -103,12 +107,13 @@ export const MyAccountModalContent: React.FC<Props> = ({
         [Buffer.from("vault_info")],
         program.programId,
       );
+
       const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
+
       const [userInfoAddress] = PublicKey.findProgramAddressSync(
-        [Buffer.from("user_info")],
+        [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
         program.programId,
       );
-
 
       console.log("vault", [
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
@@ -116,11 +121,6 @@ export const MyAccountModalContent: React.FC<Props> = ({
       ]);
 
       const feed = getPriceFeeds(CLUSTER)[coin];
-      console.log({
-        account,
-        asset: feed.asset,
-        connection,
-      });
 
       const [ataForPayment, paymentAtaCreationInstruction] =
         await geTokenAddressWithCreationInstruction(
@@ -130,17 +130,6 @@ export const MyAccountModalContent: React.FC<Props> = ({
           new PublicKey(account),
         );
 
-      // console.log({
-      //   programConfigAddress,
-      //   programConfig,
-      //   vaultInfo,
-      //   vaultInfoAddress,
-      //   userInfoAddress,
-      //   feed,
-      //   ataForPayment,
-      //   paymentAtaCreationInstruction,
-      //   account,
-      // });
       const [ataForCollecting, collectingAtaCreationInstruction] =
         await geTokenAddressWithCreationInstruction(
           programConfig.collectedFundsAccount,
@@ -176,8 +165,8 @@ export const MyAccountModalContent: React.FC<Props> = ({
         instructions.push(collectingAtaCreationInstruction);
       }
       instructions.push(instruction);
-      const { blockhash } = await connection.getLatestBlockhash();
 
+      const { blockhash } = await connection.getLatestBlockhash();
 
       const messageV0 = new TransactionMessage({
         payerKey: new PublicKey(account),
@@ -192,6 +181,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
 
       // // Print the simulation result
       // console.log("Simulation Result:", simulateResult);
+
       const signedTx =
         wallet.adapter.name === TrustWalletName
           ? await signAndSendWithTrustWallet(transactionV0)
@@ -203,6 +193,8 @@ export const MyAccountModalContent: React.FC<Props> = ({
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
+      console.log(err);
+
       if (err instanceof Error) {
         toast.error(err.message);
       } else {
@@ -212,18 +204,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
   };
 
   async function sendTransaction(tx: VersionedTransaction): Promise<string> {
-    // return wallet.adapter.sendTransaction(tx, connection);
-    const provider = getProvider(); // see "Detecting the Provider"
-    const network = ENDPOINT;
-    const connection = new Connection(network, "confirmed");
-    const { signature } = await provider.request({
-      method: "signAndSendTransaction",
-      params: {
-        message: bs58.encode(tx.serialize()),
-      },
-    });
-    const txhash = await connection.getSignatureStatus(signature);
-    return txhash;
+    return wallet.adapter.sendTransaction(tx, connection);
   }
 
   async function signAndSendWithTrustWallet(
@@ -233,7 +214,6 @@ export const MyAccountModalContent: React.FC<Props> = ({
 
     return connection.sendTransaction(signedTx);
   }
-
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
       <button
