@@ -3,9 +3,10 @@
 import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
-import { ENDPOINT } from "../presale/config";
+import { CLUSTER, ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
+import { ENVIRONMENT } from "../constants";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
@@ -21,6 +22,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
   };
+  console.log(ENVIRONMENT, CLUSTER);
   useEffect(() => {
     if (sessionStorage.getItem("isConnected")) {
       Connect();
