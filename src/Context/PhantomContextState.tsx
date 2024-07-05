@@ -59,7 +59,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (!("phantom" in window)) {
       window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=landing-git-feature-fixtransaction-trust-bet.vercel.app/",
+        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
         "_blank",
       );
     }
