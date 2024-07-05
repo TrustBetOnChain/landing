@@ -5,7 +5,7 @@ import { SupportedNetwork } from "../types";
 
 // export const CLUSTER = import.meta.env.VITE_STAGING_CLUSTER as SupportedNetwork;
 // export const CLUSTER = import.meta.env.VITE_CLUSTER as SupportedNetwork;
-export const CLUSTER = "devnet" as SupportedNetwork;
+export const CLUSTER = "mainnet-beta" as SupportedNetwork;
 
 export const PROGRAM_IDL = IDL;
 
