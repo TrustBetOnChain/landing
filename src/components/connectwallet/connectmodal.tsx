@@ -32,6 +32,14 @@ export const ConnectModal = ({
     // @ts-ignore
     getBalance,
   } = usePhantomContext()
+  console.log(({
+    account,
+    // @ts-ignore
+    isConnected,
+    // @ts-ignore
+    Connect,
+  }));
+
   const [balance, setBalance] = useState()
   const showbalance = async () => {
     setBalance(await getBalance())

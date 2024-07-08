@@ -15,6 +15,7 @@ import {
   // tokens,
 } from "../../presale/config/address";
 import {
+  LAMPORTS_PER_SOL,
   PublicKey,
   // Transaction,
   TransactionMessage,
@@ -65,7 +66,8 @@ export const MyAccountModalContent: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { account } = usePhantomContext();
+  const { account, getBalance
+  } = usePhantomContext();
   const {
     register,
     control,
@@ -117,7 +119,14 @@ export const MyAccountModalContent: React.FC<Props> = ({
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
         vaultInfo.decimals,
       ]);
-
+      console.log(
+        amount * 10 ** vaultMintDecimals,
+        new BN(amount * 10 ** vaultMintDecimals),
+        (await connection.getBalance(new PublicKey(account!))) / 10000000
+      );
+      if ((await connection.getBalance(new PublicKey(account!))) / 10000000 < amount) {
+        return toast.error("Insufficient SOL balance");
+      }
       const feed = getPriceFeeds(CLUSTER)[coin];
 
       const [ataForPayment, paymentAtaCreationInstruction] =

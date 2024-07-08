@@ -3,14 +3,15 @@
 import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
-import { ENDPOINT } from "../presale/config";
+import { CLUSTER, ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
+import { ENVIRONMENT } from "../constants";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
-  const [provider, setProvider] = useState<any>(null);
-  const { select, connect, connected } = useWallet();
+  // const [provider, setProvider] = useState<any>(null);
+  const { select, connect, connected, disconnect } = useWallet();
   const [isConnected, setisConnected] = useState(false);
   const getProvider = () => {
     if ("phantom" in window) {
@@ -24,32 +25,39 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     if (sessionStorage.getItem("isConnected")) {
       Connect();
-      connect();
+      // connect();
     }
-    setProvider(getProvider());
+    // setProvider(getProvider());
   }, []);
-  useEffect(() => {
-    // Store user's public key once they connect
-    provider?.on("connect", (publicKey: string) => {
-      setisConnected(true);
-      setAccount(publicKey.toString());
-      connect();
-    });
+  // useEffect(() => {
+  //   // Store user's public key once they connect
+  //   if (provider) {
+  //     provider?.on("connect", (publicKey: string) => {
+  //       console.log(publicKey);
+  //       setisConnected(true);
+  //       setAccount(publicKey.toString());
+  //       connect();
+  //       // connect();
+  //     });
 
-    // Forget user's public key once they disconnect
-    provider?.on("disconnect", () => {
-      setisConnected(false);
-      setAccount(null);
-      setProvider(null);
-    });
+  //     // Forget user's public key once they disconnect
+  //     provider?.on("disconnect", () => {
+  //       setisConnected(false);
+  //       setAccount(null);
+  //       setProvider(null);
+  //     });
 
-    provider?.on("accountChanged", (publicKey: any) => {
-      if (publicKey) {
-        // Set new public key and continue as usual
-        setAccount(publicKey.toBase58());
-      }
-    });
-  }, [provider]);
+  //     provider?.on("accountChanged", (publicKey: any) => {
+  //       console.log("account changed");
+  //       if (publicKey) {
+  //         // Set new public key and continue as usual
+  //         // connect();
+  //         setAccount(publicKey.toBase58());
+  //       }
+  //     });
+  //   }
+
+  // }, [provider]);
   const getBalance = async () => {
     const connection = new Connection(ENDPOINT, "confirmed");
     const wallet = new PublicKey(account!);
@@ -59,27 +67,35 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (!("phantom" in window)) {
       window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=landing-git-feature-fixtransaction-trust-bet.vercel.app/",
+        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
         "_blank",
       );
     }
     const provider = getProvider(); // see "Detecting the Provider"
-    if (provider === null) {
-      setProvider(provider);
-    }
     try {
       const resp = await provider.request({ method: "connect" });
+      console.log("resp", resp.publicKey.toString());
+      setAccount(resp.publicKey.toString());
+      setisConnected(true)
       connectPhantom();
-      console.log(resp.publicKey.toString());
       sessionStorage.setItem("isConnected", "true");
     } catch (err) {
       console.log(err);
       console.log({ code: 4001, message: "User rejected the request." });
     }
   };
+  useEffect(() => {
+    if (account) {
+      connect()
+    }
+  }, [account])
   const DisConnect = () => {
+    console.log("disconected")
     const _provider = getProvider();
     _provider!.disconnect()!;
+    disconnect()
+    setAccount("")
+    setisConnected(false)
     sessionStorage.clear();
   };
   const connectPhantom = useCallback(async () => {
@@ -97,7 +113,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       // @ts-ignore
       select(wallet[walletName]);
     }
-  }, [select, connect, connected]);
+  }, [select, connect, connected,]);
   return (
     <PhantomContext.Provider
       value={{
@@ -105,7 +121,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         account,
         isConnected,
         Connect,
-        provider,
         DisConnect,
         getBalance,
       }}
