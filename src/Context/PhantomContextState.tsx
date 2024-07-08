@@ -69,8 +69,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (!window?.solana) {
       return window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
-        "_blank",
+        "https://phantom.app/ul/browse?url=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/&ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/"
+        , "_blank",
       );
     }
     const provider = getProvider(); // see "Detecting the Provider"
