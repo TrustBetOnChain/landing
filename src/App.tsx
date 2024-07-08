@@ -21,10 +21,6 @@ function App() {
       <Header />
       <HeaderMobile />
       <main>
-        {/* @ts-ignore */}
-        {window.solana && <p>solana is there </p>}
-        {/* @ts-ignore */}
-        {window?.phantom && <p>phantom is there </p>}
         <Main />
         <Cards />
         <Future />
