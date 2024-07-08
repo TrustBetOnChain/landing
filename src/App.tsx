@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import "./App.css";
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
@@ -20,12 +21,10 @@ function App() {
       <Header />
       <HeaderMobile />
       <main>
-        {
-          window.solana && <p>solana is there </p>
-        }
-        {
-          window?.phantom && <p>phantom is there </p>
-        }
+        {/* @ts-ignore */}
+        {window.solana && <p>solana is there </p>}
+        {/* @ts-ignore */}
+        {window?.phantom && <p>phantom is there </p>}
         <Main />
         <Cards />
         <Future />
