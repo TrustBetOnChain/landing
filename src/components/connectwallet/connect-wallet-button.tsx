@@ -5,7 +5,7 @@ import { AccountModal } from "../accountmodal/accountmodal";
 import { getTruncatedHash } from "../../util";
 
 import s from "./connectwallet.module.scss";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
+// import { useTbetStake } from "../../hooks/use-tbet-balance";
 import { PublicKey } from "@solana/web3.js";
 import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 import TBetIcon from "../../assets/imgs/t-bet-icon.svg";
@@ -40,9 +40,8 @@ export const ConnectWalletButton = ({
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
 
-  const { setShowModal, theme } = useUnifiedWalletContext();
-  const { disconnect, connect, connecting, connected, publicKey, wallet } =
-    useUnifiedWallet();
+  const { setShowModal } = useUnifiedWalletContext();
+  const { connect, connected, publicKey } = useUnifiedWallet();
 
   const anchorWallet = useAnchorWallet();
 

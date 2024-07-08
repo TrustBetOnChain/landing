@@ -15,6 +15,7 @@ import {
   // tokens,
 } from "../../presale/config/address";
 import {
+  LAMPORTS_PER_SOL,
   PublicKey,
   // Transaction,
   TransactionMessage,
@@ -42,6 +43,8 @@ import { PriceForm, availableCoins, usePriceForm } from "./form";
 // import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 import { TrustWalletName } from "@solana/wallet-adapter-wallets";
 import { useState } from "react";
+import usePhantomContext from "../../Context/usePhantomContext";
+import { toast } from "react-toastify";
 
 interface Props {
   disconnect: () => void;
@@ -51,14 +54,20 @@ interface Props {
   anchorWallet: AnchorWallet;
 }
 
-export const AccountModalContent: React.FC<Props> = ({
+export const MyAccountModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
   wallet,
   anchorWallet,
   onTransactionConfirmation,
 }) => {
+  console.log({ wallet });
+
   const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { account, getBalance
+  } = usePhantomContext();
   const {
     register,
     control,
@@ -102,7 +111,7 @@ export const AccountModalContent: React.FC<Props> = ({
       const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
 
       const [userInfoAddress] = PublicKey.findProgramAddressSync(
-        [Buffer.from("user_info"), anchorWallet.publicKey.toBuffer()],
+        [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
         program.programId,
       );
 
@@ -110,15 +119,23 @@ export const AccountModalContent: React.FC<Props> = ({
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
         vaultInfo.decimals,
       ]);
-
+      console.log(
+        amount * 10 ** vaultMintDecimals,
+        new BN(amount * 10 ** vaultMintDecimals),
+        (await connection.getBalance(new PublicKey(account!))) / 10000000
+      );
+      if ((await connection.getBalance(new PublicKey(account!))) / 10000000 < amount) {
+        setIsLoading(false);
+        return toast.error("Insufficient SOL balance");
+      }
       const feed = getPriceFeeds(CLUSTER)[coin];
 
       const [ataForPayment, paymentAtaCreationInstruction] =
         await geTokenAddressWithCreationInstruction(
-          anchorWallet.publicKey,
+          new PublicKey(account),
           feed.asset,
           connection,
-          anchorWallet.publicKey,
+          new PublicKey(account),
         );
 
       const [ataForCollecting, collectingAtaCreationInstruction] =
@@ -126,12 +143,12 @@ export const AccountModalContent: React.FC<Props> = ({
           programConfig.collectedFundsAccount,
           feed.asset,
           connection,
-          anchorWallet.publicKey,
+          new PublicKey(account),
         );
 
       const instruction = await buyTokensInstruction({
         accounts: {
-          signer: anchorWallet.publicKey,
+          signer: new PublicKey(account),
           programConfig: programConfigAddress,
           vaultAccount: tokenVaultAddress,
           userInfoAccount: userInfoAddress,
@@ -160,7 +177,7 @@ export const AccountModalContent: React.FC<Props> = ({
       const { blockhash } = await connection.getLatestBlockhash();
 
       const messageV0 = new TransactionMessage({
-        payerKey: anchorWallet.publicKey,
+        payerKey: new PublicKey(account),
         recentBlockhash: blockhash,
         instructions,
       }).compileToV0Message();
@@ -184,7 +201,13 @@ export const AccountModalContent: React.FC<Props> = ({
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-      console.log({ err });
+      console.log(err);
+
+      if (err instanceof Error) {
+        toast.error(err.message);
+      } else {
+        console.log("An unknown error occurred:", err);
+      }
     }
   };
 
@@ -199,7 +222,6 @@ export const AccountModalContent: React.FC<Props> = ({
 
     return connection.sendTransaction(signedTx);
   }
-
   return (
     <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
       <button
