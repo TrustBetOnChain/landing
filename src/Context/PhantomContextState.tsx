@@ -63,8 +63,10 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
+  console.log(window)
   const Connect = async () => {
-    if (!("phantom" in window)) {
+    // @ts-ignore
+    if (!(window?.phantom || window?.solana)) {
       window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
         "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
