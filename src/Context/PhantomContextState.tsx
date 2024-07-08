@@ -3,10 +3,9 @@
 import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
-import { CLUSTER, ENDPOINT } from "../presale/config";
+import { ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
-import { ENVIRONMENT } from "../constants";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
@@ -29,6 +28,15 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     // setProvider(getProvider());
   }, []);
+
+  useEffect(() => {
+    // @ts-ignore
+    if (!window.phantom && !sessionStorage.getItem("reloaded")) {
+      window.location.reload();
+      sessionStorage.setItem("reloaded", "true");
+    }
+  }, []);
+
   // useEffect(() => {
   //   // Store user's public key once they connect
   //   if (provider) {
@@ -65,7 +73,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
   const Connect = async () => {
     // @ts-ignore
-    if (!window?.solana) {
+    if (!("phantom" in window)) {
       return window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
         "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
