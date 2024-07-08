@@ -63,14 +63,13 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  console.log(window);
   const Connect = async () => {
     // @ts-ignore
     if (!window?.solana) {
       return window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        "https://phantom.app/ul/browse?url=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/&ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/"
-        , "_blank",
+        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
+        "_blank",
       );
     }
     const provider = getProvider(); // see "Detecting the Provider"

@@ -123,6 +123,7 @@ export const ConnectModal = ({
           </PrimaryButton>
         )}
       </div>
+
       <MyAccountModal
         isOpen={isAccountOpen}
         onClose={() => setIsAccountOpen(false)}

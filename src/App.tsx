@@ -20,6 +20,12 @@ function App() {
       <Header />
       <HeaderMobile />
       <main>
+        {
+          window.solana && <p>solana is there </p>
+        }
+        {
+          window?.phantom && <p>phantom is there </p>
+        }
         <Main />
         <Cards />
         <Future />
