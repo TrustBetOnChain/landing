@@ -30,10 +30,15 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    const maxReloads = 3;
+    const reloadCount = parseInt(
+      sessionStorage.getItem("reloadCount") || "0",
+      10,
+    );
     // @ts-ignore
-    if (!window.phantom && !sessionStorage.getItem("reloaded")) {
+    if (!window.phantom && reloadCount < maxReloads) {
+      sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
       window.location.reload();
-      sessionStorage.setItem("reloaded", "true");
     }
   }, []);
 
