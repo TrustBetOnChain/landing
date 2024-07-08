@@ -63,11 +63,11 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  console.log(window)
+  console.log(window);
   const Connect = async () => {
     // @ts-ignore
-    if (!(window?.phantom || window?.solana)) {
-      window.open(
+    if (!window?.solana) {
+      return window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
         "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
         "_blank",
@@ -78,7 +78,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       const resp = await provider.request({ method: "connect" });
       console.log("resp", resp.publicKey.toString());
       setAccount(resp.publicKey.toString());
-      setisConnected(true)
+      setisConnected(true);
       connectPhantom();
       sessionStorage.setItem("isConnected", "true");
     } catch (err) {
@@ -88,16 +88,16 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
   useEffect(() => {
     if (account) {
-      connect()
+      connect();
     }
-  }, [account])
+  }, [account]);
   const DisConnect = () => {
-    console.log("disconected")
+    console.log("disconected");
     const _provider = getProvider();
     _provider!.disconnect()!;
-    disconnect()
-    setAccount("")
-    setisConnected(false)
+    disconnect();
+    setAccount("");
+    setisConnected(false);
     sessionStorage.clear();
   };
   const connectPhantom = useCallback(async () => {
@@ -115,7 +115,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       // @ts-ignore
       select(wallet[walletName]);
     }
-  }, [select, connect, connected,]);
+  }, [select, connect, connected]);
   return (
     <PhantomContext.Provider
       value={{
