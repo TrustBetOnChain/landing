@@ -125,6 +125,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
         (await connection.getBalance(new PublicKey(account!))) / 10000000
       );
       if ((await connection.getBalance(new PublicKey(account!))) / 10000000 < amount) {
+        setIsLoading(false);
         return toast.error("Insufficient SOL balance");
       }
       const feed = getPriceFeeds(CLUSTER)[coin];
