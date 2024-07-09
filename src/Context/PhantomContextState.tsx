@@ -114,7 +114,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const provider = getProvider();
     if (!provider) {
       const deepLinkUrl = encodeURIComponent(
-        "https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
+        "https://landing-git-feature-phantomstaging-trust-bet.vercel.app/specific-link",
       ); // Customize your specific link
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         // Open the app store link for Phantom Wallet on iOS devices with a deeplink
@@ -125,6 +125,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       } else {
         // Open the Phantom app with a deeplink on other devices
         return window.open(
+          // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
+          // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
           "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
           "_blank",
         );
@@ -136,10 +138,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       const resp = await provider.request({ method: "connect" });
       setAccount(resp.publicKey.toString());
-      setIsConnected(true);
+      setisConnected(true);
       sessionStorage.setItem("isConnected", "true");
-
-      if (!selectedWallet) {
+      if (!selectedwallet) {
         connectPhantom();
       }
     } catch (err) {
@@ -147,7 +148,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       console.log({ code: 4001, message: "User rejected the request." });
     }
   };
-  const retryCountRef = useRef(0);
   useEffect(() => {
     if ("phantom" in window) {
       const wallet = {
