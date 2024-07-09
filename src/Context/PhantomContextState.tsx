@@ -39,7 +39,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const maxReloads = 3;
+    const maxReloads = 2;
     const reloadCount = parseInt(
       sessionStorage.getItem("reloadCount") || "0",
       10,
@@ -47,7 +47,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // @ts-ignore
     if (!window.phantom && reloadCount < maxReloads) {
       sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
-      window.location.reload();
+      if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+        window.location.reload();
+      }
     }
   }, []);
 
@@ -85,69 +87,31 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  // const Connect = async () => {
-  //   // @ts-ignore
-  //   if (!("phantom" in window)) {
-  //     return window.open(
-  //       // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-  //       // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-  //       "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
-  //       "_blank",
-  //     );
-  //   }
-  //   const provider = getProvider(); // see "Detecting the Provider"
-  //   try {
-  //     const resp = await provider.request({ method: "connect" });
-  //     setisConnected(true);
-  //     if (!selectedwallet) {
-  //       connectPhantom();
-  //     }
-  //     sessionStorage.setItem("isConnected", "true");
-  //     setAccount(resp.publicKey.toString());
-  //   } catch (err) {
-  //     console.log(err);
-  //     console.log({ code: 4001, message: "User rejected the request." });
-  //   }
-  // };
-  // Function to connect to Phantom wallet
   const Connect = async () => {
-    const provider = getProvider();
-    if (!provider) {
-      const deepLinkUrl = encodeURIComponent(
-        "https://landing-git-feature-phantomstaging-trust-bet.vercel.app/specific-link",
-      ); // Customize your specific link
-      if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        // Open the app store link for Phantom Wallet on iOS devices with a deeplink
-        window.open(
-          `https://apps.apple.com/app/id1598432977?deep_link=${deepLinkUrl}`,
-          "_blank",
-        );
-      } else {
-        // Open the Phantom app with a deeplink on other devices
-        return window.open(
-          // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-          // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
-          "_blank",
-        );
-      }
-      console.log("Phantom wallet is not installed.");
-      return;
+    // @ts-ignore
+    if (!("phantom" in window)) {
+      return window.open(
+        // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
+        // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
+        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
+        "_blank",
+      );
     }
-
+    const provider = getProvider(); // see "Detecting the Provider"
     try {
       const resp = await provider.request({ method: "connect" });
-      setAccount(resp.publicKey.toString());
       setisConnected(true);
-      sessionStorage.setItem("isConnected", "true");
       if (!selectedwallet) {
         connectPhantom();
       }
+      sessionStorage.setItem("isConnected", "true");
+      setAccount(resp.publicKey.toString());
     } catch (err) {
       console.log(err);
       console.log({ code: 4001, message: "User rejected the request." });
     }
   };
+
   useEffect(() => {
     if ("phantom" in window) {
       const wallet = {
