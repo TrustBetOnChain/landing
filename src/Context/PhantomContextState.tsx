@@ -39,7 +39,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const maxReloads = 2;
+    const maxReloads = 3;
     const reloadCount = parseInt(
       sessionStorage.getItem("reloadCount") || "0",
       10,
@@ -113,10 +113,15 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const Connect = async () => {
     const provider = getProvider();
     if (!provider) {
-      const deepLinkUrl = encodeURIComponent("https://landing-git-feature-phantomstaging-trust-bet.vercel.app/"); // Customize your specific link
+      const deepLinkUrl = encodeURIComponent(
+        "https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
+      ); // Customize your specific link
       if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         // Open the app store link for Phantom Wallet on iOS devices with a deeplink
-        window.open(`https://apps.apple.com/app/id1598432977?deep_link=${deepLinkUrl}`, "_blank");
+        window.open(
+          `https://apps.apple.com/app/id1598432977?deep_link=${deepLinkUrl}`,
+          "_blank",
+        );
       } else {
         // Open the Phantom app with a deeplink on other devices
         return window.open(
@@ -151,9 +156,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       // Select the wallet and connect if not already connected
       // if (!) {
       // @ts-ignore
-      select(wallet['Phantom']);
+      select(wallet["Phantom"]);
     }
-  }, [])
+  }, []);
 
   // useEffect(() => {
   //   if (account) {
@@ -178,13 +183,13 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   //   }
   // }, [account, connect]);
   const getbalancesolana = async () => {
-    setSolanaBalance(await getSolPrice())
-  }
+    setSolanaBalance(await getSolPrice());
+  };
   useEffect(() => {
     if (isConnected) {
-      getbalancesolana()
+      getbalancesolana();
     }
-  }, [isConnected])
+  }, [isConnected]);
   const DisConnect = () => {
     const _provider = getProvider();
     _provider!.disconnect()!;
