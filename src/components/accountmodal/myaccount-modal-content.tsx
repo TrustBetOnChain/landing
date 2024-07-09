@@ -61,7 +61,6 @@ export const MyAccountModalContent: React.FC<Props> = ({
   anchorWallet,
   onTransactionConfirmation,
 }) => {
-  console.log({ wallet });
 
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

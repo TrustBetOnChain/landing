@@ -14,6 +14,12 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModal } from "../accountmodal/myaccountmodal";
+import { connection, PROGRAM_IDL, vaultMintDecimals } from "../../presale/config";
+import { PRE_SALE_PROGRAM } from "../../presale/config/address";
+import { AnchorProvider, Program } from "@coral-xyz/anchor";
+import { PreSaleProgram } from "../../presale/types/pre_sale_program";
+import { AnchorWallet, useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
+import { PublicKey } from "@solana/web3.js";
 
 export const ConnectModal = ({
   className,
@@ -40,24 +46,25 @@ export const ConnectModal = ({
     Connect,
   }));
 
-  const [balance, setBalance] = useState()
-  const showbalance = async () => {
-    setBalance(await getBalance())
-  }
-  useEffect(() => {
-    if ((account)) {
-      showbalance()
-    }
-  }, [account])
+  // const [balance, setBalance] = useState()
+  // const showbalance = async () => {
+  //   setBalance(await getBalance())
+  // }
+  // useEffect(() => {
+  //   if ((account)) {
+  //     showbalance()
+  //   }
+  // }, [account])
 
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  // const [balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState(0);
 
   // const { setShowModal } = useUnifiedWalletContext();
   // const { connect, connected, publicKey } = useUnifiedWallet();
 
-  // const anchorWallet = useAnchorWallet();
+  const anchorWallet = useAnchorWallet();
+  const { wallet } = useWallet()
 
   // const handleClick = useCallback(async () => {
   //   onClick?.();
@@ -68,12 +75,13 @@ export const ConnectModal = ({
   const openAccountModal = () => {
     setIsAccountOpen(true);
   };
+  console.log({ wallet: wallet });
 
-  // useEffect(() => {
-  //   if (anchorWallet?.publicKey && showBalance) {
-  //     updateBalance(anchorWallet);
-  //   }
-  // }, [anchorWallet?.publicKey]);
+  useEffect(() => {
+    if (wallet) {
+      updateBalance(wallet,);
+    }
+  }, [wallet]);
 
   // const hasWallet = connected && publicKey && anchorWallet?.publicKey;
   // const isBalanceShown = hasWallet && showBalance;
@@ -82,26 +90,26 @@ export const ConnectModal = ({
   //   ? getTruncatedHash(publicKey.toString())
   //   : "Connect Wallet";
 
-  // async function updateBalance(wallet: AnchorWallet) {
-  //   const provider = new AnchorProvider(connection, wallet, {});
+  async function updateBalance(wallet: any) {
+    const provider = new AnchorProvider(connection, wallet, {});
 
-  //   const program = new Program<PreSaleProgram>(
-  //     PROGRAM_IDL,
-  //     PRE_SALE_PROGRAM,
-  //     provider,
-  //   );
-
-  //   const [userInfoAddress] = PublicKey.findProgramAddressSync(
-  //     [Buffer.from("user_info"), wallet.publicKey.toBuffer()],
-  //     program.programId,
-  //   );
-  //   try {
-  //     const userInfo = await program.account.userInfo.fetch(userInfoAddress);
-  //     setBalance(Number(userInfo.stake) / 10 ** vaultMintDecimals);
-  //   } catch {
-  //     setBalance(0);
-  //   }
-  // }
+    const program = new Program<PreSaleProgram>(
+      PROGRAM_IDL,
+      PRE_SALE_PROGRAM,
+      provider,
+    );
+    const [userInfoAddress] = PublicKey.findProgramAddressSync(
+      [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
+      program.programId,
+    );
+    try {
+      const userInfo = await program.account.userInfo.fetch(userInfoAddress);
+      setBalance(Number(userInfo.stake) / 10 ** vaultMintDecimals);
+    } catch (Err) {
+      console.log(Err);
+      setBalance(0);
+    }
+  }
   return (
     <>
       <div className={className}>
@@ -111,10 +119,10 @@ export const ConnectModal = ({
             <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
           </div>
         </PrimaryButton>
-        {isConnected && balance && (
+        {isConnected && (
           <PrimaryButton
             onClick={() => {
-              showbalance()
+              updateBalance(anchorWallet!).then()
             }}
           >
             <img height={28} width={28} src={TBetIcon} />
