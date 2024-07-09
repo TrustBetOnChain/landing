@@ -61,12 +61,10 @@ export const MyAccountModalContent: React.FC<Props> = ({
   anchorWallet,
   onTransactionConfirmation,
 }) => {
-
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { account, getBalance
-  } = usePhantomContext();
+  const { account, getBalance, SolanaBalance } = usePhantomContext();
   const {
     register,
     control,
@@ -108,22 +106,24 @@ export const MyAccountModalContent: React.FC<Props> = ({
       );
 
       const vaultInfo = await program.account.vaultInfo.fetch(vaultInfoAddress);
-
       const [userInfoAddress] = PublicKey.findProgramAddressSync(
         [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
         program.programId,
       );
-
       console.log("vault", [
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
         vaultInfo.decimals,
       ]);
-      console.log(
-        amount * 10 ** vaultMintDecimals,
-        new BN(amount * 10 ** vaultMintDecimals),
-        (await connection.getBalance(new PublicKey(account!))) / 10000000
-      );
-      if ((await connection.getBalance(new PublicKey(account!))) / 10000000 < amount) {
+      const currentsolbalance =
+        (await connection.getBalance(new PublicKey(account!))) /
+        LAMPORTS_PER_SOL;
+      const dollaramount = currentsolbalance * SolanaBalance;
+      console.log({
+        SolanaBalance,
+        dollaramount,
+        butamount: amount * 0.1,
+      });
+      if (dollaramount < amount * 0.1) {
         setIsLoading(false);
         return toast.error("Insufficient SOL balance");
       }

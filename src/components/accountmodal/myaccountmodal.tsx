@@ -22,7 +22,6 @@ export const MyAccountModal: React.FC<Props> = ({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { DisConnect } = usePhantomContext();
-    console.log(anchorWallet);
 
     function handleDisconnect() {
         DisConnect();

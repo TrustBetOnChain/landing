@@ -60,6 +60,7 @@ export const ConnectModal = ({
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
 
+
   // const { setShowModal } = useUnifiedWalletContext();
   // const { connect, connected, publicKey } = useUnifiedWallet();
 
@@ -78,10 +79,10 @@ export const ConnectModal = ({
   console.log({ wallet: wallet });
 
   useEffect(() => {
-    if (wallet) {
+    if (wallet && account) {
       updateBalance(wallet,);
     }
-  }, [wallet]);
+  }, [wallet, account]);
 
   // const hasWallet = connected && publicKey && anchorWallet?.publicKey;
   // const isBalanceShown = hasWallet && showBalance;
@@ -102,6 +103,8 @@ export const ConnectModal = ({
       [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
       program.programId,
     );
+    console.log(new PublicKey(account));
+
     try {
       const userInfo = await program.account.userInfo.fetch(userInfoAddress);
       setBalance(Number(userInfo.stake) / 10 ** vaultMintDecimals);

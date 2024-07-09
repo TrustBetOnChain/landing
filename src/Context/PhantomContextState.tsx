@@ -1,16 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
+import { getSolPrice } from "../util";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
-  // const [provider, setProvider] = useState<any>(null);
-  const { select, connect, connected, disconnect } = useWallet();
+  const [SolanaBalance, setSolanaBalance] = useState<any>(0);
+  const {
+    select,
+    connect,
+    // connected,
+    disconnect,
+    wallet: selectedwallet,
+  } = useWallet();
+  console.log(useWallet());
+
   const [isConnected, setisConnected] = useState(false);
   const getProvider = () => {
     if ("phantom" in window) {
@@ -88,23 +97,61 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const provider = getProvider(); // see "Detecting the Provider"
     try {
       const resp = await provider.request({ method: "connect" });
-      console.log("resp", resp.publicKey.toString());
-      setAccount(resp.publicKey.toString());
       setisConnected(true);
-      connectPhantom();
+      if (!selectedwallet) {
+        connectPhantom();
+      }
       sessionStorage.setItem("isConnected", "true");
+      setAccount(resp.publicKey.toString());
     } catch (err) {
       console.log(err);
       console.log({ code: 4001, message: "User rejected the request." });
     }
   };
+  const retryCountRef = useRef(0);
   useEffect(() => {
-    if (account) {
-      connect();
+    if ("phantom" in window) {
+      const wallet = {
+        Phantom: PhantomWalletName,
+      };
+      // Select the wallet and connect if not already connected
+      // if (!) {
+      // @ts-ignore
+      select(wallet['Phantom']);
     }
-  }, [account]);
+  }, [])
+
+  // useEffect(() => {
+  //   if (account) {
+  //     const tryConnect = () => {
+  //       connect()
+  //         .then(() => {
+  //           console.log('Connected successfully');
+  //           retryCountRef.current = 0; // Reset retry count on success
+  //         })
+  //         .catch(() => {
+  //           if (retryCountRef.current < 3) {
+  //             retryCountRef.current += 1;
+  //             setTimeout(tryConnect, 500);
+  //           } else {
+  //             console.log('Failed to connect after 3 attempts');
+  //             retryCountRef.current = 0; // Reset retry count after max attempts
+  //           }
+  //         });
+  //     };
+
+  //     tryConnect();
+  //   }
+  // }, [account, connect]);
+  const getbalancesolana = async () => {
+    setSolanaBalance(await getSolPrice())
+  }
+  useEffect(() => {
+    if (isConnected) {
+      getbalancesolana()
+    }
+  }, [isConnected])
   const DisConnect = () => {
-    console.log("disconected");
     const _provider = getProvider();
     _provider!.disconnect()!;
     disconnect();
@@ -112,7 +159,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     setisConnected(false);
     sessionStorage.clear();
   };
-  const connectPhantom = useCallback(async () => {
+  const connectPhantom = () => {
     // Retrieve the wallet name from local storage
     let walletName = window.localStorage.getItem("walletName");
     // Default to Phantom if no wallet name is found or if it's undefined
@@ -123,17 +170,21 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       Phantom: PhantomWalletName,
     };
     // Select the wallet and connect if not already connected
-    if (!connected) {
-      // @ts-ignore
-      select(wallet[walletName]);
-    }
-  }, [select, connect, connected]);
+    // if (!) {
+    // @ts-ignore
+    select(wallet[walletName]);
+    // connect()
+    // }
+  };
+
+  // }, [select, connect,]);
   return (
     <PhantomContext.Provider
       value={{
         getProvider,
         account,
         isConnected,
+        SolanaBalance,
         Connect,
         DisConnect,
         getBalance,

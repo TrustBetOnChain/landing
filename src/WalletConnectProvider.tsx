@@ -106,7 +106,7 @@ export const WalletConnectProvider = ({
       wallets={wallets}
       config={{
         theme: "dark",
-        autoConnect: false,
+        autoConnect: true,
         env: CLUSTER,
         metadata: {
           name: "Trustbetonchain",
