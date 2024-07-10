@@ -13,7 +13,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [SolanaBalance, setSolanaBalance] = useState<any>(0);
   const {
     select,
-    connect,
     // connected,
     disconnect,
     wallet: selectedwallet,
@@ -93,7 +92,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       return window.open(
         // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
         // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-        "https://phantom.app/ul/browse/landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
+        "https://phantom.app/ul/browse/https://landing-git-feature-phantomstaging-trust-bet.vercel.app?ref=https://landing-git-feature-phantomstaging-trust-bet.vercel.app/",
         "_blank",
       );
     }
