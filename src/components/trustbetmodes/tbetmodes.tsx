@@ -3,6 +3,7 @@ import TBet1 from "../../assets/imgs/t-bet-card-1.png";
 import TBet2 from "../../assets/imgs/t-bet-card-2.png";
 import TBet3 from "../../assets/imgs/t-bet-card-3.png";
 import { ConnectWalletButton } from "../connectwallet/connect-wallet-button";
+import { ConnectModal } from "../connectwallet/connectmodal";
 
 export const TBetModes = () => {
   return (
@@ -31,7 +32,7 @@ export const TBetModes = () => {
               <h4>Sports Betting</h4>
               <img src={TBet2} alt="" />
             </div>
-            <ConnectWalletButton className={s["button"]} />
+            <ConnectModal isShowBalance={false} className={s["button"]} />
           </div>
           <div className={s["trustbet-modes-card"]}>
             <h4>Classic Games</h4>

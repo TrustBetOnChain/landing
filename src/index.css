@@ -11,6 +11,10 @@ body {
   background: #0f1716;
 }
 
+.Toastify__toast-body > div:last-child {
+  word-break: break-word;
+  flex: 1;
+  color: black;}
 @font-face {
   font-family: "Geometria";
   src: url("/fonts/geometria_bold.otf") format("truetype");

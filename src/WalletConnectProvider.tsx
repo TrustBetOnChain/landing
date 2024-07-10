@@ -41,7 +41,7 @@ import { CLUSTER, ENDPOINT } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
-const ICON = `${ORIGIN}logo.svg`;
+// const ICON = `${ORIGIN}logo.svg`;
 
 export const WalletConnectProvider = ({
   children,
@@ -106,7 +106,7 @@ export const WalletConnectProvider = ({
       wallets={wallets}
       config={{
         theme: "dark",
-        autoConnect: false,
+        autoConnect: true,
         env: CLUSTER,
         metadata: {
           name: "Trustbetonchain",

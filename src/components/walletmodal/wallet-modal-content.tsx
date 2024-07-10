@@ -51,7 +51,7 @@ interface Props {
   anchorWallet: AnchorWallet;
 }
 
-export const AccountModalContent: React.FC<Props> = ({
+export const WalletModalContent: React.FC<Props> = ({
   disconnect,
   onClose,
   wallet,
@@ -319,6 +319,7 @@ export const AccountModalContent: React.FC<Props> = ({
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
                   className="mt-5 mb-5 sm:col-span-3"
+                  // type="number"
                 />
               </div>
               <div className="mt-6 flex gap-2 justify-center">

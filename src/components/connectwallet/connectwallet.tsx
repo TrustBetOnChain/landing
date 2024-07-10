@@ -1,6 +1,6 @@
 import s from "./connectwallet.module.scss";
 import Info from "../../assets/imgs/info.webp";
-import { ConnectWalletButton } from "./connect-wallet-button";
+import { ConnectModal } from "./connectmodal";
 
 export const ConnectWallet = () => {
   return (
@@ -15,7 +15,7 @@ export const ConnectWallet = () => {
         the digital iGaming realm. Be part of this exciting journey as we
         redefine the iGaming experience.
       </p>
-      <ConnectWalletButton />
+      <ConnectModal isShowBalance={false} className={s["button"]} />
     </section>
   );
 };
