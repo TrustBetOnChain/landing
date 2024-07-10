@@ -7,10 +7,10 @@ import Youtube from "../../../assets/imgs/youtube.svg";
 import X from "../../../assets/imgs/x.svg";
 import Cross from "../../../assets/imgs/cross.svg";
 import Assure from "../../../assets/imgs/assure.svg";
-import { ConnectWalletButton } from "../../connectwallet/connect-wallet-button";
 import { PageSection } from "../../../page-section";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { ConnectModal } from "../../connectwallet/connectmodal";
 
 export const HeaderMobile = () => {
   const [modal, setModal] = useState(false);
@@ -82,10 +82,7 @@ export const HeaderMobile = () => {
               </li>
             </ul>
             <div className={s["aside-footer"]}>
-              <ConnectWalletButton
-                onClick={() => setModal(false)}
-                className={s["button"]}
-              />
+              <ConnectModal className={s["button"]} isShowBalance={false} />
               <div className={s["aside-socials"]}>
                 <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />

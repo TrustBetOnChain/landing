@@ -2,7 +2,6 @@ import s from "./tbetmodes.module.css";
 import TBet1 from "../../assets/imgs/t-bet-card-1.png";
 import TBet2 from "../../assets/imgs/t-bet-card-2.png";
 import TBet3 from "../../assets/imgs/t-bet-card-3.png";
-import { ConnectWalletButton } from "../connectwallet/connect-wallet-button";
 import { ConnectModal } from "../connectwallet/connectmodal";
 
 export const TBetModes = () => {
