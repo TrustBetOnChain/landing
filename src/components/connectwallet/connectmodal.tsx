@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable prettier/prettier */
 
@@ -18,15 +19,16 @@ import { connection, PROGRAM_IDL, vaultMintDecimals } from "../../presale/config
 import { PRE_SALE_PROGRAM } from "../../presale/config/address";
 import { AnchorProvider, Program } from "@coral-xyz/anchor";
 import { PreSaleProgram } from "../../presale/types/pre_sale_program";
-import { AnchorWallet, useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
+import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 
 export const ConnectModal = ({
   className,
+  isShowBalance = true
 }: {
   className?: string;
   onClick?: () => void;
-  showBalance?: boolean;
+  isShowBalance?: boolean;
 }) => {
   const {
     // @ts-ignore
@@ -35,16 +37,15 @@ export const ConnectModal = ({
     isConnected,
     // @ts-ignore
     Connect,
-    // @ts-ignore
-    getBalance,
+
   } = usePhantomContext()
-  console.log(({
-    account,
-    // @ts-ignore
-    isConnected,
-    // @ts-ignore
-    Connect,
-  }));
+  // console.log(({
+  //   account,
+  //   // @ts-ignore
+  //   isConnected,
+  //   // @ts-ignore
+  //   Connect,
+  // }));
 
   // const [balance, setBalance] = useState()
   // const showbalance = async () => {
@@ -76,7 +77,6 @@ export const ConnectModal = ({
   const openAccountModal = () => {
     setIsAccountOpen(true);
   };
-  console.log({ wallet: wallet });
 
   useEffect(() => {
     if (wallet && account) {
@@ -103,7 +103,7 @@ export const ConnectModal = ({
       [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
       program.programId,
     );
-    console.log(new PublicKey(account));
+    // console.log(new PublicKey(account));
 
     try {
       const userInfo = await program.account.userInfo.fetch(userInfoAddress);
@@ -122,7 +122,7 @@ export const ConnectModal = ({
             <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
           </div>
         </PrimaryButton>
-        {isConnected && (
+        {isConnected && isShowBalance && (
           <PrimaryButton
             onClick={() => {
               updateBalance(anchorWallet!).then()
