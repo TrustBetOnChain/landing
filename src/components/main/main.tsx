@@ -1,8 +1,8 @@
 import s from "./main.module.css";
 
 import TBetGif from "../../assets/imgs/t-bet-gif.gif";
-import { ConnectWalletButton } from "../connectwallet/connect-wallet-button";
 import { Coin } from "../coin/coin";
+import { ConnectModal } from "../connectwallet/connectmodal";
 
 export const Main = () => {
   return (
@@ -28,7 +28,7 @@ export const Main = () => {
       <a target="_blank" href="https://nft.assuredefi.com/?token=177">
         <img src={TBetGif} className={s["gif"]} alt="" />
       </a>
-      <ConnectWalletButton className={s["button"]} />
+      <ConnectModal isShowBalance={false} className={s["button"]} />
     </section>
   );
 };
