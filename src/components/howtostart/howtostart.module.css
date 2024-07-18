@@ -75,6 +75,12 @@ p > a {
   height: 516px;
 }
 @media (max-width: 1780px) {
+  .how-to-start-card > p {
+    font-size: 19px;
+  }
+  .how-to-start-card > ul > li {
+    font-size: 19px;
+  }
   .how-to-start-cards {
     grid-template-columns: 390px 390px 390px;
   }

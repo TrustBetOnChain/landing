@@ -132,6 +132,9 @@ li.benefits-card:nth-child(2) > img:nth-child(2) {
     height: 500px;
     max-width: 393px;
   }
+  .benefits-card p {
+    font-size: 21px;
+  }
 }
 @media (max-width: 1536px) {
   .benefits-cards {
