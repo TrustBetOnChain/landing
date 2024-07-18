@@ -1,6 +1,7 @@
 import s from "./header.module.css";
 import logo from "../../assets/imgs/logo.svg";
 import { PageSection } from "../../page-section";
+import { ConnectModal } from "../connectwallet/connectmodal";
 
 export const Header = () => {
   return (
@@ -18,6 +19,9 @@ export const Header = () => {
             <a href={`#${PageSection.TBET_TOKENS}`}>TBET tokens</a>
             <a href={`#${PageSection.ROADMAP}`}>Roadmap</a>
             <a href={`#${PageSection.CONTACT}`}> Contact</a>
+          </li>
+          <li>
+            <ConnectModal className={s["button"]} isShowBalance={false} />
           </li>
         </ul>
       </nav>

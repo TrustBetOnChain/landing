@@ -1,5 +1,4 @@
 .future {
-  margin-top: 200px !important;
 }
 
 .future-background {
@@ -37,48 +36,24 @@
   content: "";
   position: absolute;
   top: -30%;
-  background: url("../../assets/imgs/background-coins.png");
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   height: 150%;
   z-index: -1;
 }
-
-.future-title::after {
-  content: "";
-  top: -65%;
-  left: 0;
+.future-title-image {
+  width: 450px;
+  height: 450px;
   position: absolute;
-  background: url("../../assets/imgs/coin-img.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  /* background-size: contain; */
-  width: 100%;
-  height: 100%;
-  z-index: 6;
+  top: -27%;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
-
-.future-title {
-  position: relative;
-  z-index: 10;
-  transform: translateY(-140px);
-  width: 100%;
-  height: 563px;
-  background: #ffffff0a;
-  backdrop-filter: blur(15px);
-  max-width: 95%;
-  margin: 0 auto;
-  border-radius: 15px;
-  /* background: url("../../assets/imgs/background-coins-2.png"); */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-
 .future-title > h2 {
   transform: translate(0);
-  padding-top: 80px;
+  font-size: 42px;
 }
 
 .future-text {
@@ -88,10 +63,16 @@
   padding: 30px;
   font-weight: 300;
 }
+.future-title {
+  background: #ffffff0a;
+  backdrop-filter: blur(15px);
+  padding: 120px 151px;
+  padding-top: 170px;
+}
 
 .future-card {
-  width: 310px;
   margin-top: 80px;
+  flex: 1;
 }
 
 .future-card-title {
@@ -108,6 +89,7 @@
 
 .future-card > p {
   margin-top: 20px;
+  font-size: 24px;
 }
 
 @media (max-width: 900px) {
@@ -164,6 +146,34 @@
   }
 }
 
+@media (max-width: 1430px) {
+  .future-title > h2 {
+    transform: translate(0);
+    font-size: 33px !important;
+  }
+  .future-card > p {
+    margin-top: 15px !important;
+    font-size: 18px !important;
+  }
+}
+@media (max-width: 1536px) {
+  .future-title > h2 {
+    transform: translate(0);
+    font-size: 38px;
+  }
+  .future-title-image {
+    height: 400px;
+    width: 400px;
+  }
+  .future-title {
+    padding: 120px;
+    padding-bottom: 80px !important;
+  }
+  .future-card > p {
+    margin-top: 20px;
+    font-size: 21px;
+  }
+}
 @media (max-width: 500px) {
   .coin-wrapper > img {
     width: 100%;

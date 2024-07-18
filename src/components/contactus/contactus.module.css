@@ -4,6 +4,7 @@
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 50px !important;
   margin-bottom: 150px !important;
 }
@@ -122,6 +123,6 @@
   }
 
   .aside-links {
-   margin-bottom: 50px;
+    margin-bottom: 50px;
   }
 }

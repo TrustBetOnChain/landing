@@ -2,7 +2,9 @@
   width: 100%;
   height: fit-content; /* Высота слайдера */
   display: flex;
+  z-index: 0 !important;
   flex-direction: column;
+  max-width: 85%;
 }
 
 /* Стили для слайдов */
@@ -11,7 +13,7 @@
   flex-direction: column;
   font-size: 20px;
   width: 500px;
-min-height: 640px;
+  min-height: 640px;
   color: #333;
   padding: 30px;
   /* height: 560px; */

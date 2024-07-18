@@ -17,16 +17,12 @@
   z-index: -1;
 }
 
-.trustbet-modes > h3 {
-  font-size: 32px;
-}
-
 .trustbet-modes {
   margin-top: 100px !important;
 }
 
 .trustbet-modes-cards {
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
   justify-content: space-between;
 }
@@ -35,12 +31,7 @@
   background: #ffffff0a;
   backdrop-filter: blur(15px);
   /* height: fit-content; */
-  margin-top: 100px;
   border-radius: 15px;
-}
-
-.trustbet-modes-card:nth-child(1) > img {
-  margin-top: 27px;
 }
 
 .trustbet-modes-card > img {
@@ -98,6 +89,7 @@
 
 .trustbet-modes > h3 {
   font-weight: normal;
+  font-size: 42px;
 }
 
 .trustbet-modes > h3 > strong {
@@ -108,8 +100,16 @@
   text-align: center;
   font-weight: 300;
   margin-top: 40px;
+  font-size: 24px;
 }
-
+@media (max-width: 1430px) {
+  .trustbet-modes > h3 {
+    font-size: 32px;
+  }
+  .trustbet-modes-card > img {
+    width: 320px;
+  }
+}
 @media (max-width: 1010px) {
   .trustbet-modes-cards {
     flex-wrap: wrap;

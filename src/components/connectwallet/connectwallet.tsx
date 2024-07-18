@@ -1,21 +1,26 @@
 import s from "./connectwallet.module.scss";
-import Info from "../../assets/imgs/info.webp";
-import { ConnectModal } from "./connectmodal";
+import Info from "../../assets/imgs/info.svg";
 
 export const ConnectWallet = () => {
   return (
-    <section className={`${s.info} container`}>
-      <img src={Info} alt="" />
-      <h2>
-        TrustBet On-Chain is a gamechanger in the online iGaming industry
-        designed to transform the conventional iGaming experience
-      </h2>
-      <p style={{ textAlign: "center", maxWidth: "500px" }}>
-        We are pioneering a future of fairness, transparency, and equilibrium in
-        the digital iGaming realm. Be part of this exciting journey as we
-        redefine the iGaming experience.
-      </p>
-      <ConnectModal isShowBalance={false} className={s["button"]} />
+    <section className={`${s.info} ` + " w-full  mt-40"}>
+      <div className="max-2xl:max-w-[1000px] max-w-[85%]">
+        <div className="grid place-content-center">
+          <img src={Info} alt="" />
+        </div>
+        <h2 className="max-2xl:text-[29px] text-[42px] mt-20">
+          TrustBet On-Chain is a gamechanger in the online iGaming industry
+          designed to transform the conventional iGaming experience
+        </h2>
+        <div className="w-full grid place-content-center">
+          <p className="-mt-4 max-2xl:text-[20px] text-2xl max-2xl:max-w-[900px] max-w-[1200px] font-light text-center">
+            We are pioneering a future of fairness, transparency, and
+            equilibrium in the digital iGaming realm. Be part of this exciting
+            journey as we redefine the iGaming experience.
+          </p>
+        </div>
+        {/* <ConnectModal isShowBalance={false} className={s["button"]} /> */}
+      </div>
     </section>
   );
 };

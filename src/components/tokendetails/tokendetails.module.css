@@ -1,12 +1,13 @@
 .token-details {
-  background: #0b1211;
-  padding: 30px;
-  margin-top: 150px !important;
+  margin: 131px !important;
   border-radius: 15px;
 }
 
 .token-title {
   transform: none;
+  font-size: 42px;
+  font-weight: 700;
+  margin: 40px 0px;
 }
 
 .token-details-header-card {
@@ -15,10 +16,11 @@
 }
 
 .token-details-wrapper {
-  margin-top: 40px;
   display: flex;
+  flex-direction: column;
   gap: 20px;
   border-radius: 15px;
+  padding: 70px 40px;
 }
 
 .token-details-wrapper > aside,
@@ -28,23 +30,26 @@ article {
 
 .token-details-header-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
   gap: 10px;
 }
 
 .token-details-header-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin-bottom: 42px;
   /* width: 42%; */
-  height: 100px;
+  height: 124px;
+  gap: 12px;
   padding: 20px;
   border-radius: 15px;
 }
 
 .token-details-header-card > p {
-  font-weight: 300;
+  font-weight: 100;
+  font-size: 19px;
 }
 
 .card-head {
@@ -57,10 +62,9 @@ article {
 }
 
 .token-details-footer {
-  margin-top: 10px;
-  padding: 20px;
-  background: #ffffff0a;
   border-radius: 15px;
+  display: flex;
+  margin: 0px 17px;
 }
 
 .token-details-footer > p {
@@ -79,22 +83,26 @@ article {
 }
 
 .article-footer {
-  display: flex;
   gap: 20px;
+  display: grid;
+  margin-top: 104px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
-.article-footer > aside > h3 {
+.article-footer > h3 {
   text-align: left;
-  margin-top: 30px;
+  font-size: 20px;
 }
 
-.article-footer > aside > p {
-  margin-top: 30px;
+.article-footer > p {
   font-weight: 300;
 }
 
 .article > div > p {
   font-weight: 300;
+  font-size: 20px;
+  font-weight: 200;
 }
 
 .article > div > p > span {
@@ -108,14 +116,14 @@ article {
   margin-bottom: 30px;
 }
 
-.article-footer > aside > h4 {
+.article-footer > h4 {
   font-weight: 300;
+  font-size: 20px;
   color: #8b8f8f;
-  margin-top: 130px;
 }
 .tbet-gif {
-  width: 234px;
-  height: 348px;
+  width: 360px;
+  height: 540px;
   border-radius: 15px;
 }
 
@@ -123,7 +131,16 @@ article {
   color: #88c13c;
   font-weight: bold;
 }
-
+@media (max-width: 1430px) {
+  .article > div > p {
+    font-size: 18px;
+    font-weight: 200;
+  }
+  .tokendetailkpara {
+    font-size: 18px !important;
+    line-height: 27px !important;
+  }
+}
 @media (max-width: 1000px) {
   .token-details-wrapper {
     flex-direction: column;

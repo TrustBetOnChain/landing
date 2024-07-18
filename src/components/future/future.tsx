@@ -1,22 +1,20 @@
 import React from "react";
 import s from "./future.module.css";
-import CoinFuture from "../../assets/imgs/coin-img.png";
 import FutureIcon1 from "../../assets/imgs/future-icon-1.svg";
 import FutureIcon2 from "../../assets/imgs/future-icon-2.svg";
 import FutureIcon3 from "../../assets/imgs/future-icon-3.svg";
-
+import COINTRUSTBET from "../../assets/imgs/coin-img.png";
 export const Future = () => {
   return (
-    <section className={s.future + " " + ""}>
-      <div className={s["coin-wrapper"]}>
-        <div className={s["future-background"]}></div>
-        <img className={s["coin-future"]} src={CoinFuture} alt="" />
-      </div>
-      <div className={s["future-title"]}>
+    <section className={s.future + " " + "w-full"}>
+      <div className={s["future-title"] + " max-w-[85%] m-auto relative"}>
+        <img src={COINTRUSTBET} className={s["future-title-image"]} />
         <h2>
-          <strong>Unlocking the Future:</strong> Immediate,
-          <br /> Transparent Payouts with
-          <br /> TrustBet On-Chain
+          <strong className="text-[--secondary-color]">
+            Unlocking the Future: {" "}
+          </strong>
+          Immediate, Transparent <br /> Payouts  with
+          TrustBet On-Chain
         </h2>
         <div className={s["future-text"]}>
           <div className={s["future-card"]}>

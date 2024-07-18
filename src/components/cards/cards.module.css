@@ -1,43 +1,54 @@
 .cards-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  margin-top: 100px;
   gap: 40px;
 }
-
+.aboutsectionbg {
+  background-image: url("../../../src/assets/imgs/trustbetbg.png");
+  background-repeat: no-repeat;
+  margin-top: 100px !important;
+  background-size: 100%;
+  padding-bottom: 300px;
+  padding-top: 100px;
+}
+.aboutsection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 53px;
+}
 .card {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   background: #ffffff0a;
   border-radius: 15px;
-
   display: flex;
-  width: 300px;
-  height: 360px;
-  padding: 20px;
+  width: 100%;
+  padding: 24px;
 }
 
 .section-title {
-  width: 1100px;
-  margin: 0 auto;
+  font-size: 42px;
+  text-align: start;
 }
 
 .section-subtitle {
-  text-align: center;
-  width: 1100px;
+  text-align: start;
+  font-size: 24px;
   font-weight: 300;
-  margin: 0 auto;
 }
 
 .card-img {
-  position: absolute;
-  top: -30%;
-  left: 50%;
-  transform: translateX(-50%);
+  height: 174px;
+  width: 174px;
 }
 
 .card > p {
-  align-self: self-end;
+  font-size: 24px;
   font-weight: 300;
 }
 
@@ -45,6 +56,19 @@
   .section-subtitle,
   .section-title {
     width: auto;
+  }
+}
+
+@media (max-width: 1536px) {
+  .aboutsection {
+    gap: 9px;
+  }
+  .card > p {
+    font-size: 21px;
+  }
+  .section-subtitle {
+    text-align: start;
+    font-size: 22px;
   }
 }
 

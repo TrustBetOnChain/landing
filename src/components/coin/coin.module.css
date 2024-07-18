@@ -5,7 +5,15 @@
   transform: translate(-50%, -80%);
   z-index: 5;
 }
-
+.coins canvas {
+  width: 600px !important ;
+  height: 600px !important;
+}
+.coins {
+  width: 600px !important ;
+  height: 600px !important;
+  z-index: 20;
+}
 .main-coin {
   position: absolute;
   overflow: visible;
@@ -16,6 +24,26 @@
 }
 .main-coin canvas {
   overflow: visible;
+}
+@media (max-width: 1430px) {
+  .coins canvas {
+    width: 400px !important ;
+    height: 400px !important;
+  }
+  .coins {
+    width: 400px !important ;
+    height: 400px !important;
+  }
+}
+@media (max-width: 1536px) {
+  .coins canvas {
+    width: 500px;
+    height: 500px;
+  }
+  .coins {
+    width: 500px;
+    height: 500px;
+  }
 }
 
 @media (max-width: 1000px) {
