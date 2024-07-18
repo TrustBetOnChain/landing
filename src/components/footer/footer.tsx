@@ -19,11 +19,11 @@ export const Footer = () => {
   }, []);
   return (
     <footer>
-      <ConnectModal
+      {/* <ConnectModal
         className={
           s["button"] + " " + (showButton ? s["non-visible"] : s["visible"])
         }
-      />
+      /> */}
     </footer>
   );
 };

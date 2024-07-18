@@ -6,8 +6,7 @@
 }
 
 .nav {
-  padding-top: 40px;
-  padding-left: 20px;
+  padding: 20px;
 }
 
 .nav-list {
@@ -100,7 +99,10 @@
   .pop-up > div {
     display: none;
   }
-
+  .logo {
+    width: 127px;
+    height: 48px;
+  }
   .aside {
     width: 100%;
   }

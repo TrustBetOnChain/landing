@@ -21,7 +21,7 @@ export const HeaderMobile = () => {
         <div className="gtranslate_wrapper"></div>
         <ul className={s["nav-list"]}>
           <li className={s["nav-list"]}>
-            <img src={Logo} alt="" />
+            <img className={s["logo"]} src={Logo} alt="" />
           </li>
           <li className={s["burger-menu"]}>
             <img onClick={() => setModal(true)} src={BurgerMenu} alt="" />

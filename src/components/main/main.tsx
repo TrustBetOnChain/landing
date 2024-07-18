@@ -4,7 +4,7 @@ import { Coin } from "../coin/coin";
 export const Main = () => {
   return (
     <section className={s["topmainsection"]}>
-      <div>
+      <div className={s["topmainmobile"]}>
         <h1
           className={
             "max-2xl:text-[50px] text-[72px] max-2xl:leading-[60px] leading-[86px]"

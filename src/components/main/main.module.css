@@ -228,3 +228,38 @@ h2 {
     gap: 30px;
   }
 }
+
+@media (max-width: 500px) {
+  .backgroundmist {
+    position: absolute;
+    height: 253px;
+    filter: blur(150px);
+    top: 10%;
+    right: 13%;
+    border-radius: 50%;
+    width: 350px;
+    background-color: var(--primarytext-color);
+    z-index: 0;
+  }
+  .topmainsection {
+    flex-direction: column-reverse;
+    padding-top: 100px !important;
+    margin-bottom: 0 !important;
+  }
+  .topmainsection > div > h1 {
+    font-size: 36px;
+    line-height: 46.8px;
+    text-align: center;
+  }
+  .topmainmobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .headertextinfo {
+    text-align: center;
+    margin: 0px 20px;
+  }
+}
