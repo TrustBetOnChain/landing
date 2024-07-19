@@ -86,6 +86,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
   const Connect = async () => {
+    console.log("clicked here")
     // @ts-ignore
     if (!("phantom" in window)) {
       return window.open(

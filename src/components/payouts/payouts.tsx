@@ -6,7 +6,7 @@ import PayoutsCard2 from "../../assets/imgs/payouts-card-2.svg";
 export const Payouts = () => {
   return (
     <section className={` w-full`}>
-      <div className={` max-w-[85%] ${s.payouts} m-auto`}>
+      <div className={`max-sm:max-w-full max-w-[85%] ${s.payouts} m-auto`}>
         <article>
           <h3>
             Immediate Transparent Payouts and<strong> Web 3.0 Model</strong>

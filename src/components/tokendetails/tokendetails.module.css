@@ -98,7 +98,9 @@ article {
 .article-footer > p {
   font-weight: 300;
 }
-
+.separtormpobile {
+  display: none;
+}
 .article > div > p {
   font-weight: 300;
   font-size: 20px;
@@ -154,17 +156,58 @@ article {
 }
 
 @media (max-width: 550px) {
+  .token-title {
+    margin: 0px !important;
+    font-size: 24px;
+  }
+  .token-details {
+    margin: 0px !important;
+    margin-top: 44px !important;
+  }
   .token-details-header-cards {
+    gap: 20px;
     display: flex;
     flex-direction: column;
   }
-
+  .token-details-footer {
+    gap: 44px !important;
+    flex-direction: column;
+  }
+  .tokendetailkpara {
+    font-size: 18px;
+    text-align: center;
+  }
+  .token-details-header-card {
+    margin-bottom: 0px !important;
+  }
+  .token-details-wrapper {
+    padding: 44px 20px !important;
+  }
   .article-footer {
     flex-direction: column;
+    display: flex;
     align-items: center;
+    margin-top: 24px !important;
   }
-
+  .article-footer > h4 {
+    text-align: center;
+    font-size: 20px;
+    line-height: 32px;
+  }
   .article-footer > aside > h4 {
     margin: 0;
+  }
+  .article-footer > h3 {
+    text-align: center;
+    font-size: 24px;
+  }
+  .article > div > p {
+    font-size: 18px;
+    text-align: center;
+    line-height: 32px;
+  }
+  .separtormpobile {
+    display: block;
+    margin-bottom: 20px;
   }
 }

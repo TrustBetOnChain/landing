@@ -82,7 +82,26 @@
 }
 
 @media (max-width: 500px) {
+  .payouts > article > h3 {
+    font-size: 24px;
+    line-height: 32px;
+    border-bottom: 1px solid;
+    padding-bottom: 13px;
+  }
+  .payouts-card > h4 {
+    font-size: 28px;
+    width: 50%;
+  }
+  .payouts-card > p {
+    font-size: 18px;
+  }
+  .payouts > article > p {
+    margin-top: 20px;
+    text-align: center;
+    size: 18px;
+  }
   .payouts-card-img {
-    width: 50px;
+    width: 70px;
+    height: 70px;
   }
 }

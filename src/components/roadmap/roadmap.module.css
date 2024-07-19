@@ -105,3 +105,23 @@
     /* text-align: left; */
   }
 }
+
+@media (max-width: 500px) {
+  .roadmap-title h2 {
+    font-size: 24px;
+  }
+  .btns {
+    display: none;
+  }
+
+  .roadmap-bg::before {
+    display: none;
+  }
+  .roadmap-bg::after {
+    display: none;
+  }
+  .roadmap-title {
+    margin-top: 44px !important;
+    margin-bottom: 40px;
+  }
+}

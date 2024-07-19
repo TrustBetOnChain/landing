@@ -6,9 +6,11 @@ export const HowToStart = () => {
   return (
     <section
       id={PageSection.HOW_TO_START}
-      className={`${s["how-to-start"]} max-w-[85%] m-auto`}
+      className={`${s["how-to-start"]} max-sm:max-w-full max-w-[85%] m-auto`}
     >
-      <h2 className="text-[42px]">How to <span className="text-[--primarytext-color]">Start</span></h2>
+      <h2 className="text-[42px]">
+        How to <span className="text-[--primarytext-color]">Start</span>
+      </h2>
       <div className={s["cards-wrapper"]}>
         <div className={s["how-to-start-title"]}>
           <div className={s["how-to-start-cards"]}>
@@ -48,7 +50,11 @@ export const HowToStart = () => {
             </div>
           </div>
         </div>
-        <article className={s["article"] + " grid place-content-center mb-20"}>
+        <article
+          className={
+            s["article"] + " grid place-content-center max-sm:mb-10 mb-20"
+          }
+        >
           <img className="w-[483px] h-[516px] " src={Final} alt="" />
         </article>
       </div>

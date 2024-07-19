@@ -5,6 +5,7 @@ import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModalContent } from "./myaccount-modal-content";
+import "./accountmodalcontent.css"
 
 interface Props {
     isOpen: boolean;
@@ -43,7 +44,7 @@ export const MyAccountModal: React.FC<Props> = ({
                     <div className="fixed inset-0 hidden bg-gray-500 bg-opacity-75 transition-opacity md:block" />
                 </Transition.Child>
 
-                <div className="fixed inset-0 z-10 overflow-y-auto">
+                <div className="fixed inset-0 z-10 overflow-y-auto mobilemodal">
                     <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
                         <Transition.Child
                             as={Fragment}
@@ -54,7 +55,7 @@ export const MyAccountModal: React.FC<Props> = ({
                             leaveFrom="opacity-100 translate-y-0 md:scale-100"
                             leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
                         >
-                            <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
+                            <Dialog.Panel className=" flex w-full transform justify-center text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
                                 {isOpen && (
                                     <MyAccountModalContent
                                         anchorWallet={anchorWallet!}

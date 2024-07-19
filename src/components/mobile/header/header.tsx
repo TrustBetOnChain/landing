@@ -31,10 +31,19 @@ export const HeaderMobile = () => {
       {modal && (
         <div className={s["pop-up"]}>
           <div></div>
-          <aside className={s["aside"]}>
-            <div className={s["aside-header"]}>
+          <aside className={s["aside"] + " relative"}>
+            <div className={s["backdropmist"]} />
+            <div className={s["aside-header"] + " items-center"}>
               <img src={Logo} alt="" />
-              <img onClick={() => setModal(false)} src={Cross} alt="" />
+              <img
+                onClick={() => {
+                  console.log("here")
+                  setModal(false)
+                }}
+                className="w-[20px] h-5"
+                src={Cross}
+                alt=""
+              />
             </div>
             <ul className={s["aside-list"]}>
               <li>
@@ -78,11 +87,12 @@ export const HeaderMobile = () => {
                   onClick={() => setModal(false)}
                   // src={Cross}
                   href={`#${PageSection.CONTACT}`}
-                ></a>
+                >
+                  Contact
+                </a>
               </li>
             </ul>
             <div className={s["aside-footer"]}>
-              <ConnectModal className={s["button"]} isShowBalance={false} />
               <div className={s["aside-socials"]}>
                 <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />

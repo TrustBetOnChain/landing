@@ -175,6 +175,22 @@
   }
 }
 @media (max-width: 500px) {
+  .future-title-image {
+    top: -20%;
+    left: 10px;
+  }
+  .future-card > p {
+    text-align: center;
+    font-size: 18px;
+  }
+  .future-title {
+    padding: 20px 0px;
+    border-radius: 16px;
+    padding-top: 150px;
+  }
+  .future-title > h2 {
+    font-size: 24px !important;
+  }
   .coin-wrapper > img {
     width: 100%;
   }

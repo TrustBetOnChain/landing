@@ -30,7 +30,7 @@ export const ContactUs = () => {
             white paper thoroughly analyzes current pitfalls of the industry,
             highlighting the concentration of profits in the hands of a few.
           </p>
-          <div>
+          <div className={s["header-contactus-link"]}>
             <a
               target="_blank"
               href="https://drive.google.com/file/d/16UHbchyN24CgOac8_7F_ln0BZUvTNdIx/view?usp=sharing"

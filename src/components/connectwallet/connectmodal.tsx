@@ -21,6 +21,7 @@ import { AnchorProvider, Program } from "@coral-xyz/anchor";
 import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
+import ConnectWalletmodalPopup from "../connectwalletmodalpopup/ConnectWalletmodalPopup";
 
 export const ConnectModal = ({
   className,
@@ -39,6 +40,7 @@ export const ConnectModal = ({
     Connect,
 
   } = usePhantomContext()
+  const [isOpen, setOpen] = useState(false)
   // console.log(({
   //   account,
   //   // @ts-ignore
@@ -116,7 +118,7 @@ export const ConnectModal = ({
   return (
     <>
       <div className={className}>
-        <PrimaryButton onClick={() => isConnected ? openAccountModal() : Connect()} >
+        <PrimaryButton onClick={() => isConnected ? openAccountModal() : setOpen(true)} >
           <div className={s.account}>
             <div>{isConnected ? `${getTruncatedHash(account)}` : "Connect Wallet"}</div>
             <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
@@ -146,6 +148,7 @@ export const ConnectModal = ({
         isOpen={isConfirmationOpen}
         onClose={() => setIsConfirmationOpen(false)}
       />
+      <ConnectWalletmodalPopup isOpen={isOpen} onClose={() => setOpen(false)} />
     </>
   );
 };

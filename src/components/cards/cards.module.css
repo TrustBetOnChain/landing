@@ -95,6 +95,7 @@
     margin-top: 0px !important;
     background: none !important;
     padding-top: 0;
+    padding-bottom: 250px;
   }
   .aboutsection {
     flex-direction: column;

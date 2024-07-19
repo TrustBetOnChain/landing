@@ -14,7 +14,7 @@ export const TokenDetails = () => {
       id={PageSection.TBET_TOKENS}
       className={s["token-details"] + " " + ""}
     >
-      <div className="max-w-[1300px] m-auto">
+      <div className="max-w-[1300px] max-sm:max-w-full m-auto">
         <h2 className={s["token-title"]}>
           <span className="text-[--secondary-color]">Token</span> Details
         </h2>
@@ -72,33 +72,38 @@ export const TokenDetails = () => {
               <div className={` gap-14 ${s["token-details-footer"]}`}>
                 <img className={s["tbet-gif"]} src={TBetGif} alt="" />
                 <div className="bg-[#ffffff0a] p-6">
-                  <p className={s["tokendetailkpara"] + " text-[20px] leading-[32px] font-light"}>
-                    <span className={s["green"]}>Current Stage Price</span> - The
-                    first stage of presale will commence at a price of 0.10 USDT
-                    (Ten cents) for the first 5 million TBET tokens sold and will
-                    increase in 2 cent increments thereafter. For example, Stage 2
-                    presale will be set at 0.12 USDT (Twelve cents) for the second
-                    5 million TBET allotment and will continue at the same
-                    incremental rate with a maximum target of 55 million TBET
-                    tokens to be sold or until its manual completion. TrustBet
-                    distinguishes itself with a limited maximum supply capped at
-                    100 million tokens, significantly lower than typical
-                    offerings. This makes the Presale price point very lucrative
-                    for early adopters who recognize before others the immense
-                    potential of the TrustBet ecosystem and its extremely generous
-                    rewards system for staked holders of TBET tokens, whereby,
-                    they will be paid 50% of a bustling Casino's profits as a form
-                    of passive income directly into their wallet in USDT. Such a
-                    high rate of Casino profits paid out in USDT is unprecedented
-                    and underscores our commitment to rewarding our community and
-                    providing long term value to our holders.
+                  <p
+                    className={
+                      s["tokendetailkpara"] +
+                      " text-[20px] leading-[32px] font-light"
+                    }
+                  >
+                    <span className={s["green"]}>Current Stage Price</span> - <br className={s["separtormpobile"]} />
+                    The first stage of presale will commence at a price of 0.10
+                    USDT (Ten cents) for the first 5 million TBET tokens sold
+                    and will increase in 2 cent increments thereafter. For
+                    example, Stage 2 presale will be set at 0.12 USDT (Twelve
+                    cents) for the second 5 million TBET allotment and will
+                    continue at the same incremental rate with a maximum target
+                    of 55 million TBET tokens to be sold or until its manual
+                    completion. TrustBet distinguishes itself with a limited
+                    maximum supply capped at 100 million tokens, significantly
+                    lower than typical offerings. This makes the Presale price
+                    point very lucrative for early adopters who recognize before
+                    others the immense potential of the TrustBet ecosystem and
+                    its extremely generous rewards system for staked holders of
+                    TBET tokens, whereby, they will be paid 50% of a bustling
+                    Casino's profits as a form of passive income directly into
+                    their wallet in USDT. Such a high rate of Casino profits
+                    paid out in USDT is unprecedented and underscores our
+                    commitment to rewarding our community and providing long
+                    term value to our holders.
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <div className={s["article"]}>
-
             <div className={s["article-footer"]}>
               <h3>
                 TrustBet On-Chain | KYC
@@ -116,7 +121,7 @@ export const TokenDetails = () => {
               </h4>
             </div>
             <div className={` mt-10 ${s["article-header"]}`}>
-              <p>
+              <p className="max-sm:text-[20px] max-sm:leading-5">
                 <span>Please note:</span> You will need to manually add the TBET
                 details to all wallets EXCEPT Phantom Wallet. Phantom Wallet has
                 been updated automatically being a native wallet to Solana DAO

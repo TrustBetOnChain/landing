@@ -108,6 +108,11 @@ button:hover {
     overflow-x: hidden;
   }
 }
+@media (max-width: 500px) {
+  .mySwiper {
+    max-width: 100%;
+  }
+}
 
 @media (max-width: 370px) {
   .swiper-slide-1 {

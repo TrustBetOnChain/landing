@@ -14,7 +14,7 @@ export const Benefits = () => {
         Pre-sale <span className="text-[--secondary-color]">Benefits </span>
         for Customers
       </h2>
-      <div className="max-w-[85%] m-auto">
+      <div className=" max-sm:max-w-full max-w-[85%] m-auto">
         <img src={BACKCOIN} className={s["backcoin"]} />
         <ul className={`${s["benefits-cards"]} `}>
           <li className={s["benefits-card"]}>
