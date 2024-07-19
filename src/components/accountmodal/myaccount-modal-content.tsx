@@ -56,7 +56,6 @@ interface Props {
 }
 
 export const MyAccountModalContent: React.FC<Props> = ({
-  disconnect,
   onClose,
   wallet,
   anchorWallet,

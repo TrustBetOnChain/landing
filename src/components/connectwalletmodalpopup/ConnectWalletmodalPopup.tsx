@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FC, Fragment } from "react";
 import "./index.css";
 import { Dialog, Transition } from "@headlessui/react";
@@ -13,6 +14,7 @@ interface Props {
     onClose: () => void;
 }
 const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
+    // @ts-ignore
     const { Connect } = usePhantomContext();
     return (
         <Transition.Root show={isOpen} as={Fragment}>
