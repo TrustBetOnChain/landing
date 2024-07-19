@@ -21,7 +21,10 @@ export const Header = () => {
             <a href={`#${PageSection.CONTACT}`}> Contact</a>
           </li>
           <li>
-            <ConnectModal className={s["button"]} isShowBalance={false} />
+            <ConnectModal
+              className={s["button"] + " me-10"}
+              isShowBalance={false}
+            />
           </li>
         </ul>
       </nav>

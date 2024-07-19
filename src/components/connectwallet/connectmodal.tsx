@@ -6,12 +6,12 @@ import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
 import { PrimaryButton } from "../primarybutton/primarybutton";
 import { useEffect, useState } from "react";
 import { getTruncatedHash } from "../../util";
-
+import "./index.css"
 import s from "./connectwallet.module.scss";
 // import { useTbetStake } from "../../hooks/use-tbet-balance";
 import TBetIcon from "../../assets/imgs/t-bet-icon.svg";
 
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { ArrowPathIcon, ChevronDownIcon, PencilIcon, Square2StackIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModal } from "../accountmodal/myaccountmodal";
@@ -22,6 +22,7 @@ import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import ConnectWalletmodalPopup from "../connectwalletmodalpopup/ConnectWalletmodalPopup";
+import { Menu } from "@headlessui/react";
 
 export const ConnectModal = ({
   className,
@@ -37,32 +38,14 @@ export const ConnectModal = ({
     // @ts-ignore
     isConnected,
     // @ts-ignore
-    Connect,
-
+    DisConnect
   } = usePhantomContext()
   const [isOpen, setOpen] = useState(false)
-  // console.log(({
-  //   account,
-  //   // @ts-ignore
-  //   isConnected,
-  //   // @ts-ignore
-  //   Connect,
-  // }));
 
-  // const [balance, setBalance] = useState()
-  // const showbalance = async () => {
-  //   setBalance(await getBalance())
-  // }
-  // useEffect(() => {
-  //   if ((account)) {
-  //     showbalance()
-  //   }
-  // }, [account])
 
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [balance, setBalance] = useState(0);
-
 
   // const { setShowModal } = useUnifiedWalletContext();
   // const { connect, connected, publicKey } = useUnifiedWallet();
@@ -115,15 +98,60 @@ export const ConnectModal = ({
       setBalance(0);
     }
   }
+  const copyadd = () => {
+    navigator.clipboard.writeText(account)
+  }
+  // onClick={() => isConnected ? openAccountModal() : setOpen(true)}
   return (
     <>
       <div className={className}>
-        <PrimaryButton onClick={() => isConnected ? openAccountModal() : setOpen(true)} >
-          <div className={s.account}>
-            <div>{isConnected ? `${getTruncatedHash(account)}` : "Connect Wallet"}</div>
-            <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
-          </div>
-        </PrimaryButton>
+        {
+          isConnected ? (
+            <Menu >
+              <Menu.Button className={s["primarybbtn"]}  >
+                <div className={s.account}>
+                  <img className="pb-1 " src={ConnectWalletImg} alt="" />
+                  <div>{isConnected ? `${getTruncatedHash(account, 4)}` : "Connect Wallet"}</div>
+                  <div className="w-4 h-4">
+                    <ChevronDownIcon className="size-4 fill-white" />
+                  </div>
+                </div>
+              </Menu.Button >
+              <Menu.Items
+                className=" dropdownmnu w-52 origin-top-right rounded-xl p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] "
+              >
+                <Menu.Item>
+                  <button onClick={openAccountModal} className="group flex w-full items-center gap-2  text-[20px]  mybutton rounded-lg max-sm:py-4 py-1.5 px-3 data-[focus]:bg-white/10">
+                    <PencilIcon className="size-4 fill-white" />
+                    Buy TBET
+                    <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">⌘E</kbd>
+                  </button>
+                </Menu.Item>
+                <Menu.Item>
+                  <button onClick={copyadd} className="group  flex w-full items-center gap-2  text-[20px] max-sm:py-4  mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                    <Square2StackIcon className="size-4 fill-white" />
+                    {`${getTruncatedHash(account, 4)}`}
+                  </button>
+                </Menu.Item>
+                <Menu.Item>
+                  <button onClick={DisConnect} className="group flex w-full items-center gap-2 text-[20px] max-sm:py-4 mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                    <XMarkIcon className="size-6 fill-white" />
+                    Disconnect
+                  </button>
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
+          ) : (
+            <PrimaryButton onClick={() => isConnected ? openAccountModal() : setOpen(true)} >
+              <div className={s.account}>
+                <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
+                <p className="max-sm:text-lg text-[24px] whitespace-nowrap ">{isConnected ? `${getTruncatedHash(account)}` : "Connect Wallet"}</p>
+              </div>
+            </PrimaryButton>
+          )
+        }
+
+
         {isConnected && isShowBalance && (
           <PrimaryButton
             onClick={() => {

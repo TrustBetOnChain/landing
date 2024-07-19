@@ -24,6 +24,25 @@
   padding: 16px;
   border-radius: 16px;
 }
+@media (max-width: 1300px) {
+  .connectwalletwrapper {
+    padding: 50px !important;
+  }
+  .walletswrapper {
+    gap: 20px !important;
+  }
+  .wallet {
+    width: 235px !important;
+  }
+}
+@media (max-width: 1780px) {
+  .connectwalletwrapper {
+    padding: 80px;
+  }
+  .wallet {
+    width: 285px;
+  }
+}
 @media (max-width: 500px) {
   .mobilemodal {
     display: grid;
@@ -35,6 +54,15 @@
   }
   .wallet {
     width: 273px;
+  }
+  .bgmist {
+    width: 300px;
+    height: 300px;
+    filter: blur(200px);
+    top: -42%;
+    left: -20%;
+    position: absolute;
+    background-color: var(--primarytext-color);
   }
   .backdropmist {
     width: 300px;

@@ -12,7 +12,6 @@
 .coins {
   width: 600px !important ;
   height: 600px !important;
-  z-index: 20;
 }
 .main-coin {
   position: absolute;

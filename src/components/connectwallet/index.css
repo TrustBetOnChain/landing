@@ -1,0 +1,10 @@
+.mybutton:hover {
+  background-color: transparent !important;
+}
+
+@media (max-width: 600px) {
+  .dropdownmnu {
+    position: absolute;
+    top: -151%;
+  }
+}

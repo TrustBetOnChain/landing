@@ -30,7 +30,7 @@
   border-radius: 50%;
   width: 400px;
   background-color: var(--primarytext-color);
-  z-index: 0;
+  z-index: -10;
 }
 .topmainsection {
   position: relative;
@@ -239,7 +239,7 @@ h2 {
     border-radius: 50%;
     width: 350px;
     background-color: var(--primarytext-color);
-    z-index: 0;
+    z-index: -100;
   }
   .topmainsection {
     flex-direction: column-reverse;

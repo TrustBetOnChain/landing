@@ -40,6 +40,11 @@ body {
     font-weight: 100;
   }
 }
+.dropdownmnu {
+  position: absolute;
+  margin-top: 17px;
+  background: #259947;
+}
 * {
   font-family: "Geometria", sans-serif;
   margin: 0;
