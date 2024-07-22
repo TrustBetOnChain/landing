@@ -18,7 +18,7 @@
 
 .how-to-start-cards {
   display: grid;
-  grid-template-columns: 450px 450px 450px;
+  grid-template-columns: 32% 32% 31%;
   grid-template-rows: 1fr;
   gap: 40px;
 }
@@ -82,12 +82,12 @@ p > a {
     font-size: 19px;
   }
   .how-to-start-cards {
-    grid-template-columns: 390px 390px 390px;
+    grid-template-columns: 32% 32% 31%;
   }
 }
 @media (max-width: 1536px) {
   .how-to-start-cards {
-    grid-template-columns: 350px 350px 350px;
+    grid-template-columns: 32% 32% 31%;
   }
   .how-to-start-card > p {
     font-size: 19px;

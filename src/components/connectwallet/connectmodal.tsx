@@ -110,8 +110,9 @@ export const ConnectModal = ({
             <Menu >
               <Menu.Button className={s["primarybbtn"]}  >
                 <div className={s.account}>
-                  <img className="pb-1 " src={ConnectWalletImg} alt="" />
-                  <div>{isConnected ? `${getTruncatedHash(account, 4)}` : "Connect Wallet"}</div>
+                  {/* <img className="pb-1 " src={ConnectWalletImg} alt="" /> */}
+                  <img height={28} width={28} src={TBetIcon} />
+                  <div>{isConnected ? balance : "Connect Wallet"}</div>
                   <div className="w-4 h-4">
                     <ChevronDownIcon className="size-4 fill-white" />
                   </div>
@@ -144,15 +145,13 @@ export const ConnectModal = ({
           ) : (
             <PrimaryButton onClick={() => isConnected ? openAccountModal() : setOpen(true)} >
               <div className={s.account}>
-                <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
-                <p className="max-sm:text-lg text-[24px] whitespace-nowrap ">{isConnected ? `${getTruncatedHash(account)}` : "Connect Wallet"}</p>
+                <img className=" ml-2" src={ConnectWalletImg} alt="" />
+                <p className="max-sm:text-lg text-[24px] whitespace-nowrap  max-2xl:text-[18px]">{isConnected ? balance : "Connect Wallet"}</p>
               </div>
             </PrimaryButton>
           )
         }
-
-
-        {isConnected && isShowBalance && (
+        {/* {isConnected && isShowBalance && (
           <PrimaryButton
             onClick={() => {
               updateBalance(anchorWallet!).then()
@@ -162,7 +161,7 @@ export const ConnectModal = ({
             {balance}
             <ArrowPathIcon className="h-6 w-6text-white" aria-hidden="true" />
           </PrimaryButton>
-        )}
+        )} */}
       </div>
 
       <MyAccountModal

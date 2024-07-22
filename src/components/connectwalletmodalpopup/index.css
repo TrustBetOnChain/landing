@@ -20,6 +20,7 @@
 }
 .wallet {
   width: 393px;
+  cursor: pointer;
   background: #ffffff0a;
   padding: 16px;
   border-radius: 16px;

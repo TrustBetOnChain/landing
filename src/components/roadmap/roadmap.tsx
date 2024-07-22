@@ -99,40 +99,15 @@ export const Roadmap = () => {
               <ul>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>
-                    Main website construction and launch in beta phase, commence
-                    mobile app construction
-                  </p>
+                  <p>Main website construction initiation,</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Audit of Website and Mobile App</p>
+                  <p>Audit of Website</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Incorporate staking facility into DAO for passive income</p>
-                </li>
-                <li>
-                  <img src={Loading} alt="" />
-                  <p>Marketing for continued presale tier</p>
-                </li>
-                <li>
-                  <img src={Loading} alt="" />
-                  <p>New presale tier price rise</p>
-                </li>
-                <li>
-                  <img src={Loading} alt="" />
-                  <p>
-                    Launch of website and DAPP for mobile using mainwebsite UI
-                  </p>
-                </li>
-                <li>
-                  <img src={Loading} alt="" />
-                  <p>Marketing for next presale tier</p>
-                </li>
-                <li>
-                  <img src={Loading} alt="" />
-                  <p>Announce Tier 1 Exchange listing</p>
+                  <p>Marketing program for presale.</p>
                 </li>
               </ul>
             </SwiperSlide>
@@ -142,19 +117,31 @@ export const Roadmap = () => {
               <ul>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Register with Coin Gecko</p>
+                  <p>Presale program marketing and continuation</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Additional exchange listings</p>
+                  <p>
+                    Incorporate staking facility in to DAO for passive income.
+                  </p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Marketing for casino</p>
+                  <p>Launch website in beta</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Addition of multiple new UI functionality</p>
+                  <p> Announce Tier 1 Exchange listing.</p>
+                </li>
+                <li>
+                  <img src={Loading} alt="" />
+                  <p> Announce Tier 1 Exchange listing.</p>
+                </li>
+                <li>
+                  <img src={Loading} alt="" />
+                  <p>
+                    Commence work on additional applications of the main UI.{" "}
+                  </p>
                 </li>
               </ul>
             </SwiperSlide>
@@ -164,20 +151,33 @@ export const Roadmap = () => {
               <ul>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Commence work on NFT marketplace</p>
+                  <p>List on Tier 1 Exchange.</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>Website update with NFT marketplace functionality</p>
+                  <p>Testing of passive income functionality</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
-                  <p>First voting proposal for TBET DAO members</p>
+                  <p> Register with Coin Gecko.</p>
+                </li>
+                <li>
+                  <img src={Loading} alt="" />
+                  <p>Commence work on DEX and Derivatives platforms,</p>
+                </li>
+                <li>
+                  <img src={Loading} alt="" />
+                  <p>Website update with NFT functionality.</p>
+                </li>
+                <li>
+                  <img src={Loading} alt="" />
+                  <p>First voting proposal for TBET</p>
                 </li>
                 <li>
                   <img src={Loading} alt="" />
                   <p>
-                    TrustBet On-Chain released as a full Autonomous Organization
+                    TrustBet On-Chain released as a full Autonomous
+                    Organisation.
                   </p>
                 </li>
               </ul>

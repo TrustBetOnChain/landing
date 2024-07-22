@@ -14,11 +14,13 @@
 }
 
 .payouts > article > p {
-  margin-top: 135px;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 24px;
 }
-
+.divider {
+  width: 100%;
+  height: 1px;
+}
 .payouts-cards {
   display: flex;
   flex-direction: column;
@@ -53,7 +55,24 @@
   right: 21px;
   width: 80px;
 }
-
+@media (max-width: 1536px) {
+  .payouts > article > p {
+    font-weight: 300;
+    font-size: 21px;
+  }
+  .payouts-card > p {
+    font-size: 21px;
+  }
+}
+@media (max-width: 1430px) {
+  .payouts > article > p {
+    font-weight: 300;
+    font-size: 16px;
+  }
+  .payouts-card > p {
+    font-size: 18px;
+  }
+}
 @media (max-width: 1000px) {
   .payouts {
     flex-direction: column;

@@ -11,6 +11,7 @@ export const Payouts = () => {
           <h3>
             Immediate Transparent Payouts and<strong> Web 3.0 Model</strong>
           </h3>
+          <div className={"bg-[#FFFFFF33] my-5 " + s["divider"]} />
           <p>
             Our organization, being a Decentralized Autonomous Organization
             (DAO), enables auditing through direct examination of the DAO and

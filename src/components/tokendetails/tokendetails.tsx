@@ -12,9 +12,9 @@ export const TokenDetails = () => {
   return (
     <section
       id={PageSection.TBET_TOKENS}
-      className={s["token-details"] + " " + ""}
+      className={s["token-details"] + " " + "!mx-0"}
     >
-      <div className="max-w-[1300px] max-sm:max-w-full m-auto">
+      <div className="max-w-[80%] max-sm:max-w-full m-auto">
         <h2 className={s["token-title"]}>
           <span className="text-[--secondary-color]">Token</span> Details
         </h2>
@@ -71,11 +71,11 @@ export const TokenDetails = () => {
               </ul>
               <div className={` gap-14 ${s["token-details-footer"]}`}>
                 <img className={s["tbet-gif"]} src={TBetGif} alt="" />
-                <div className="bg-[#ffffff0a] p-6">
+                <div className="bg-[#ffffff0a] p-6 !rounded-2xl">
                   <p
                     className={
                       s["tokendetailkpara"] +
-                      " text-[20px] leading-[32px] font-light"
+                      " text-[20px] leading-[35px] font-light"
                     }
                   >
                     <span className={s["green"]}>Current Stage Price</span> - <br className={s["separtormpobile"]} />

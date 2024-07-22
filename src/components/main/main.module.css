@@ -220,6 +220,11 @@ h2 {
 }
 
 @media (max-width: 1430px) {
+  .button {
+    font-size: 18px;
+    width: 200px;
+    padding: 11px;
+  }
   .headertextinfo {
     max-width: 550px !important;
   }

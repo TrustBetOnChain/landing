@@ -19,7 +19,7 @@ header {
   align-items: center;
   padding: 32px;
   background-color: #ffffff0f;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(25px);
 }
 
 .nav-item {

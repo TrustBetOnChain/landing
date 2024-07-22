@@ -32,6 +32,7 @@
 
 .aside-header > p {
   font-weight: 300;
+  font-size: 20px;
 }
 
 .aside-links {
@@ -62,9 +63,13 @@
 
 .aside-header > div > a {
   color: #88c13c;
+  white-space: nowrap;
   font-size: 20px;
 }
-
+.span {
+  font-weight: 100;
+  font-size: 20px;
+}
 .article {
   width: 40%;
   text-align: center;
@@ -73,6 +78,7 @@
 .title {
   transform: none;
   margin-top: 20px;
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
@@ -107,6 +113,14 @@
   font-size: 24px;
   border: none;
   /* cursor: pointer; */
+}
+@media (max-width: 1430px) {
+  .span {
+    font-size: 18px;
+  }
+  .aside-header > p {
+    font-size: 18px;
+  }
 }
 @media (max-width: 900px) {
   .contactus {

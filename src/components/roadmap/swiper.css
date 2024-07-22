@@ -97,7 +97,7 @@ button:hover {
 .swiper-line {
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 50%;
+  width: 100%;
   height: 1px;
   background: linear-gradient(90deg, #259945 50%, rgba(37, 153, 69, 0) 100%);
 }

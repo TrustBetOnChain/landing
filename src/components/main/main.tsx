@@ -13,7 +13,11 @@ export const Main = () => {
           TrustBet On-Chain: <br /> revolution in the <br />
           <span className="text-[--secondary-color]">iGaming industry</span>
         </h1>
-        <p className={s["headertextinfo"] + " text-2xl font-light  max-w-[700px] mt-5"}>
+        <p
+          className={
+            s["headertextinfo"] + " text-2xl font-light  max-w-[700px] mt-5"
+          }
+        >
           Start earning and receive daily passive staking income from a licensed
           and regulated global casino and betting platform no matter the market
           conditions.

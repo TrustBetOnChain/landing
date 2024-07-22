@@ -14,7 +14,7 @@ export const Benefits = () => {
         Pre-sale <span className="text-[--secondary-color]">Benefits </span>
         for Customers
       </h2>
-      <div className=" max-sm:max-w-full max-w-[85%] m-auto">
+      <div className=" max-sm:max-w-full max-w-[80%] m-auto">
         <img src={BACKCOIN} className={s["backcoin"]} />
         <ul className={`${s["benefits-cards"]} `}>
           <li className={s["benefits-card"]}>
@@ -90,22 +90,24 @@ export const Benefits = () => {
               platform is listed on our first and subsequent Tier 1 exchanges.
             </p>
           </li>
-        </ul>
-        <div className={s["benefits-footer"] + " m"}>
-          <img src={Solana} alt="" />
-          <div className={s["benefits-footer-side"]}>
-            <h5>TrustBet On-Chain Commitment to Trust and Transparency</h5>
-            <p>
-              TrustBet On-Chain delivers instant and transparent payouts through
-              Smart Contracts on the Solana blockchain. Our DAO framework
-              ensures decision making driven by our community, coupled with
-              profit sharing. Payments to non-custodial wallets address the
-              challenges commonly encountered in traditional platforms,
-              positioning TrustBet as a paradigm of trust and reliability in the
-              online iGaming industry.
-            </p>
+          <div className={s["infodiv"]}>
+            <div className={s["benefits-footer"] + " m"}>
+              <img src={Solana} alt="" />
+              <div className={s["benefits-footer-side"]}>
+                <h5>TrustBet On-Chain Commitment to Trust and Transparency</h5>
+                <p>
+                  TrustBet On-Chain delivers instant and transparent payouts
+                  through Smart Contracts on the Solana blockchain. Our DAO
+                  framework ensures decision making driven by our community,
+                  coupled with profit sharing. Payments to non-custodial wallets
+                  address the challenges commonly encountered in traditional
+                  platforms, positioning TrustBet as a paradigm of trust and
+                  reliability in the online iGaming industry.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        </ul>
       </div>
     </section>
   );

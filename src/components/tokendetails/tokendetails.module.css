@@ -20,7 +20,7 @@
   flex-direction: column;
   gap: 20px;
   border-radius: 15px;
-  padding: 70px 40px;
+  padding: 70px 0px;
 }
 
 .token-details-wrapper > aside,
@@ -139,7 +139,7 @@ article {
     font-weight: 200;
   }
   .tokendetailkpara {
-    font-size: 18px !important;
+    font-size: 17px !important;
     line-height: 27px !important;
   }
 }
@@ -156,6 +156,9 @@ article {
 }
 
 @media (max-width: 550px) {
+  .tbet-gif {
+    margin-top: 44px;
+  }
   .token-title {
     margin: 0px !important;
     font-size: 24px;
@@ -171,6 +174,7 @@ article {
   }
   .token-details-footer {
     gap: 44px !important;
+    margin: 0px !important;
     flex-direction: column;
   }
   .tokendetailkpara {
