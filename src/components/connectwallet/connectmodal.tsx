@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable prettier/prettier */
@@ -26,7 +27,6 @@ import { Menu } from "@headlessui/react";
 
 export const ConnectModal = ({
   className,
-  isShowBalance = true
 }: {
   className?: string;
   onClick?: () => void;

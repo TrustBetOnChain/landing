@@ -8,7 +8,7 @@ export const Payouts = () => {
     <section className={` w-full`}>
       <div className={`max-sm:max-w-full max-w-[85%] ${s.payouts} m-auto`}>
         <article>
-          <h3>
+          <h3 className="!z-0 ">
             Immediate Transparent Payouts and<strong> Web 3.0 Model</strong>
           </h3>
           <div className={"bg-[#FFFFFF33] my-5 " + s["divider"]} />
