@@ -36,6 +36,7 @@ export const ConnectModal = ({
   const {
     // @ts-ignore
     account,
+    // @ts-ignore
     setAccount,
     // @ts-ignore
     isConnected,
