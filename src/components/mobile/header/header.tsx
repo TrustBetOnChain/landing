@@ -29,7 +29,7 @@ export const HeaderMobile = () => {
           <aside className={s["aside"] + " relative"}>
             <div className={s["backdropmist"]} />
             <div className={s["aside-header"] + " items-center"}>
-              <img src={Logo} alt="" />
+              <img src={Logo} alt="" className={s["logo"]} />
               <img
                 onClick={() => {
                   console.log("here")

@@ -22,7 +22,9 @@ export const Main = () => {
           and regulated global casino and betting platform no matter the market
           conditions.
         </p>
-        <button className={s["button"]}> Explore</button>
+        <a className={s["button"] + " flex"} href={"#how-to-start"}>
+          Start Now
+        </a>
       </div>
       <Coin />
       <div className={s["backgroundmist"]} />

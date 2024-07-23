@@ -146,8 +146,8 @@ export const ConnectModal = ({
           ) : (
             <PrimaryButton onClick={() => isConnected ? openAccountModal() : setOpen(true)} >
               <div className={s.account}>
-                <img className=" ml-2" src={ConnectWalletImg} alt="" />
-                <p className="max-sm:text-lg text-[24px] whitespace-nowrap  max-2xl:text-[18px]">{isConnected ? balance : "Connect Wallet"}</p>
+                <img className="" src={ConnectWalletImg} alt="" />
+                <p className="max-sm:hidden text-[24px] whitespace-nowrap  max-2xl:text-[18px]">{"Connect Wallet"}</p>
               </div>
             </PrimaryButton>
           )

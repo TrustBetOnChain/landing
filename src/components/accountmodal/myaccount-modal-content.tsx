@@ -304,11 +304,11 @@ export const MyAccountModalContent: React.FC<Props> = ({
                               <span className="text-center flex-1">
                                 {token.name}
                               </span>
-                              <p
-                                className={`text-[14px] font-[100] ${token.name === "SOL" && "!text-[transparent]"}`}
-                              >
-                                (SOL chain)
-                              </p>
+                              {token.name !== "SOL" && (
+                                <p className={`text-[14px] font-[100]`}>
+                                  (SOL chain)
+                                </p>
+                              )}
                               {/* <ArrowTopRightOnSquareIcon
                                 height={16}
                                 width={16}
