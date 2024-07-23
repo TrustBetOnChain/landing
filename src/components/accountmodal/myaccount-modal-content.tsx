@@ -291,7 +291,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
                         className={({ active }) =>
                           classNames(
                             active ? "ring-2 ring-indigo-500" : "",
-                            "relative block cursor-pointer rounded-lg border p-[10px] border-gray-300 focus:outline-none",
+                            "relative  cursor-pointer rounded-lg flex-1 flex justify-center items-center border p-[10px] border-gray-300 focus:outline-none",
                           )
                         }
                       >

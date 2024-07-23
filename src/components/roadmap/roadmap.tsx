@@ -88,7 +88,7 @@ export const Roadmap = () => {
                   <p>Launch pre-sale website</p>
                 </li>
                 <li>
-                  <img src={Loading} alt="" />
+                  <img src={Ok} alt="" />
                   <p>Marketing for presale</p>
                 </li>
               </ul>
@@ -98,15 +98,15 @@ export const Roadmap = () => {
               <div className="swiper-line"></div>
               <ul>
                 <li>
-                  <img src={Loading} alt="" />
+                  <img src={Ok} alt="" />
                   <p>Main website construction initiation,</p>
                 </li>
                 <li>
-                  <img src={Loading} alt="" />
+                  <img src={Ok} alt="" />
                   <p>Audit of Website</p>
                 </li>
                 <li>
-                  <img src={Loading} alt="" />
+                  <img src={Ok} alt="" />
                   <p>Marketing program for presale.</p>
                 </li>
               </ul>
