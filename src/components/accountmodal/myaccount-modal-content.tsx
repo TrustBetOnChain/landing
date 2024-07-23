@@ -346,6 +346,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
                     min: 1,
                     max: 10_000_000,
                   })}
+                  required
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
                   className="mt-5 sm:col-span-3 buylabel rounded-[14px]"

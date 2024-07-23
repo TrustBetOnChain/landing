@@ -54,14 +54,14 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                             <span className="sr-only">Close</span>
                                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                         </button>
-                                        <h1 className="max-2xl:mb-6 max-2xl:text-[50px] text-[60px] max-sm:text-[32px] mb-[60px] max-sm:mb-[44px] max-2xl:text-[40px]">
+                                        <h1 className="connecttext max-2xl:mb-6 max-2xl:text-[50px] text-[60px] max-sm:text-[32px] mb-[60px] max-sm:mb-[44px] max-2xl:text-[40px]">
                                             Connect{" "}
                                             <span className="text-[--primarytext-color]">Wallet</span>
                                         </h1>
                                         <div className="walletswrapper  max-sm:gap-[14px] ">
                                             <div
                                                 onClick={() => {
-                                                    Connect();
+                                                    Connect("Phantom");
                                                     onClose();
                                                 }}
                                                 className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full "
@@ -77,7 +77,10 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                                 <img src={TRUSTWALLET} />
                                                 <p>Trust Wallet </p>
                                             </div>
-                                            <div className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
+                                            <div onClick={() => {
+                                                onClose();
+                                                Connect("Solflare")
+                                            }} className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
                                                 <img src={SOLFLAREWALLET} />
                                                 <p>Solflare Wallet </p>
                                             </div>

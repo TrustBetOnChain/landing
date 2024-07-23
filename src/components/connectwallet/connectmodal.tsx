@@ -36,6 +36,7 @@ export const ConnectModal = ({
   const {
     // @ts-ignore
     account,
+    setAccount,
     // @ts-ignore
     isConnected,
     // @ts-ignore
@@ -52,7 +53,12 @@ export const ConnectModal = ({
   // const { connect, connected, publicKey } = useUnifiedWallet();
 
   const anchorWallet = useAnchorWallet();
-  const { wallet } = useWallet()
+  const { wallet, publicKey } = useWallet()
+  useEffect(() => {
+    if (publicKey) {
+      setAccount(publicKey.toString());
+    }
+  }, [publicKey])
 
   // const handleClick = useCallback(async () => {
   //   onClick?.();
@@ -102,18 +108,20 @@ export const ConnectModal = ({
   const copyadd = () => {
     navigator.clipboard.writeText(account)
   }
+  console.log(publicKey?.toString());
+
   // onClick={() => isConnected ? openAccountModal() : setOpen(true)}
   return (
     <>
       <div className={className}>
         {
-          isConnected ? (
+          isConnected || sessionStorage.getItem("isConnected") ? (
             <Menu >
               <Menu.Button className={s["primarybbtn"]}  >
                 <div className={s.account}>
                   {/* <img className="pb-1 " src={ConnectWalletImg} alt="" /> */}
                   <img height={28} width={28} src={TBetIcon} />
-                  <div>{isConnected ? balance : "Connect Wallet"}</div>
+                  <div>{isConnected || sessionStorage.getItem("isConnected") ? balance : "Connect Wallet"}</div>
                   <div className="w-4 h-4">
                     <ChevronDownIcon className="size-4 fill-white" />
                   </div>
@@ -132,7 +140,7 @@ export const ConnectModal = ({
                 <Menu.Item>
                   <button onClick={copyadd} className="group  flex w-full items-center gap-2 max-sm:text-[18px] text-[20px] max-sm:py-4  mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <img src={CPYICON} />
-                    {`${getTruncatedHash(account, 4)}`}
+                    {`${getTruncatedHash(account || publicKey?.toString(), 4)}`}
                   </button>
                 </Menu.Item>
                 <Menu.Item>

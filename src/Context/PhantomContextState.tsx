@@ -1,12 +1,24 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { PhantomWalletName, } from "@solana/wallet-adapter-wallets";
+import {
+  CoinbaseWalletName,
+  PhantomWalletName,
+  SolflareWalletName,
+  TrustWalletName,
+} from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
+
+const wallet = {
+  Phantom: PhantomWalletName,
+  Solflare: SolflareWalletName,
+  trustwallet: TrustWalletName,
+  coinbase: CoinbaseWalletName,
+};
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
@@ -30,7 +42,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
   useEffect(() => {
     if (sessionStorage.getItem("isConnected")) {
-      Connect();
+      // @ts-ignore
+      Connect(sessionStorage.getItem("walletname")!);
       // connect();
     }
     // setProvider(getProvider());
@@ -85,25 +98,38 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  const Connect = async () => {
-    // @ts-ignore
-    if (!("phantom" in window)) {
-      return window.open(
-        // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-        // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-        "https://phantom.app/ul/browse/https://trustbetonchain.com/?ref=https://trustbetonchain.com//",
-        "_blank",
-      );
-    }
-    const provider = getProvider(); // see "Detecting the Provider"
-    try {
-      const resp = await provider.request({ method: "connect" });
-      setisConnected(true);
-      if (!selectedwallet) {
-        connectPhantom();
+  const Connect = async (
+    walletType: "Phantom" | "Solflare" | "trustwallet" | "coinbase",
+  ) => {
+    if (walletType === "Phantom") {
+      if (!("phantom" in window)) {
+        return window.open(
+          // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
+          // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
+          "https://phantom.app/ul/browse/https://landing-git-feature-uinewchanges-trust-bet.vercel.app/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/",
+          "_blank",
+        );
       }
+    }
+    if (walletType === "Solflare") {
+      if (!("solflare" in window)) {
+        return window.open(
+          "https://solflare.com/ul/browse/https://landing-git-feature-uinewchanges-trust-bet.vercel.app/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/",
+        );
+      }
+    }
+    try {
+      if (walletType === "Phantom") {
+        const provider = getProvider(); // see "Detecting the Provider"
+        const resp = await provider.request({ method: "connect" });
+        setAccount(resp.publicKey.toString());
+      }
+      if (!selectedwallet) {
+        connectPhantom(walletType);
+      }
+      setisConnected(true);
       sessionStorage.setItem("isConnected", "true");
-      setAccount(resp.publicKey.toString());
+      sessionStorage.setItem("walletname", walletType);
     } catch (err) {
       console.log(err);
       console.log({ code: 4001, message: "User rejected the request." });
@@ -111,39 +137,12 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   useEffect(() => {
-    if ("phantom" in window) {
-      const wallet = {
-        Phantom: PhantomWalletName,
-      };
-      // Select the wallet and connect if not already connected
-      // if (!) {
+    if (sessionStorage.getItem("walletname")) {
       // @ts-ignore
-      select(wallet["Phantom"]);
+      select(wallet[sessionStorage.getItem("walletname")!]);
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (account) {
-  //     const tryConnect = () => {
-  //       connect()
-  //         .then(() => {
-  //           console.log('Connected successfully');
-  //           retryCountRef.current = 0; // Reset retry count on success
-  //         })
-  //         .catch(() => {
-  //           if (retryCountRef.current < 3) {
-  //             retryCountRef.current += 1;
-  //             setTimeout(tryConnect, 500);
-  //           } else {
-  //             console.log('Failed to connect after 3 attempts');
-  //             retryCountRef.current = 0; // Reset retry count after max attempts
-  //           }
-  //         });
-  //     };
-
-  //     tryConnect();
-  //   }
-  // }, [account, connect]);
   const getbalancesolana = async () => {
     setSolanaBalance(await getSolPrice());
   };
@@ -162,26 +161,14 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     sessionStorage.clear();
   };
 
-  const connectPhantom = () => {
+  const connectPhantom = (walletType: any) => {
     // Retrieve the wallet name from local storage
-    let walletName = window.localStorage.getItem("walletName");
-    // Default to Phantom if no wallet name is found or if it's undefined
-    walletName =
-      !walletName || walletName === "undefined" ? "Phantom" : walletName;
     // Map of wallet names to wallet adapter constants
-    const wallet = {
-      Phantom: PhantomWalletName,
-      // Solflare: SolflareWalletName,
-    };
     // Select the wallet and connect if not already connected
-    // if (!) {
     // @ts-ignore
-    select(wallet[walletName]);
-    // connect()
-    // }
+    select(wallet[walletType]);
   };
 
-  // }, [select, connect,]);
   return (
     <PhantomContext.Provider
       value={{
@@ -189,6 +176,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         account,
         isConnected,
         SolanaBalance,
+        setAccount,
         Connect,
         DisConnect,
         getBalance,

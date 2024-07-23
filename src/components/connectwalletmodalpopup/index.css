@@ -25,12 +25,15 @@
   padding: 16px;
   border-radius: 16px;
 }
-@media (max-width: 1300px) {
+@media (max-width: 1480px) {
+  .connecttext {
+    font-size: 40px;
+  }
   .connectwalletwrapper {
     padding: 50px !important;
   }
   .walletswrapper {
-    gap: 20px !important;
+    gap: 29px !important;
   }
   .wallet {
     width: 235px !important;
@@ -43,6 +46,15 @@
   .wallet {
     width: 285px;
   }
+}
+.bgmist {
+  width: 300px;
+  height: 300px;
+  filter: blur(319px);
+  top: -42%;
+  left: -20%;
+  position: absolute;
+  background-color: var(--primarytext-color);
 }
 @media (max-width: 500px) {
   .mobilemodal {
