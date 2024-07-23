@@ -50,7 +50,7 @@ export const TokenDetails = () => {
                       style={{ cursor: "pointer" }}
                       onClick={() => {
                         navigator.clipboard.writeText(
-                          "xpFbKJa92Ee1NSYEhc3b3BV",
+                          "xpFbKJa92Ee1NSYEhc3b3BVk4im8YStXRaVW6EoW33w",
                         );
                         setCopy(true);
                         setTimeout(() => {
