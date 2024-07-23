@@ -2,15 +2,10 @@ import s from "./headermobile.module.css";
 
 import BurgerMenu from "../../../assets/imgs/burger-menu.svg";
 import Logo from "../../../assets/imgs/logo.svg";
-import Telegram from "../../../assets/imgs/tg.svg";
-import Youtube from "../../../assets/imgs/youtube.svg";
-import X from "../../../assets/imgs/x.svg";
 import Cross from "../../../assets/imgs/cross.svg";
-import Assure from "../../../assets/imgs/assure.svg";
 import { PageSection } from "../../../page-section";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { ConnectModal } from "../../connectwallet/connectmodal";
 
 export const HeaderMobile = () => {
   const [modal, setModal] = useState(false);
@@ -92,7 +87,7 @@ export const HeaderMobile = () => {
                 </a>
               </li>
             </ul>
-            <div className={s["aside-footer"]}>
+            {/* <div className={s["aside-footer"]}>
               <div className={s["aside-socials"]}>
                 <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />
@@ -113,7 +108,7 @@ export const HeaderMobile = () => {
                   <img src={Youtube} alt="" />
                 </a>
               </div>
-            </div>
+            </div> */}
           </aside>
         </div>
       )}

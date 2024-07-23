@@ -42,7 +42,8 @@ body {
 }
 .dropdownmnu {
   position: absolute;
-  margin-top: 17px;
+  margin-top: 14px;
+  right: 2%;
   background: #259947;
 }
 * {

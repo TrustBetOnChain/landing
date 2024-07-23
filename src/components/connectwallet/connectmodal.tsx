@@ -4,15 +4,16 @@
 /* eslint-disable prettier/prettier */
 
 import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
+import CPYICON from "../../assets/imgs/copy-icon.svg";
+import TEBTDOLLAR from "../../assets/imgs/tbeticondollar.svg";
 import { PrimaryButton } from "../primarybutton/primarybutton";
 import { useEffect, useState } from "react";
 import { getTruncatedHash } from "../../util";
 import "./index.css"
 import s from "./connectwallet.module.scss";
-// import { useTbetStake } from "../../hooks/use-tbet-balance";
 import TBetIcon from "../../assets/imgs/t-bet-icon.svg";
 
-import { ArrowPathIcon, ChevronDownIcon, PencilIcon, Square2StackIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConfirmationModal } from "../confirmationmodal/confirmation.modal";
 import usePhantomContext from "../../Context/usePhantomContext";
 import { MyAccountModal } from "../accountmodal/myaccountmodal";
@@ -122,20 +123,20 @@ export const ConnectModal = ({
                 className=" dropdownmnu w-52 origin-top-right rounded-xl p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] "
               >
                 <Menu.Item>
-                  <button onClick={openAccountModal} className="group flex w-full items-center gap-2  text-[20px]  mybutton rounded-lg max-sm:py-4 py-1.5 px-3 data-[focus]:bg-white/10">
-                    <PencilIcon className="size-4 fill-white" />
+                  <button onClick={openAccountModal} className="group flex w-full items-center gap-2 max-sm:text-[18px] text-[20px]  mybutton rounded-lg max-sm:py-4 py-1.5 px-3 data-[focus]:bg-white/10">
+                    <img src={TEBTDOLLAR} />
                     Buy TBET
                     <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">⌘E</kbd>
                   </button>
                 </Menu.Item>
                 <Menu.Item>
-                  <button onClick={copyadd} className="group  flex w-full items-center gap-2  text-[20px] max-sm:py-4  mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
-                    <Square2StackIcon className="size-4 fill-white" />
+                  <button onClick={copyadd} className="group  flex w-full items-center gap-2 max-sm:text-[18px] text-[20px] max-sm:py-4  mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                    <img src={CPYICON} />
                     {`${getTruncatedHash(account, 4)}`}
                   </button>
                 </Menu.Item>
                 <Menu.Item>
-                  <button onClick={DisConnect} className="group flex w-full items-center gap-2 text-[20px] max-sm:py-4 mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                  <button onClick={DisConnect} className="group border-none flex w-full items-center gap-2 max-sm:text-[18px] text-[20px] max-sm:py-4 mybutton rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                     <XMarkIcon className="size-6 fill-white" />
                     Disconnect
                   </button>

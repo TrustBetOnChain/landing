@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { PhantomWalletName } from "@solana/wallet-adapter-wallets";
+import { PhantomWalletName, } from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
@@ -86,7 +86,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
   const Connect = async () => {
-    console.log("clicked here")
     // @ts-ignore
     if (!("phantom" in window)) {
       return window.open(
@@ -153,6 +152,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       getbalancesolana();
     }
   }, [isConnected]);
+
   const DisConnect = () => {
     const _provider = getProvider();
     _provider!.disconnect()!;
@@ -161,6 +161,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     setisConnected(false);
     sessionStorage.clear();
   };
+
   const connectPhantom = () => {
     // Retrieve the wallet name from local storage
     let walletName = window.localStorage.getItem("walletName");
@@ -170,6 +171,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // Map of wallet names to wallet adapter constants
     const wallet = {
       Phantom: PhantomWalletName,
+      // Solflare: SolflareWalletName,
     };
     // Select the wallet and connect if not already connected
     // if (!) {

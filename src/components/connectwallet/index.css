@@ -1,10 +1,19 @@
 .mybutton:hover {
   background-color: transparent !important;
 }
+.mybutton {
+  border-radius: 0px !important;
+  border-bottom: 1px solid #117037;
+  padding: 15px 0px !important;
+  margin: auto;
+  width: 90% !important;
+}
 
 @media (max-width: 600px) {
   .dropdownmnu {
     position: absolute;
-    top: -151%;
+    top: -179%;
+    right: -2%;
+    width: 232px !important;
   }
 }

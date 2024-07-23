@@ -154,7 +154,7 @@ h2 {
   cursor: pointer;
   margin-top: 40px;
   /* width: 100%; */
-  z-index: 999;
+  z-index: 0;
 }
 
 @media (max-width: 1000px) {

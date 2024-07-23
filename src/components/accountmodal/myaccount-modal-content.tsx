@@ -4,7 +4,7 @@ import {
   XMarkIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
-import "./accountmodalcontent.css"
+import "./accountmodalcontent.css";
 import classNames from "classnames";
 import { AnchorWallet, Wallet } from "@solana/wallet-adapter-react";
 import TbetImage from "../../assets/imgs/trustbetbuyicon.svg";
@@ -244,7 +244,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
               className="object-cover grid place-content-center object-center w-[241px] h-[241px]"
             />
           </div>
-          <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
+          {/* <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
             <a
               href="https://solscan.io/token/xpFbKJa92Ee1NSYEhc3b3BVk4im8YStXRaVW6EoW33w"
               className="font-medium text-white flex justify-center items-center gap-1 hover:text-white"
@@ -253,7 +253,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
               View on Solscan
               <ArrowTopRightOnSquareIcon height={20} width={20} />
             </a>
-          </p>
+          </p> */}
         </div>
         <div className="sm:col-span-8 lg:col-span-7">
           <section aria-labelledby="information-heading" className="mt-4">
@@ -304,7 +304,11 @@ export const MyAccountModalContent: React.FC<Props> = ({
                               <span className="text-center flex-1">
                                 {token.name}
                               </span>
-                              <p className="text-[14px] font-[100]"> (SOL chain)</p>
+                              <p
+                                className={`text-[14px] font-[100] ${token.name === "SOL" && "!text-[transparent]"}`}
+                              >
+                                (SOL chain)
+                              </p>
                               {/* <ArrowTopRightOnSquareIcon
                                 height={16}
                                 width={16}
