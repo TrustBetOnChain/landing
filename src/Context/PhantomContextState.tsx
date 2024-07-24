@@ -99,6 +99,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
+  const buildUrl = (path: string, params: URLSearchParams) =>
+    `https://solflare.com//ul/${path}?${params.toString()}`;
   const Connect = async (
     walletType: "Phantom" | "Solflare" | "trustwallet" | "coinbase",
   ) => {
@@ -107,16 +109,21 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         return window.open(
           // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
           // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          "https://phantom.app/ul/browse/https://landing-git-feature-uinewchanges-trust-bet.vercel.app/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/",
+          "https://phantom.app/ul/browse/https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app//?ref=https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app//",
           "_blank",
         );
       }
     }
     if (walletType === "Solflare") {
       if (!("solflare" in window)) {
-        return window.open(
-          `https://solflare.com/ul/v1/browse/${encodeURIComponent("https://landing-git-feature-uinewchanges-trust-bet.vercel.app")}/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/`,
+        const params = new URLSearchParams({
+          ref: "https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
+        });
+        const url = buildUrl(
+          `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+          params,
         );
+        return window.open(url, "_blank");
       }
     }
     try {
