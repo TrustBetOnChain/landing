@@ -115,7 +115,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "Solflare") {
       if (!("solflare" in window)) {
         return window.open(
-          "https://solflare.com/ul/browse/https://landing-git-feature-uinewchanges-trust-bet.vercel.app/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/",
+          `https://solflare.com/ul/browse/${encodeURIComponent("https://landing-git-feature-uinewchanges-trust-bet.vercel.app")}/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/`,
         );
       }
     }
