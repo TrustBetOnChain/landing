@@ -100,7 +100,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
   const buildUrl = (path: string, params: URLSearchParams) =>
-    `https://solflare.com//ul/${path}?${params.toString()}`;
+    `https://solflare.com/ul/${path}?${params.toString()}`;
   const Connect = async (
     walletType: "Phantom" | "Solflare" | "trustwallet" | "coinbase",
   ) => {
