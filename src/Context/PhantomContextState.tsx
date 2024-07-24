@@ -99,8 +99,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  // const buildUrl = (path: string, params: URLSearchParams) =>
-  //   `https://solflare.com/ul/${path}?${params.toString()}`;
+  const buildUrl = (path: string, params: URLSearchParams) =>
+    `https://solflare.com/ul/${path}?${params.toString()}`;
   const Connect = async (
     walletType: "Phantom" | "Solflare" | "trustwallet" | "coinbase",
   ) => {
@@ -114,24 +114,24 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         );
       }
     }
-    // if (walletType === "Solflare") {
-    //   if (!("solflare" in window)) {
-    //     const params = new URLSearchParams({
-    //       ref: "https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
-    //     });
-    //     const url = buildUrl(
-    //       `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
-    //       params,
-    //     );
-    //     return window.open(url, "_blank");
-    //   }
-    // }
+    if (walletType === "Solflare") {
+      if (!("solflare" in window)) {
+        const params = new URLSearchParams({
+          ref: "https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
+        });
+        const url = buildUrl(
+          `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+          params,
+        );
+        return window.open(url, "_blank");
+      }
+    }
     try {
-      // if (walletType === "Phantom") {
-      const provider = getProvider(); // see "Detecting the Provider"
-      const resp = await provider.request({ method: "connect" });
-      setAccount(resp.publicKey.toString());
-      // }
+      if (walletType === "Phantom") {
+        const provider = getProvider(); // see "Detecting the Provider"
+        const resp = await provider.request({ method: "connect" });
+        setAccount(resp.publicKey.toString());
+      }
       if (!selectedwallet) {
         connectPhantom(walletType);
       }

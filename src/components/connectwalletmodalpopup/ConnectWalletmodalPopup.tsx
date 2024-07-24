@@ -70,7 +70,7 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                                 <p>Phantom Wallet </p>
                                             </div>
                                             <div onClick={() => {
-                                                // Connect("coinbase");
+                                                Connect("coinbase");
                                                 onClose();
                                             }} className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
                                                 <img src={COINBASEWALLET} />
@@ -82,7 +82,7 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                             </div>
                                             <div onClick={() => {
                                                 onClose();
-                                                // Connect("Solflare")
+                                                Connect("Solflare")
                                             }} className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
                                                 <img src={SOLFLAREWALLET} />
                                                 <p>Solflare Wallet </p>
