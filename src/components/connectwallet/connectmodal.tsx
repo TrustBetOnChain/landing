@@ -7,7 +7,7 @@ import ConnectWalletImg from "../../assets/imgs/connect-wallet.svg";
 import CPYICON from "../../assets/imgs/copy-icon.svg";
 import TEBTDOLLAR from "../../assets/imgs/tbeticondollar.svg";
 import { PrimaryButton } from "../primarybutton/primarybutton";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getTruncatedHash } from "../../util";
 import "./index.css"
 import s from "./connectwallet.module.scss";
@@ -39,17 +39,23 @@ export const ConnectModal = ({
     // @ts-ignore
     setAccount,
     // @ts-ignore
+    balance,
+    // @ts-ignore
+    setBalance,
+    // @ts-ignore
     isConnected,
     // @ts-ignore
     DisConnect
   } = usePhantomContext()
   const [isOpen, setOpen] = useState(false)
-
+  const [retryCount, setRetryCount] = useState(0)
 
   const [isAccountOpen, setIsAccountOpen] = useState(false);
-  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  const [balance, setBalance] = useState(0);
+  const [intervalId, setIntervalId] = useState(null);
 
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const intervalIdRef = useRef(null);
+  const retryCountRef = useRef(retryCount);
   // const { setShowModal } = useUnifiedWalletContext();
   // const { connect, connected, publicKey } = useUnifiedWallet();
 
@@ -85,6 +91,7 @@ export const ConnectModal = ({
   //   : "Connect Wallet";
 
   async function updateBalance(wallet: any) {
+
     const provider = new AnchorProvider(connection, wallet, {});
 
     const program = new Program<PreSaleProgram>(
@@ -92,6 +99,8 @@ export const ConnectModal = ({
       PRE_SALE_PROGRAM,
       provider,
     );
+    console.log(program);
+
     const [userInfoAddress] = PublicKey.findProgramAddressSync(
       [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
       program.programId,
@@ -109,9 +118,28 @@ export const ConnectModal = ({
   const copyadd = () => {
     navigator.clipboard.writeText(account)
   }
-  console.log(publicKey?.toString());
+  const onTransactionConfirmation = useCallback(() => {
+    setIsConfirmationOpen(true);
+    const id = setInterval(() => {
 
-  // onClick={() => isConnected ? openAccountModal() : setOpen(true)}
+      if (retryCountRef.current <= 6) {
+        updateBalance(wallet);
+        console.log({ retryCount: retryCountRef.current });
+
+        setRetryCount(prev => {
+          retryCountRef.current = prev + 1;
+          return retryCountRef.current;
+        });
+      } else {
+        setRetryCount(0)
+        retryCountRef.current = 0;
+        clearInterval(intervalIdRef.current!);
+        intervalIdRef.current = null;
+      }
+    }, 2000);
+    // @ts-ignore
+    intervalIdRef.current = id;
+  }, [wallet]);
   return (
     <>
       <div className={className}>
@@ -177,7 +205,7 @@ export const ConnectModal = ({
       <MyAccountModal
         isOpen={isAccountOpen}
         onClose={() => setIsAccountOpen(false)}
-        onTransactionConfirmation={() => setIsConfirmationOpen(true)}
+        onTransactionConfirmation={onTransactionConfirmation}
       />
       {/*
        */}

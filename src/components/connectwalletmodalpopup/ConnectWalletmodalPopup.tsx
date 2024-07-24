@@ -69,7 +69,10 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                                 <img src={PHANTOMWALLET} />
                                                 <p>Phantom Wallet </p>
                                             </div>
-                                            <div className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
+                                            <div onClick={() => {
+                                                Connect("coinbase");
+                                                onClose();
+                                            }} className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ">
                                                 <img src={COINBASEWALLET} />
                                                 <p>Coinbase Wallet </p>
                                             </div>

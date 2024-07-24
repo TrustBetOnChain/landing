@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FC, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { ENDPOINT } from "../presale/config";
@@ -22,6 +22,7 @@ const wallet = {
 
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
+  const [balance, setBalance] = useState(0);
   const [SolanaBalance, setSolanaBalance] = useState<any>(0);
   const {
     select,
@@ -180,6 +181,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         Connect,
         DisConnect,
         getBalance,
+        balance,
+        setBalance,
       }}
     >
       {children}
