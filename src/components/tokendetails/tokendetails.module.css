@@ -86,7 +86,7 @@ article {
   gap: 20px;
   display: grid;
   margin-top: 104px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
 }
 
