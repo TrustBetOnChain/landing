@@ -115,6 +115,10 @@
   /* cursor: pointer; */
 }
 @media (max-width: 1430px) {
+  .contactus {
+    margin-bottom: 100px !important;
+    margin-top: 120px !important;
+  }
   .span {
     font-size: 18px;
   }

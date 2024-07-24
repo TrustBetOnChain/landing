@@ -15,7 +15,7 @@ export const ContactUs = () => {
   return (
     <section
       id={PageSection.CONTACT}
-      className={`${s.contactus} max-w-[84%] max-sm:!max-w-full m-auto`}
+      className={`${s.contactus} max-w-[84%] max-sm:!max-w-full mx-auto`}
     >
       <aside className={s["aside"]}>
         <div className={s["aside-header"]}>

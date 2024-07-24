@@ -113,12 +113,6 @@ export const TokenDetails = () => {
                 This NFT is a sign of approval that the project TrustBet
                 On-Chain has successfully passed a KYC by AssureDeFi.
               </p>
-              {/* <h4>
-                Version: 2.0
-                <br />
-                Team Members Verified: 1<br />
-                Ticker: $TBET
-              </h4> */}
             </div>
             <div className={` mt-10 ${s["article-header"]}`}>
               <p className="max-sm:text-[20px] max-sm:leading-5">

@@ -10,7 +10,7 @@ import { DotLottiePlayer, PlayMode } from "@dotlottie/react-player";
 export const Benefits = () => {
   return (
     <section className={s.benefits + " " + "w-full"}>
-      <h2 className="text-[42px] text-center">
+      <h2 className=" max-2xl:text-[34px] text-[42px] text-center">
         Pre-sale <span className="text-[--secondary-color]">Benefits </span>
         for Customers
       </h2>

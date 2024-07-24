@@ -134,6 +134,20 @@ article {
   font-weight: bold;
 }
 @media (max-width: 1430px) {
+  .token-title {
+    margin: 20px 0px;
+    font-size: 35px;
+  }
+  .token-details-wrapper {
+    padding: 40px 0px;
+  }
+  .article-footer {
+    margin-top: 70px !important;
+  }
+  .token-details {
+    margin-bottom: 70px !important;
+    margin-top: 100px !important;
+  }
   .article > div > p {
     font-size: 18px;
     font-weight: 200;

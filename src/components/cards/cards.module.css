@@ -60,6 +60,9 @@
 }
 
 @media (max-width: 1536px) {
+  .aboutsectionbg {
+    padding-bottom: 200px;
+  }
   .aboutsection {
     gap: 9px;
   }
