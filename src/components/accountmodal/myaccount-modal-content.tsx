@@ -4,10 +4,11 @@ import {
   XMarkIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
-
+import "./accountmodalcontent.css";
 import classNames from "classnames";
 import { AnchorWallet, Wallet } from "@solana/wallet-adapter-react";
-import TbetImage from "../../assets/tbet-icon.svg";
+import TbetImage from "../../assets/imgs/trustbetbuyicon.svg";
+import dollorsign from "../../assets/imgs/dollorsign.svg";
 import {
   CHAINLINK_PROGRAM,
   PRE_SALE_PROGRAM,
@@ -55,7 +56,6 @@ interface Props {
 }
 
 export const MyAccountModalContent: React.FC<Props> = ({
-  disconnect,
   onClose,
   wallet,
   anchorWallet,
@@ -64,7 +64,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { account, getBalance, SolanaBalance } = usePhantomContext();
+  const { account, SolanaBalance } = usePhantomContext();
   const {
     register,
     control,
@@ -222,7 +222,10 @@ export const MyAccountModalContent: React.FC<Props> = ({
     return connection.sendTransaction(signedTx);
   }
   return (
-    <div className="relative flex w-full items-center overflow-hidden bg-[#1b2a28] rounded-lg px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
+    <div className="bg-[#131D18] relative  overflow-hidden  rounded-[20px] max-sm:px-5 px-16 max-sm:py-4 max-sm:pb-[30px] py-8 pb-[66px] shadow-2xl ">
+      <h1 className="text-[50px] max-sm:text-[40px] text-[--primarytext-color] m-8 max-sm:text-left max-sm:mx-0 text-center">
+        Buy
+      </h1>
       <button
         type="button"
         className="absolute hover:bg-[#299c35] right-4 top-4 text-white hover:text-white sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
@@ -232,15 +235,16 @@ export const MyAccountModalContent: React.FC<Props> = ({
         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
       </button>
 
-      <div className="grid w-full grid-cols-1 items-center md:items-start gap-x-6 gap-y-8 md:grid-cols-12 lg:gap-x-8">
-        <div className="sm:col-span-8 md:col-span-4 lg:col-span-5">
-          <div className="aspect-h-1 aspect-w-1 overflow-hidden bg-gray-100">
+      <div className="flex w-full justify-between relative items-center pt-4  gap-[87px] gap-y-8  max-sm:pt-0">
+        <div className="backdropmist" />
+        <div className="sm:col-span-8 md:col-span-4 max-sm:hidden lg:col-span-5">
+          <div className=" grid place-content-center relative  overflow-hidden">
             <img
               src={TbetImage}
-              className="object-cover object-center bg-[#1b2a28]"
+              className="object-cover grid place-content-center object-center w-[241px] h-[241px]"
             />
           </div>
-          <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
+          {/* <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
             <a
               href="https://solscan.io/token/xpFbKJa92Ee1NSYEhc3b3BVk4im8YStXRaVW6EoW33w"
               className="font-medium text-white flex justify-center items-center gap-1 hover:text-white"
@@ -249,7 +253,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
               View on Solscan
               <ArrowTopRightOnSquareIcon height={20} width={20} />
             </a>
-          </p>
+          </p> */}
         </div>
         <div className="sm:col-span-8 lg:col-span-7">
           <section aria-labelledby="information-heading" className="mt-4">
@@ -258,11 +262,11 @@ export const MyAccountModalContent: React.FC<Props> = ({
             </h3>
 
             <div className="flex items-center">
-              <p className="text-lg text-white sm:text-xl">Price: ${price}</p>
+              <p className="text-[28px] text-white">Price: ${price}</p>
             </div>
           </section>
 
-          <section aria-labelledby="options-heading" className="mt-6">
+          <section aria-labelledby="options-heading" className="mt-5">
             <h3 id="options-heading" className="sr-only">
               Product options
             </h3>
@@ -275,10 +279,10 @@ export const MyAccountModalContent: React.FC<Props> = ({
                     setValue("coin", coin);
                   }}
                 >
-                  <RadioGroup.Label className="block mb-3 text-sm font-medium text-white">
+                  <RadioGroup.Label className="block mb-3 text-base font-[100] text-white">
                     Choose token for payment
                   </RadioGroup.Label>
-                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-3 mobilelabelsselect">
                     {availableCoins.map((token) => (
                       <RadioGroup.Option
                         as="div"
@@ -287,7 +291,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
                         className={({ active }) =>
                           classNames(
                             active ? "ring-2 ring-indigo-500" : "",
-                            "relative block cursor-pointer rounded-lg border p-2 border-gray-300 focus:outline-none",
+                            "relative  cursor-pointer rounded-lg flex-1 flex justify-center items-center border p-[10px] border-gray-300 focus:outline-none",
                           )
                         }
                       >
@@ -295,12 +299,17 @@ export const MyAccountModalContent: React.FC<Props> = ({
                           <>
                             <RadioGroup.Label
                               as="div"
-                              className="text-base flex justify-between items-center font-medium text-white"
+                              className="text-base flex justify-center items-center flex-col font-medium text-white"
                             >
-                              <span className="text-center p-2 flex-1">
+                              <span className="text-center flex-1">
                                 {token.name}
                               </span>
-                              <ArrowTopRightOnSquareIcon
+                              {token.name !== "SOL" && (
+                                <p className={`text-[14px] font-[100]`}>
+                                  (SOL chain)
+                                </p>
+                              )}
+                              {/* <ArrowTopRightOnSquareIcon
                                 height={16}
                                 width={16}
                                 className="flex-0 self-start"
@@ -311,7 +320,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
                                     "_blank",
                                   );
                                 }}
-                              />
+                              /> */}
                             </RadioGroup.Label>
                             <div
                               className={classNames(
@@ -337,20 +346,28 @@ export const MyAccountModalContent: React.FC<Props> = ({
                     min: 1,
                     max: 10_000_000,
                   })}
+                  required
                   error={errors.value}
                   label={`Amount of TrustBet tokens you want to purchase`}
-                  className="mt-5 mb-5 sm:col-span-3"
+                  className="mt-5 sm:col-span-3 buylabel rounded-[14px]"
                 />
               </div>
-              <div className="mt-6 flex gap-2 justify-center">
-                <PrimaryButton className="w-[150px]">
-                  {isLoading ? "Loading..." : "Buy"}
+              <div className="mt-[15px] flex gap-2 justify-start">
+                <PrimaryButton className="w-[150px] rounded-full py-4 text-[20px]">
+                  {isLoading ? (
+                    "Loading..."
+                  ) : (
+                    <>
+                      <img src={dollorsign} className="w-5 h-5" />{" "}
+                      <span>Buy</span>
+                    </>
+                  )}
                 </PrimaryButton>
-                <PrimaryButton onClick={disconnect} className="w-[150px]">
+                {/* <PrimaryButton onClick={disconnect} className="w-[150px]">
                   Disconnect
-                </PrimaryButton>
+                </PrimaryButton> */}
               </div>
-              <div className="mt-6 text-center">
+              {/* <div className="mt-6 text-center">
                 <a
                   href="https://nft.assuredefi.com/?token=177"
                   className="group inline-flex text-base font-medium"
@@ -364,7 +381,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
                     Assure DeFi Verification
                   </span>
                 </a>
-              </div>
+              </div> */}
             </form>
           </section>
         </div>

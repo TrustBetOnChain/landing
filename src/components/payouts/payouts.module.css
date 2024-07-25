@@ -1,6 +1,7 @@
 .payouts {
   display: flex;
   margin-top: 100px !important;
+  align-items: center;
 }
 
 .payouts > article {
@@ -13,11 +14,13 @@
 }
 
 .payouts > article > p {
-  margin-top: 135px;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 24px;
 }
-
+.divider {
+  width: 100%;
+  height: 1px;
+}
 .payouts-cards {
   display: flex;
   flex-direction: column;
@@ -43,15 +46,33 @@
 .payouts-card > p {
   margin-top: 30px;
   font-weight: 300;
+  font-size: 24px;
 }
 
 .payouts-card-img {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 108px;
+  top: 14px;
+  right: 21px;
+  width: 80px;
 }
-
+@media (max-width: 1536px) {
+  .payouts > article > p {
+    font-weight: 300;
+    font-size: 21px;
+  }
+  .payouts-card > p {
+    font-size: 21px;
+  }
+}
+@media (max-width: 1430px) {
+  .payouts > article > p {
+    font-weight: 300;
+    font-size: 16px;
+  }
+  .payouts-card > p {
+    font-size: 18px;
+  }
+}
 @media (max-width: 1000px) {
   .payouts {
     flex-direction: column;
@@ -80,7 +101,26 @@
 }
 
 @media (max-width: 500px) {
+  .payouts > article > h3 {
+    font-size: 24px;
+    line-height: 32px;
+    border-bottom: 1px solid;
+    padding-bottom: 13px;
+  }
+  .payouts-card > h4 {
+    font-size: 28px;
+    width: 50%;
+  }
+  .payouts-card > p {
+    font-size: 18px;
+  }
+  .payouts > article > p {
+    margin-top: 20px;
+    text-align: center;
+    size: 18px;
+  }
   .payouts-card-img {
-    width: 50px;
+    width: 70px;
+    height: 70px;
   }
 }

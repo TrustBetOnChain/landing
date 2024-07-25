@@ -1,0 +1,89 @@
+.backdropmist {
+  width: 300px;
+  height: 300px;
+  filter: blur(400px);
+  position: absolute;
+  background-color: var(--primarytext-color);
+}
+.mobilelabelsselect {
+  display: flex !important;
+  justify-content: center;
+  align-items: stretch;
+  gap: 15px !important;
+}
+.walletswrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+}
+.wallet {
+  width: 393px;
+  cursor: pointer;
+  background: #ffffff0a;
+  padding: 16px;
+  border-radius: 16px;
+}
+@media (max-width: 1480px) {
+  .connecttext {
+    font-size: 40px;
+  }
+  .connectwalletwrapper {
+    padding: 50px !important;
+  }
+  .walletswrapper {
+    gap: 29px !important;
+  }
+  .wallet {
+    width: 235px !important;
+  }
+}
+@media (max-width: 1780px) {
+  .connectwalletwrapper {
+    padding: 80px;
+  }
+  .wallet {
+    width: 285px;
+  }
+}
+.bgmist {
+  width: 300px;
+  height: 300px;
+  filter: blur(319px);
+  top: -42%;
+  left: -20%;
+  position: absolute;
+  background-color: var(--primarytext-color);
+}
+@media (max-width: 500px) {
+  .mobilemodal {
+    display: grid;
+    place-content: center;
+    background-color: #ffffff45;
+  }
+  .walletswrapper {
+    flex-direction: column;
+  }
+  .wallet {
+    width: 273px;
+  }
+  .bgmist {
+    width: 300px;
+    height: 300px;
+    filter: blur(200px);
+    top: -42%;
+    left: -20%;
+    position: absolute;
+    background-color: var(--primarytext-color);
+  }
+  .backdropmist {
+    width: 300px;
+    height: 300px;
+    filter: blur(200px);
+    top: -42%;
+    left: -20%;
+    position: absolute;
+    background-color: var(--primarytext-color);
+  }
+}

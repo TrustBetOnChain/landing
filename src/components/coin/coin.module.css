@@ -5,7 +5,14 @@
   transform: translate(-50%, -80%);
   z-index: 5;
 }
-
+.coins canvas {
+  width: 600px !important ;
+  height: 600px !important;
+}
+.coins {
+  width: 600px !important ;
+  height: 600px !important;
+}
 .main-coin {
   position: absolute;
   overflow: visible;
@@ -18,6 +25,26 @@
   overflow: visible;
 }
 
+@media (max-width: 1536px) {
+  .coins canvas {
+    width: 500px !important;
+    height: 500px !important;
+  }
+  .coins {
+    width: 500px !important;
+    height: 500px !important;
+  }
+}
+@media (max-width: 1430px) {
+  .coins canvas {
+    width: 400px !important ;
+    height: 400px !important;
+  }
+  .coins {
+    width: 400px !important ;
+    height: 400px !important;
+  }
+}
 @media (max-width: 1000px) {
   .main-coin {
     width: 280px;
@@ -47,5 +74,13 @@
 @media (max-width: 500px) {
   .main-coin {
     top: 45%;
+  }
+  .coins canvas {
+    width: 263px !important;
+    height: 263px !important;
+  }
+  .coins {
+    width: 263px !important;
+    height: 263px !important;
   }
 }

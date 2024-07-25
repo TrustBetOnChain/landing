@@ -5,8 +5,9 @@ import axios from "axios";
 export function getTruncatedHash(
   address: string,
   partLength: number = 6,
+  frontlength: number = 9
 ): string {
-  return `${address?.substring(0, partLength)}...${address?.substring(
+  return `${address?.substring(0, frontlength)}...${address?.substring(
     address?.length - partLength,
   )}`;
 }

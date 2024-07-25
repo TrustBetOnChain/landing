@@ -17,30 +17,22 @@
   z-index: -1;
 }
 
-.trustbet-modes > h3 {
-  font-size: 32px;
-}
-
 .trustbet-modes {
   margin-top: 100px !important;
 }
 
 .trustbet-modes-cards {
-  margin-top: 50px;
+  margin-top: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 100px;
 }
 
 .trustbet-modes-card {
   background: #ffffff0a;
   backdrop-filter: blur(15px);
   /* height: fit-content; */
-  margin-top: 100px;
   border-radius: 15px;
-}
-
-.trustbet-modes-card:nth-child(1) > img {
-  margin-top: 27px;
 }
 
 .trustbet-modes-card > img {
@@ -98,6 +90,7 @@
 
 .trustbet-modes > h3 {
   font-weight: normal;
+  font-size: 42px;
 }
 
 .trustbet-modes > h3 > strong {
@@ -108,8 +101,16 @@
   text-align: center;
   font-weight: 300;
   margin-top: 40px;
+  font-size: 24px;
 }
-
+@media (max-width: 1430px) {
+  .trustbet-modes > h3 {
+    font-size: 32px;
+  }
+  .trustbet-modes-card > img {
+    width: 320px;
+  }
+}
 @media (max-width: 1010px) {
   .trustbet-modes-cards {
     flex-wrap: wrap;
@@ -155,9 +156,39 @@
     justify-content: center;
     gap: 0;
   }
+  .t-bet-bg {
+    background: none;
+  }
   .trustbet-modes-card {
     width: fit-content;
     margin-top: 30px;
+  }
+  .trustbet-modes {
+    max-width: 100% !important;
+    padding: 0px 20px;
+    margin-top: 0px !important;
+  }
+  .section {
+    margin-top: 44px !important;
+  }
+  .trustbet-modes-card {
+    width: 100% !important;
+    height: 440px !important;
+  }
+  .trustbet-modes-card img {
+    width: 390px;
+  }
+  .trustbet-modes-cards {
+    margin-top: 0px;
+  }
+  .trustbet-modes p {
+    font-size: 18px;
+    line-height: 32px;
+  }
+  .trustbet-modes h3 {
+    width: 100% !important;
+    text-align: center;
+    line-height: 31px !important;
   }
   .button {
     display: none;
