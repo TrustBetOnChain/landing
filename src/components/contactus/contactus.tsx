@@ -6,6 +6,7 @@ import Telegram from "../../assets/imgs/tg.svg";
 import Youtube from "../../assets/imgs/youtube.svg";
 import X from "../../assets/imgs/x.svg";
 import Assure from "../../assets/imgs/assure.svg";
+import DISCORD from "../../assets/imgs/discord.svg";
 import { PageSection } from "../../page-section";
 import { useState } from "react";
 import { Modal } from "../modal/modal";
@@ -61,7 +62,8 @@ export const ContactUs = () => {
       <article className={s["article"]}>
         <h2 className={s["title"]}>Have any questions?</h2>
         <span className={s["span"] + " !mb-5"}>
-          Please join our Telegram and Twitter and we <br /> would be happy to answer
+          Please join our Discord, Telegram and X.com and we <br /> would be
+          happy to answer
         </span>
         <div className={s["aside-socials"]}>
           <a target="_blank" href="https://t.me/TrustBetOC">
@@ -81,6 +83,9 @@ export const ContactUs = () => {
             href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D"
           >
             <img src={Youtube} alt="" />
+          </a>
+          <a target="_blank" href="https://discord.gg/x54S3bChs3">
+            <img src={DISCORD} alt="" />
           </a>
         </div>
       </article>
