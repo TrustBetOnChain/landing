@@ -135,8 +135,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       if (!selectedwallet) {
         connectPhantom(walletType);
       }
-      setisConnected(true);
-      sessionStorage.setItem("isConnected", "true");
+      // setisConnected(true);
+      // sessionStorage.setItem("isConnected", "true");
       sessionStorage.setItem("walletname", walletType);
     } catch (err) {
       console.log(err);
@@ -187,6 +187,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         setAccount,
         Connect,
         DisConnect,
+        setisConnected,
         getBalance,
         balance,
         setBalance,
