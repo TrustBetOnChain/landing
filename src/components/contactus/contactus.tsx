@@ -6,6 +6,7 @@ import Telegram from "../../assets/imgs/tg.svg";
 import Youtube from "../../assets/imgs/youtube.svg";
 import X from "../../assets/imgs/x.svg";
 import Assure from "../../assets/imgs/assure.svg";
+import MEDIUM from "../../assets/imgs/Medium_Icon.svg";
 import DISCORD from "../../assets/imgs/discord.svg";
 import { PageSection } from "../../page-section";
 import { useState } from "react";
@@ -86,6 +87,9 @@ export const ContactUs = () => {
           </a>
           <a target="_blank" href="https://discord.gg/x54S3bChs3">
             <img src={DISCORD} alt="" />
+          </a>
+          <a target="_blank" href="https://medium.com/@TrustBet">
+            <img src={MEDIUM} alt="" />
           </a>
         </div>
       </article>

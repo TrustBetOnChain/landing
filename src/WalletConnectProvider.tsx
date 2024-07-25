@@ -13,7 +13,6 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
   TrustWalletAdapter,
-  WalletConnectWalletAdapter,
   ParticleAdapter,
   AlphaWalletAdapter,
   AvanaWalletAdapter,
@@ -36,8 +35,9 @@ import {
   TokenPocketWalletAdapter,
   XDEFIWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { WalletConnectWalletAdapter } from "@solana/wallet-adapter-walletconnect";
 import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { CLUSTER, ENDPOINT } from "./presale/config";
+import { CLUSTER, } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
@@ -53,9 +53,7 @@ export const WalletConnectProvider = ({
       new SolflareWalletAdapter(),
       new PhantomWalletAdapter(),
       new WalletConnectWalletAdapter({
-        network: CLUSTER as
-          | WalletAdapterNetwork.Devnet
-          | WalletAdapterNetwork.Mainnet,
+        network: CLUSTER as WalletAdapterNetwork.Mainnet,
         options: {
           projectId: WALLETCONNECT_PROJECT_ID,
           metadata: {

@@ -9,14 +9,14 @@ import {
   CoinbaseWalletName,
   PhantomWalletName,
   SolflareWalletName,
-  TrustWalletName,
+  WalletConnectWalletName,
 } from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
 
 const wallet = {
   Phantom: PhantomWalletName,
   Solflare: SolflareWalletName,
-  trustwallet: TrustWalletName,
+  trustwallet: WalletConnectWalletName,
   coinbase: CoinbaseWalletName,
 };
 
@@ -132,7 +132,10 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         const resp = await provider.request({ method: "connect" });
         setAccount(resp.publicKey.toString());
       }
+      console.log(selectedwallet);
+
       if (!selectedwallet) {
+        console.log({ walletType });
         connectPhantom(walletType);
       }
       // setisConnected(true);
@@ -170,6 +173,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const connectPhantom = (walletType: any) => {
+    console.log({ walletType });
+
     // Retrieve the wallet name from local storage
     // Map of wallet names to wallet adapter constants
     // Select the wallet and connect if not already connected
