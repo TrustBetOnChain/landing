@@ -116,7 +116,7 @@ export const Roadmap = () => {
               <div className="swiper-line"></div>
               <ul>
                 <li>
-                  <img src={Loading} alt="" />
+                  <img src={Ok} alt="" />
                   <p>Presale program marketing and continuation</p>
                 </li>
                 <li>
