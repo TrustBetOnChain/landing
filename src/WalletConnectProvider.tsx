@@ -37,7 +37,7 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { WalletConnectWalletAdapter } from "@solana/wallet-adapter-walletconnect";
 import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { CLUSTER, } from "./presale/config";
+import { CLUSTER } from "./presale/config";
 import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
@@ -62,6 +62,8 @@ export const WalletConnectProvider = ({
             icons: [],
             url: ORIGIN,
           },
+          logger: 'debug', // Add this line
+          relayUrl: "wss://relay.walletconnect.com",
         },
       }),
       new TorusWalletAdapter(),
