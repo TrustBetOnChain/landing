@@ -109,7 +109,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         return window.open(
           // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
           // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          "https://phantom.app/ul/browse/https://landing-git-feature-uinewchanges-trust-bet.vercel.app/?ref=https://landing-git-feature-uinewchanges-trust-bet.vercel.app/",
+          "https://phantom.app/ul/browse/https://trustbetonchain.com/?ref=https://trustbetonchain.com/",
           "_blank",
         );
       }
