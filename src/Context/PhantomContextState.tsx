@@ -9,14 +9,15 @@ import {
   CoinbaseWalletName,
   PhantomWalletName,
   SolflareWalletName,
-  WalletConnectWalletName,
+  TrustWalletName,
+  // WalletConnectWalletName,
 } from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
 
 const wallet = {
   Phantom: PhantomWalletName,
   Solflare: SolflareWalletName,
-  trustwallet: WalletConnectWalletName,
+  trustwallet: TrustWalletName,
   coinbase: CoinbaseWalletName,
 };
 
@@ -134,6 +135,14 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
           params,
         );
         return window.open(url, "_blank");
+      }
+    }
+    if (walletType === "trustwallet") {
+      if (!("trustwallet" in window)) {
+        return window.open(
+          `https://link.trustwallet.com/browser?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+          "_blank",
+        );
       }
     }
     try {

@@ -53,17 +53,17 @@ export const WalletConnectProvider = ({
       new SolflareWalletAdapter(),
       new PhantomWalletAdapter(),
       new WalletConnectWalletAdapter({
-        network: CLUSTER as WalletAdapterNetwork.Mainnet,
+        network: "mainnet-beta" as WalletAdapterNetwork.Mainnet,
         options: {
-          projectId: WALLETCONNECT_PROJECT_ID,
+          relayUrl: 'wss://relay.walletconnect.com',
+          // example WC app project ID
+          projectId: 'e899c82be21d4acca2c8aec45e893598',
           metadata: {
-            name: "Trust Bet On-Chain",
-            description: "Trust Bet On-Chain",
-            icons: [],
-            url: ORIGIN,
+            name: 'Example App',
+            description: 'Example App',
+            url: 'https://github.com/anza-xyz/wallet-adapter',
+            icons: ['https://avatars.githubusercontent.com/u/35608259?s=200'],
           },
-          logger: 'debug', // Add this line
-          relayUrl: "wss://relay.walletconnect.com",
         },
       }),
       new TorusWalletAdapter(),
