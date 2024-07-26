@@ -119,7 +119,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         return window.open(
           // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
           // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          `https://go.cb-w.com/dapp?cb_url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}"`,
+          `https://go.cb-w.com/dapp?cb_url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}`,
           "_blank",
         );
       }
