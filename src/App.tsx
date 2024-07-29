@@ -21,7 +21,11 @@ function App() {
       <Header />
       <HeaderMobile />
       <main>
+
         <Main />
+        {
+          window.trustWallet && <p>trustwallet adapter found</p>
+        }
         <Cards />
         <Future />
         <Benefits />

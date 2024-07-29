@@ -248,6 +248,7 @@ h2 {
   }
   .topmainsection {
     flex-direction: column-reverse;
+    gap: 50px;
     padding-top: 100px !important;
     margin-bottom: 0 !important;
   }
