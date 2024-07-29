@@ -110,7 +110,6 @@ export const ConnectModal = ({
       [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
       program.programId,
     );
-    // console.log(new PublicKey(account));
     try {
       const userInfo = await program.account.userInfo.fetch(userInfoAddress);
       setBalance(Number(userInfo.stake) / 10 ** vaultMintDecimals);

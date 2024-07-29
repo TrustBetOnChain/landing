@@ -35,10 +35,9 @@ import {
   TokenPocketWalletAdapter,
   XDEFIWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { WalletConnectWalletAdapter } from "@solana/wallet-adapter-walletconnect";
-import { Adapter, WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { Adapter, } from "@solana/wallet-adapter-base";
 import { CLUSTER } from "./presale/config";
-import { ORIGIN, WALLETCONNECT_PROJECT_ID } from "./constants";
+import { ORIGIN, } from "./constants";
 import { UnifiedWalletProvider } from "@jup-ag/wallet-adapter";
 
 // const ICON = `${ORIGIN}logo.svg`;
@@ -52,20 +51,20 @@ export const WalletConnectProvider = ({
     return [
       new SolflareWalletAdapter(),
       new PhantomWalletAdapter(),
-      new WalletConnectWalletAdapter({
-        network: "mainnet-beta" as WalletAdapterNetwork.Mainnet,
-        options: {
-          relayUrl: 'wss://relay.walletconnect.com',
-          // example WC app project ID
-          projectId: 'e899c82be21d4acca2c8aec45e893598',
-          metadata: {
-            name: 'Example App',
-            description: 'Example App',
-            url: 'https://github.com/anza-xyz/wallet-adapter',
-            icons: ['https://avatars.githubusercontent.com/u/35608259?s=200'],
-          },
-        },
-      }),
+      // new WalletConnectWalletAdapter({
+      //   network: "mainnet-beta" as WalletAdapterNetwork.Mainnet,
+      //   options: {
+      //     relayUrl: 'wss://relay.walletconnect.com',
+      //     // example WC app project ID
+      //     projectId: 'e899c82be21d4acca2c8aec45e893598',
+      //     metadata: {
+      //       name: 'Example App',
+      //       description: 'Example App',
+      //       url: 'https://github.com/anza-xyz/wallet-adapter',
+      //       icons: ['https://avatars.githubusercontent.com/u/35608259?s=200'],
+      //     },
+      //   },
+      // }),
       new TorusWalletAdapter(),
       new TrustWalletAdapter(),
       new CoinbaseWalletAdapter(),
