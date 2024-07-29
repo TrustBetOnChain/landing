@@ -140,7 +140,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "trustwallet") {
       if (!("trustwallet" in window)) {
         return window.open(
-          `https://link.trustwallet.com/browser?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+          `https://link.trustwallet.com/open_url?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
           "_blank",
         );
       }
