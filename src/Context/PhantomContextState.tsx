@@ -52,7 +52,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const maxReloads = 2;
+    const maxReloads = 6;
     const reloadCount = parseInt(
       sessionStorage.getItem("reloadCount") || "0",
       10,
