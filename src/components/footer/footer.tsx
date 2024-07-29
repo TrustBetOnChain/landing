@@ -29,7 +29,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer className={`${s.footer} ${showFooter ? "visible" : "hidden"}`}>
+    <footer className={`${s.footer} sm:hidden max-sm:${showFooter ? "visible" : "hidden"}`}>
       <ConnectModal className={s.button} />
     </footer>
   );
