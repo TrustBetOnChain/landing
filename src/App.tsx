@@ -24,7 +24,8 @@ function App() {
 
         <Main />
         {
-          window.trustWallet || window?.trustwallet && <p>trustwallet adapter found</p>
+          // @ts-ignore 
+          (window?.trustWallet || window?.trustwallet) && <p>trustwallet adapter found</p>
         }
         <Cards />
         <Future />
