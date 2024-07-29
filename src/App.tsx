@@ -22,10 +22,7 @@ function App() {
       <HeaderMobile />
       <main>
         <Main />
-        {
-          // @ts-ignore 
-          (window?.trustWallet || window?.trustwallet) && <p>trustwallet adapter found</p>
-        }
+
         <Cards />
         <Future />
         <Benefits />
