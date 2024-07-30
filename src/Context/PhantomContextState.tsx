@@ -51,7 +51,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // setProvider(getProvider());
   }, []);
 
-  const urlparam = new URLSearchParams();
+  const urlparam = new URLSearchParams(window.location.search);
 
   useEffect(() => {
     const maxReloads = 6;
