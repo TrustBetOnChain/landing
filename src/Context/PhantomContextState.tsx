@@ -51,6 +51,8 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // setProvider(getProvider());
   }, []);
 
+  const urlparam = new URLSearchParams();
+
   useEffect(() => {
     const maxReloads = 6;
     const reloadCount = parseInt(
@@ -58,7 +60,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       10,
     );
     // @ts-ignore
-    if (!window.phantom && reloadCount < maxReloads) {
+    if (urlparam?.get("phantom") && reloadCount < maxReloads) {
       sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
       if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
         window.location.reload();
@@ -108,9 +110,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "Phantom") {
       if (!("phantom" in window)) {
         return window.open(
-          // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-          // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          "https://phantom.app/ul/browse/https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/?ref=https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
+          "https://phantom.app/ul/browse/https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app?wallet=phantom/?ref=https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app?wallet=phantom",
           "_blank",
         );
       }
@@ -131,20 +131,54 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
           ref: "https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
         });
         const url = buildUrl(
-          `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+          `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}`,
           params,
         );
         return window.open(url, "_blank");
       }
     }
+    // if (walletType === "trustwallet") {
+    //   if (!("trustwallet" in window || "trustWallet" in window)) {
+    //     return window.open(
+    //       `https://link.trustwallet.com/open_url?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}`,
+    //       "_blank",
+    //     );
+    //   }
+    // }
+
     if (walletType === "trustwallet") {
-      if (!("trustwallet" in window || "trustWallet" in window)) {
-        return window.open(
-          `https://link.trustwallet.com/open_url?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
+      // Function to check if Trust Wallet is available
+      const isTrustWalletAvailable = () => {
+        return (
+          typeof window.ethereum !== "undefined" && window.ethereum.isTrust
+        );
+      };
+
+      // Function to check if MetaMask is available
+      const isMetaMaskAvailable = () => {
+        return (
+          typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
+        );
+      };
+
+      // Check for Trust Wallet specifically
+      if (isTrustWalletAvailable()) {
+        window.location.href = `trust://browser_open_url?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}`;
+      } else if (isMetaMaskAvailable()) {
+        // Handle MetaMask case (example, opening in MetaMask browser if necessary)
+        window.open(
+          `https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app`,
+          "_blank",
+        );
+      } else {
+        // If neither Trust Wallet nor MetaMask is available, open the fallback URL
+        window.open(
+          `https://link.trustwallet.com/open_url?url=${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app")}`,
           "_blank",
         );
       }
     }
+
     try {
       if (walletType === "Phantom") {
         const provider = getProvider(); // see "Detecting the Provider"
@@ -192,8 +226,12 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const connectPhantom = (walletType: any) => {
-    console.log({ walletType });
-
+    if (urlparam.get("phantom")) {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("phantom");
+      // Update the URL without reloading the page
+      window.history.pushState({}, "", url);
+    }
     // Retrieve the wallet name from local storage
     // Map of wallet names to wallet adapter constants
     // Select the wallet and connect if not already connected
