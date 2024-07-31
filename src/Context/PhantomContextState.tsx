@@ -108,10 +108,13 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     if (walletType === "trustwallet") {
       // @ts-ignore
-      alert(window?.trustWallet || window?.trustwallet);
+      // alert(window?.trustWallet || window?.trustwallet);
       if (!("trustwallet" in window || "trustWallet" in window)) {
+        // if ((window?.trustWallet || window?.trustwallet) === undefined) {
+        //   window.open()
+        // }
         return window.open(
-          `https://link.trustwallet.com/open_url?url=${encodeURIComponent(`${window.location.href}`)}`,
+          `https://link.trustwallet.com/open_url?url=${window.location.href}`,
           "_blank",
         );
       }
