@@ -106,44 +106,44 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         return window.open(url, "_blank");
       }
     }
-    // if (walletType === "trustwallet") {
-    //   if (!("trustwallet" in window || "trustWallet" in window)) {
-    //     return window.open(
-    //       `https://link.trustwallet.com/open_url?url=${encodeURIComponent("${window.location.href}")}`,
-    //       "_blank",
-    //     );
-    //   }
-    // }
-
     if (walletType === "trustwallet") {
-      // Function to check if Trust Wallet is available
-      const isTrustWalletAvailable = () => {
-        return (
-          typeof window.ethereum !== "undefined" && window.ethereum.isTrust
-        );
-      };
-
-      // Function to check if MetaMask is available
-      const isMetaMaskAvailable = () => {
-        return (
-          typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
-        );
-      };
-
-      // Check for Trust Wallet specifically
-      if (isTrustWalletAvailable()) {
-        window.location.href = `trust://browser_open_url?url=${encodeURIComponent(`${window.location.href}`)}`;
-      } else if (isMetaMaskAvailable()) {
-        // Handle MetaMask case (example, opening in MetaMask browser if necessary)
-        window.open(`${window.location.href}`, "_blank");
-      } else {
-        // If neither Trust Wallet nor MetaMask is available, open the fallback URL
-        window.open(
+      if (!("trustwallet" in window || "trustWallet" in window)) {
+        return window.open(
           `https://link.trustwallet.com/open_url?url=${encodeURIComponent(`${window.location.href}`)}`,
           "_blank",
         );
       }
     }
+
+    // if (walletType === "trustwallet") {
+    //   // Function to check if Trust Wallet is available
+    //   const isTrustWalletAvailable = () => {
+    //     return (
+    //       typeof window.ethereum !== "undefined" && window.ethereum.isTrust
+    //     );
+    //   };
+
+    //   // Function to check if MetaMask is available
+    //   const isMetaMaskAvailable = () => {
+    //     return (
+    //       typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
+    //     );
+    //   };
+
+    //   // Check for Trust Wallet specifically
+    //   if (isTrustWalletAvailable()) {
+    //     window.location.href = `trust://browser_open_url?url=${encodeURIComponent(`${window.location.href}`)}`;
+    //   } else if (isMetaMaskAvailable()) {
+    //     // Handle MetaMask case (example, opening in MetaMask browser if necessary)
+    //     window.open(`${window.location.href}`, "_blank");
+    //   } else {
+    //     // If neither Trust Wallet nor MetaMask is available, open the fallback URL
+    //     window.open(
+    //       `https://link.trustwallet.com/open_url?url=${encodeURIComponent(`${window.location.href}`)}`,
+    //       "_blank",
+    //     );
+    //   }
+    // }
 
     try {
       if (walletType === "Phantom") {
