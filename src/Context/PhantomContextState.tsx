@@ -124,7 +124,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
           return window.open(window.location.href, "_self");
         }
         return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}&wallet=trustwallet`,
+          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=trustwallet`,
           "_blank",
         );
       }
