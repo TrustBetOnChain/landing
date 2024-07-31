@@ -121,11 +121,11 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
             // @ts-ignore
             window?.trustwallet === undefined)
         ) {
-          window.open(window.location.href, "_self");
+          return window.open(window.location.href, "_self");
         }
         return window.open(
           `https://link.trustwallet.com/open_url?url=${window.location.href}&wallet=trustwallet`,
-          "_",
+          "_blank",
         );
       }
     }
