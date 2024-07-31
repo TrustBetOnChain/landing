@@ -114,7 +114,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         );
       }
     }
-
     // if (walletType === "trustwallet") {
     //   // Function to check if Trust Wallet is available
     //   const isTrustWalletAvailable = () => {
@@ -151,14 +150,10 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         const resp = await provider.request({ method: "connect" });
         setAccount(resp.publicKey.toString());
       }
-      console.log(selectedwallet);
-
       if (!selectedwallet) {
         console.log({ walletType });
         connectPhantom(walletType);
       }
-      // setisConnected(true);
-      // sessionStorage.setItem("isConnected", "true");
       sessionStorage.setItem("walletname", walletType);
     } catch (err) {
       console.log(err);

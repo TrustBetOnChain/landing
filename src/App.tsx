@@ -16,18 +16,12 @@ import { TBetModes } from "./components/trustbetmodes/tbetmodes";
 import { HeaderMobile } from "./components/mobile/header/header";
 
 function App() {
-  const headElement = document.querySelector("head");
-  const attributes = headElement?.attributes;
-  if (!window.ethereum) {
-    alert("window.ethereum not found")
-  }
   return (
     <>
       <Header />
       <HeaderMobile />
       <main>
         <Main />
-        {!!attributes?.length && <p>Head tag extra attributes found</p>}
         <Cards />
         <Future />
         <Benefits />
