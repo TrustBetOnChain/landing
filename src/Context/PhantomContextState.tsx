@@ -110,6 +110,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       // alert(window?.trustWallet || window?.trustwallet);
       const param = new URLSearchParams(window.location.search);
       if (!("trustwallet" in window || "trustWallet" in window)) {
+        if (param.get("wallet")) {
+          alert("wallet" + param.get("wallet"));
+        }
         if (
           // @ts-ignore
           param.get("wallet") &&
@@ -122,7 +125,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         }
         return window.open(
           `https://link.trustwallet.com/open_url?url=${window.location.href}&wallet=trustwallet`,
-          "_blank",
+          "_",
         );
       }
     }
