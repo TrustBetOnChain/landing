@@ -107,58 +107,13 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      // alert(window?.trustWallet || window?.trustwallet);
-      const param = new URLSearchParams(window.location.search);
       if (!("trustwallet" in window || "trustWallet" in window)) {
-        if (param.get("wallet")) {
-          alert("wallet" + param.get("wallet"));
-        }
-        if (
-          // @ts-ignore
-          param.get("wallet") &&
-          // @ts-ignore
-          (window?.trustWallet === undefined ||
-            // @ts-ignore
-            window?.trustwallet === undefined)
-        ) {
-          return window.open(window.location.href, "_self");
-        }
         return window.open(
           `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=trustwallet`,
           "_blank",
         );
       }
     }
-    // if (walletType === "trustwallet") {
-    //   // Function to check if Trust Wallet is available
-    //   const isTrustWalletAvailable = () => {
-    //     return (
-    //       typeof window.ethereum !== "undefined" && window.ethereum.isTrust
-    //     );
-    //   };
-
-    //   // Function to check if MetaMask is available
-    //   const isMetaMaskAvailable = () => {
-    //     return (
-    //       typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
-    //     );
-    //   };
-
-    //   // Check for Trust Wallet specifically
-    //   if (isTrustWalletAvailable()) {
-    //     window.location.href = `trust://browser_open_url?url=${encodeURIComponent(`${window.location.href}`)}`;
-    //   } else if (isMetaMaskAvailable()) {
-    //     // Handle MetaMask case (example, opening in MetaMask browser if necessary)
-    //     window.open(`${window.location.href}`, "_blank");
-    //   } else {
-    //     // If neither Trust Wallet nor MetaMask is available, open the fallback URL
-    //     window.open(
-    //       `https://link.trustwallet.com/open_url?url=${encodeURIComponent(`${window.location.href}`)}`,
-    //       "_blank",
-    //     );
-    //   }
-    // }
-
     try {
       if (walletType === "Phantom") {
         const provider = getProvider(); // see "Detecting the Provider"
