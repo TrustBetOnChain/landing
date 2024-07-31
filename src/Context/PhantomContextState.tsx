@@ -24,6 +24,7 @@ const wallet = {
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState(0);
+  const urlParams = new URLSearchParams(window.location.search);
   const [SolanaBalance, setSolanaBalance] = useState<any>(0);
   const {
     select,
@@ -54,18 +55,22 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const urlparam = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    const maxReloads = 6;
-    const reloadCount = parseInt(
-      sessionStorage.getItem("reloadCount") || "0",
-      10,
-    );
-    // @ts-ignore
-    if (urlparam?.get("phantom") && reloadCount < maxReloads) {
-      sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
-      if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        window.location.reload();
-      }
+    if (urlParams.get("wallet")) {
+      // @ts-ignore
+      Connect(urlparam.get("wallet"));
     }
+    // const maxReloads = 6;
+    // const reloadCount = parseInt(
+    //   sessionStorage.getItem("reloadCount") || "0",
+    //   10,
+    // );
+    // // @ts-ignore
+    // if (urlparam?.get("phantom") && reloadCount < maxReloads) {
+    //   sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
+    //   if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+    //     window.location.reload();
+    //   }
+    // }
   }, []);
 
   const getBalance = async () => {
@@ -81,7 +86,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "Phantom") {
       if (!("phantom" in window)) {
         return window.open(
-          `https://phantom.app/ul/browse/${window.location.href}?wallet=phantom/?ref=${window.location.href}?wallet=phantom`,
+          `https://phantom.app/ul/browse/${window.location.href}?wallet=${walletType}/?ref=${window.location.href}?wallet=${walletType}`,
           "_blank",
         );
       }
@@ -89,7 +94,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "coinbase") {
       if (!("CoinbaseWalletProvider" in window)) {
         return window.open(
-          `https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`${window.location.href}`)}`,
+          `https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`${window.location.href}`)}?wallet=${walletType}`,
           "_blank",
         );
       }
@@ -100,7 +105,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
           ref: `${window.location.href}/`,
         });
         const url = buildUrl(
-          `v1/browse/${encodeURIComponent(`${window.location.href}`)}`,
+          `v1/browse/${encodeURIComponent(`${window.location.href}`)}?wallet=${walletType}`,
           params,
         );
         return window.open(url, "_blank");
@@ -109,7 +114,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "trustwallet") {
       if (!("trustwallet" in window || "trustWallet" in window)) {
         return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=trustwallet`,
+          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
           "_blank",
         );
       }
