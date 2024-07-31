@@ -18,6 +18,9 @@ import { HeaderMobile } from "./components/mobile/header/header";
 function App() {
   const headElement = document.querySelector("head");
   const attributes = headElement?.attributes;
+  if (!window.ethereum) {
+    alert("window.ethereum not found")
+  }
   return (
     <>
       <Header />
