@@ -112,11 +112,11 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       if (!("trustwallet" in window || "trustWallet" in window)) {
         if (
           // @ts-ignore
-          (param.get("wallet") &&
-            // @ts-ignore
-            window?.trustWallet === undefined) ||
+          param.get("wallet") &&
           // @ts-ignore
-          window?.trustwallet === undefined
+          (window?.trustWallet === undefined ||
+            // @ts-ignore
+            window?.trustwallet === undefined)
         ) {
           window.open(window.location.href, "_self");
         }
