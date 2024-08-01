@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC, Fragment } from "react";
+import { FC, Fragment, useEffect } from "react";
 import "./index.css";
 import { Dialog, Transition } from "@headlessui/react";
 import PHANTOMWALLET from "../../assets/imgs/phantom.svg";
