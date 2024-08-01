@@ -102,10 +102,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       if (!("solflare" in window)) {
         const params = new URLSearchParams({
           ref: `${window.location.href}/`,
-          wallet: walletType,
         });
         const url = buildUrl(
-          `v1/browse/${encodeURIComponent(`${window.location.href}`)}`,
+          `v1/browse/${encodeURIComponent(`${window.location.href}?wallet=${walletType}`)}`,
           params,
         );
         return window.open(url, "_blank");
