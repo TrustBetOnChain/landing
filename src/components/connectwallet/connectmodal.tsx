@@ -65,7 +65,7 @@ export const ConnectModal = ({
   const { wallet, publicKey } = useWallet()
   useEffect(() => {
     if (publicKey) {
-      window.history.pushState("", "", "/")
+      // window.history.pushState("", "", "/")
       setisConnected(true)
       sessionStorage.setItem("isConnected", "true");
       setAccount(publicKey.toString());

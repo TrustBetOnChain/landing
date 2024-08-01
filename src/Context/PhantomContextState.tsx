@@ -24,7 +24,6 @@ const wallet = {
 const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   const [account, setAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState(0);
-  const urlParams = new URLSearchParams(window.location.search);
   const [SolanaBalance, setSolanaBalance] = useState<any>(0);
   const {
     select,
