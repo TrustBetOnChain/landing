@@ -152,7 +152,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
 
   const DisConnect = () => {
     const _provider = getProvider();
-    _provider!.disconnect()!;
+    if (_provider) {
+      _provider!.disconnect()!;
+    }
     disconnect();
     setAccount("");
     setisConnected(false);
