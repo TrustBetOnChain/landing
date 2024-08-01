@@ -17,9 +17,13 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
     // @ts-ignore
     const { Connect } = usePhantomContext();
     const urlparam = new URLSearchParams(window.location.search);
-    if (urlparam?.get("wallet")) {
-        alert("wallet detecteds")
-    }
+    useEffect(() => {
+        if (urlparam?.get("wallet")) {
+            alert("wallet detecteds" + " " + urlparam?.get("wallet"))
+        }
+    }, [])
+
+
     const ConnectWallet = (wallet: string) => {
         if (urlparam.get("wallet") && urlparam.get("wallet") !== wallet) {
             return false;
