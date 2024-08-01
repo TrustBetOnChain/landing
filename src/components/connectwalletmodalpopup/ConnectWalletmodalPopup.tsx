@@ -24,7 +24,7 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
         Connect(wallet);
         onClose();
     };
-    const isDisabled = (wallet: string) => urlparam.get("wallet") && urlparam.get("wallet") !== wallet;
+    const isDisabled = (wallet: string) => (urlparam.get("wallet") && urlparam.get("wallet") !== wallet)
     return (
         <Transition.Root show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-[1000]" onClose={onClose}>

@@ -52,26 +52,26 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // setProvider(getProvider());
   }, []);
 
-  const urlparam = new URLSearchParams(window.location.search);
+  // const urlparam = new URLSearchParams(window.location.search);
 
-  useEffect(() => {
-    if (urlParams.get("wallet")) {
-      // @ts-ignore
-      Connect(urlparam.get("wallet"));
-    }
-    // const maxReloads = 6;
-    // const reloadCount = parseInt(
-    //   sessionStorage.getItem("reloadCount") || "0",
-    //   10,
-    // );
-    // // @ts-ignore
-    // if (urlparam?.get("phantom") && reloadCount < maxReloads) {
-    //   sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
-    //   if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-    //     window.location.reload();
-    //   }
-    // }
-  }, []);
+  // useEffect(() => {
+  //   if (urlParams.get("wallet")) {
+  //     // @ts-ignore
+  //     Connect(urlparam.get("wallet"));
+  //   }
+  //   // const maxReloads = 6;
+  //   // const reloadCount = parseInt(
+  //   //   sessionStorage.getItem("reloadCount") || "0",
+  //   //   10,
+  //   // );
+  //   // // @ts-ignore
+  //   // if (urlparam?.get("phantom") && reloadCount < maxReloads) {
+  //   //   sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
+  //   //   if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+  //   //     window.location.reload();
+  //   //   }
+  //   // }
+  // }, []);
 
   const getBalance = async () => {
     const connection = new Connection(ENDPOINT, "confirmed");
