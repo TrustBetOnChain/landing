@@ -16,6 +16,15 @@ interface Props {
 const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
     // @ts-ignore
     const { Connect } = usePhantomContext();
+    const urlparam = new URLSearchParams(window.location.search);
+    const ConnectWallet = (wallet: string) => {
+        if (urlparam.get("wallet") && urlparam.get("wallet") !== wallet) {
+            return false;
+        }
+        Connect(wallet);
+        onClose();
+    };
+    const isDisabled = (wallet: string) => urlparam.get("wallet") && urlparam.get("wallet") !== wallet;
     return (
         <Transition.Root show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-[1000]" onClose={onClose}>
@@ -60,43 +69,29 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                         </h1>
                                         <div className="walletswrapper  max-sm:gap-[14px] ">
                                             <div
-                                                onClick={() => {
-                                                    Connect("Phantom");
-                                                    onClose();
-                                                }}
-                                                className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full "
+                                                onClick={() => ConnectWallet("Phantom")}
+                                                className={`flex  justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("Phantom") && "opacity-30"}`}
                                             >
                                                 <img src={PHANTOMWALLET} />
                                                 <p>Phantom Wallet </p>
                                             </div>
                                             <div
-                                                onClick={() => {
-                                                    Connect("coinbase");
-                                                    onClose();
-                                                }}
-                                                className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full "
+                                                onClick={() => ConnectWallet("coinbase")}
+                                                className={`flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("coinbase") && "opacity-30"} `}
                                             >
                                                 <img src={COINBASEWALLET} />
                                                 <p>Coinbase Wallet </p>
                                             </div>
                                             <div
-                                                onClick={() => {
-                                                    console.log("here");
-
-                                                    Connect("trustwallet");
-                                                    onClose();
-                                                }}
-                                                className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full "
+                                                onClick={() => ConnectWallet("trustwallet")}
+                                                className={`flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("trustwallet") && "opacity-30"} `}
                                             >
                                                 <img src={TRUSTWALLET} />
                                                 <p>Trust Wallet </p>
                                             </div>
                                             <div
-                                                onClick={() => {
-                                                    onClose();
-                                                    Connect("Solflare");
-                                                }}
-                                                className="flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full "
+                                                onClick={() => ConnectWallet("Solflare")}
+                                                className={`flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("Solflare") && "opacity-30"}`}
                                             >
                                                 <img src={SOLFLAREWALLET} />
                                                 <p>Solflare Wallet </p>
@@ -109,7 +104,7 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                     </div>
                 </div>
             </Dialog>
-        </Transition.Root>
+        </Transition.Root >
     );
 };
 

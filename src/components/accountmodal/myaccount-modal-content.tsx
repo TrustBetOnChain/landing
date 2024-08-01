@@ -1,8 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
 import {
-  ShieldCheckIcon,
   XMarkIcon,
-  ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 import "./accountmodalcontent.css";
 import classNames from "classnames";
@@ -244,33 +242,20 @@ export const MyAccountModalContent: React.FC<Props> = ({
               className="object-cover grid place-content-center object-center w-[241px] h-[241px]"
             />
           </div>
-          {/* <p className="absolute left-4 top-4 text-center sm:static sm:mt-6">
-            <a
-              href="https://solscan.io/token/xpFbKJa92Ee1NSYEhc3b3BVk4im8YStXRaVW6EoW33w"
-              className="font-medium text-white flex justify-center items-center gap-1 hover:text-white"
-              target="_blank"
-            >
-              View on Solscan
-              <ArrowTopRightOnSquareIcon height={20} width={20} />
-            </a>
-          </p> */}
         </div>
         <div className="sm:col-span-8 lg:col-span-7">
           <section aria-labelledby="information-heading" className="mt-4">
             <h3 id="information-heading" className="sr-only">
               Product information
             </h3>
-
             <div className="flex items-center">
               <p className="text-[28px] text-white">Price: ${price}</p>
             </div>
           </section>
-
           <section aria-labelledby="options-heading" className="mt-5">
             <h3 id="options-heading" className="sr-only">
               Product options
             </h3>
-
             <form onSubmit={handleSubmit(submitHandler)}>
               <div className="sm:flex sm:flex-col sm:justify-between">
                 <RadioGroup

@@ -126,7 +126,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         setAccount(resp.publicKey.toString());
       }
       if (!selectedwallet) {
-        console.log({ walletType });
         connectPhantom(walletType);
       }
       sessionStorage.setItem("walletname", walletType);
@@ -162,12 +161,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const connectPhantom = (walletType: any) => {
-    if (urlparam.get("phantom")) {
-      const url = new URL(window.location.href);
-      url.searchParams.delete("phantom");
-      // Update the URL without reloading the page
-      window.history.pushState({}, "", url);
-    }
     // Retrieve the wallet name from local storage
     // Map of wallet names to wallet adapter constants
     // Select the wallet and connect if not already connected
