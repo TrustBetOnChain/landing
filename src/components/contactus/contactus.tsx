@@ -60,7 +60,7 @@ export const ContactUs = () => {
           </div>
         </div>
       </aside>
-      <article className={s["article"]}>
+      <article className={s["article"] + " z-[200]"}>
         <h2 className={s["title"]}>Have any questions?</h2>
         <span className={s["span"] + " !mb-5"}>
           Please join our Discord, Telegram and X.com and we <br /> would be

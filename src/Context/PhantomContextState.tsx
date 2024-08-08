@@ -10,6 +10,7 @@ import {
   PhantomWalletName,
   SolflareWalletName,
   TrustWalletName,
+  // WalletConnectWalletName,
 } from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
 
@@ -50,93 +51,82 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // setProvider(getProvider());
   }, []);
 
-  useEffect(() => {
-    const maxReloads = 2;
-    const reloadCount = parseInt(
-      sessionStorage.getItem("reloadCount") || "0",
-      10,
-    );
-    // @ts-ignore
-    if (!window.phantom && reloadCount < maxReloads) {
-      sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
-      if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-        window.location.reload();
-      }
-    }
-  }, []);
+  // const urlparam = new URLSearchParams(window.location.search);
 
   // useEffect(() => {
-  //   // Store user's public key once they connect
-  //   if (provider) {
-  //     provider?.on("connect", (publicKey: string) => {
-  //       console.log(publicKey);
-  //       setisConnected(true);
-  //       setAccount(publicKey.toString());
-  //       connect();
-  //       // connect();
-  //     });
-
-  //     // Forget user's public key once they disconnect
-  //     provider?.on("disconnect", () => {
-  //       setisConnected(false);
-  //       setAccount(null);
-  //       setProvider(null);
-  //     });
-
-  //     provider?.on("accountChanged", (publicKey: any) => {
-  //       console.log("account changed");
-  //       if (publicKey) {
-  //         // Set new public key and continue as usual
-  //         // connect();
-  //         setAccount(publicKey.toBase58());
-  //       }
-  //     });
+  //   if (urlParams.get("wallet")) {
+  //     // @ts-ignore
+  //     Connect(urlparam.get("wallet"));
   //   }
+  //   // const maxReloads = 6;
+  //   // const reloadCount = parseInt(
+  //   //   sessionStorage.getItem("reloadCount") || "0",
+  //   //   10,
+  //   // );
+  //   // // @ts-ignore
+  //   // if (urlparam?.get("phantom") && reloadCount < maxReloads) {
+  //   //   sessionStorage.setItem("reloadCount", (reloadCount + 1).toString());
+  //   //   if (!navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+  //   //     window.location.reload();
+  //   //   }
+  //   // }
+  // }, []);
 
-  // }, [provider]);
   const getBalance = async () => {
     const connection = new Connection(ENDPOINT, "confirmed");
     const wallet = new PublicKey(account!);
     return `${(await connection.getBalance(wallet)) / LAMPORTS_PER_SOL} SOL`;
   };
-  // const buildUrl = (path: string, params: URLSearchParams) =>
-  //   `https://solflare.com/ul/${path}?${params.toString()}`;
+  const buildUrl = (path: string, params: URLSearchParams) =>
+    `https://solflare.com/ul/${path}?${params.toString()}`;
   const Connect = async (
     walletType: "Phantom" | "Solflare" | "trustwallet" | "coinbase",
   ) => {
     if (walletType === "Phantom") {
       if (!("phantom" in window)) {
         return window.open(
-          // "https://phantom.app/ul/browse?url=htps://trustbetonchain.com&ref=app.phantom",
-          // "https://phantom.app/ul/browse/landing-git-feature-fixtransaction-trust-bet.vercel.app/?ref=https://https://landing-git-feature-fixtransaction-trust-bet.vercel.app//",
-          "https://phantom.app/ul/browse/https://trustbetonchain.com/?ref=https://trustbetonchain.com/",
+          `https://phantom.app/ul/browse/${window.location.href}?wallet=${walletType}/?ref=${window.location.href}?wallet=${walletType}`,
           "_blank",
         );
       }
     }
-    // if (walletType === "Solflare") {
-    //   if (!("solflare" in window)) {
-    //     const params = new URLSearchParams({
-    //       ref: "https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/",
-    //     });
-    //     const url = buildUrl(
-    //       `v1/browse/${encodeURIComponent("https://landing-git-feature-solflarecoinbase-trust-bet.vercel.app/")}`,
-    //       params,
-    //     );
-    //     return window.open(url, "_blank");
-    //   }
-    // }
+    if (walletType === "coinbase") {
+      if (!("CoinbaseWalletProvider" in window)) {
+        return window.open(
+          `https://go.cb-w.com/dapp?cb_url=${encodeURIComponent(`${window.location.href}`)}?wallet=${walletType}`,
+          "_blank",
+        );
+      }
+    }
+    if (walletType === "Solflare") {
+      if (!("solflare" in window)) {
+        const params = new URLSearchParams({
+          ref: `${window.location.href}/`,
+        });
+        const url = buildUrl(
+          `v1/browse/${encodeURIComponent(`${window.location.href}?wallet=${walletType}`)}`,
+          params,
+        );
+        return window.open(url, "_blank");
+      }
+    }
+    if (walletType === "trustwallet") {
+      if (!("trustwallet" in window || "trustWallet" in window)) {
+        return window.open(
+          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+          "_blank",
+        );
+      }
+    }
     try {
-      // if (walletType === "Phantom") {
-      const provider = getProvider(); // see "Detecting the Provider"
-      const resp = await provider.request({ method: "connect" });
-      setAccount(resp.publicKey.toString());
-      // }
+      if (walletType === "Phantom") {
+        const provider = getProvider(); // see "Detecting the Provider"
+        const resp = await provider.request({ method: "connect" });
+        setAccount(resp.publicKey.toString());
+      }
       if (!selectedwallet) {
         connectPhantom(walletType);
       }
-      setisConnected(true);
-      sessionStorage.setItem("isConnected", "true");
       sessionStorage.setItem("walletname", walletType);
     } catch (err) {
       console.log(err);
@@ -162,7 +152,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
 
   const DisConnect = () => {
     const _provider = getProvider();
-    _provider!.disconnect()!;
+    if (_provider) {
+      _provider!.disconnect()!;
+    }
     disconnect();
     setAccount("");
     setisConnected(false);
@@ -187,6 +179,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         setAccount,
         Connect,
         DisConnect,
+        setisConnected,
         getBalance,
         balance,
         setBalance,

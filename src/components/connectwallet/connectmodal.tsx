@@ -43,6 +43,8 @@ export const ConnectModal = ({
     // @ts-ignore
     setBalance,
     // @ts-ignore
+    setisConnected,
+    // @ts-ignore
     isConnected,
     // @ts-ignore
     DisConnect
@@ -63,6 +65,9 @@ export const ConnectModal = ({
   const { wallet, publicKey } = useWallet()
   useEffect(() => {
     if (publicKey) {
+      // window.history.pushState("", "", "/")
+      setisConnected(true)
+      sessionStorage.setItem("isConnected", "true");
       setAccount(publicKey.toString());
     }
   }, [publicKey])
@@ -106,7 +111,6 @@ export const ConnectModal = ({
       [Buffer.from("user_info"), new PublicKey(account)?.toBuffer()],
       program.programId,
     );
-    // console.log(new PublicKey(account));
     try {
       const userInfo = await program.account.userInfo.fetch(userInfoAddress);
       setBalance(Number(userInfo.stake) / 10 ** vaultMintDecimals);
