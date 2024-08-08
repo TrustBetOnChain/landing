@@ -83,8 +83,8 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                                 <p>Coinbase Wallet </p>
                                             </div>
                                             <div
-                                                onClick={() => ConnectWallet("trustwallet")}
-                                                className={`flex justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("trustwallet") && "opacity-30"} `}
+                                                // onClick={() => ConnectWallet("trustwallet")}
+                                                className={`flex justify-center !cursor-default items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full opacity-30 `}
                                             >
                                                 <img src={TRUSTWALLET} />
                                                 <p>Trust Wallet </p>
