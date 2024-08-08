@@ -92,6 +92,7 @@ article {
 
 .article-footer > h3 {
   text-align: left;
+  z-index: 0;
   font-size: 20px;
 }
 
