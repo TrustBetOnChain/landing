@@ -24,7 +24,8 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
         Connect(wallet);
         onClose();
     };
-    const isDisabled = (wallet: string) => (urlparam.get("wallet") && urlparam.get("wallet") !== wallet)
+    const isDisabled = (wallet: string) =>
+        urlparam.get("wallet") && urlparam.get("wallet") !== wallet;
     return (
         <Transition.Root show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-[1000]" onClose={onClose}>
@@ -70,10 +71,13 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                         <div className="walletswrapper  max-sm:gap-[14px] ">
                                             <div
                                                 onClick={() => ConnectWallet("Phantom")}
-                                                className={`flex  justify-center items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("Phantom") && "opacity-30"}`}
+                                                className={`flex  justify-center relative items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full ${isDisabled("Phantom") && "opacity-30"}`}
                                             >
                                                 <img src={PHANTOMWALLET} />
                                                 <p>Phantom Wallet </p>
+                                                <span className="nowrap absolute bottom-[5px] text-[11px] right-[20%]">
+                                                    recommended *
+                                                </span>
                                             </div>
                                             <div
                                                 onClick={() => ConnectWallet("coinbase")}
@@ -83,8 +87,8 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                                                 <p>Coinbase Wallet </p>
                                             </div>
                                             <div
-                                                // onClick={() => ConnectWallet("trustwallet")}
-                                                className={`flex justify-center !cursor-default items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full opacity-30 `}
+                                                onClick={() => ConnectWallet("trustwallet")}
+                                                className={`flex justify-center !cursor-default items-center gap-4 wallet max-2xl:w-[273px] max-sm:!w-full  `}
                                             >
                                                 <img src={TRUSTWALLET} />
                                                 <p>Trust Wallet </p>
@@ -104,7 +108,7 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
                     </div>
                 </div>
             </Dialog>
-        </Transition.Root >
+        </Transition.Root>
     );
 };
 
