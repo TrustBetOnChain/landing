@@ -85,7 +85,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     if (walletType === "Phantom") {
       if (!("phantom" in window)) {
         return window.open(
-          `https://phantom.app/ul/browse/${window.location.href}?wallet=${walletType}/?ref=${window.location.href}?wallet=${walletType}`,
+          `https://phantom.app/ul/browse/${window.location.href}/?ref=${window.location.href}`,
           "_blank",
         );
       }
