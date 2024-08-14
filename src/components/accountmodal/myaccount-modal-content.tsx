@@ -117,7 +117,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
       console.log({
         SolanaBalance,
         dollaramount,
-        butamount: amount * 0.1,
+        butamount: amount * price,
       });
       if (dollaramount < amount * price) {
         setIsLoading(false);
