@@ -1,7 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
-import {
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import "./accountmodalcontent.css";
 import classNames from "classnames";
 import { AnchorWallet, Wallet } from "@solana/wallet-adapter-react";
@@ -121,7 +119,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
         dollaramount,
         butamount: amount * 0.1,
       });
-      if (dollaramount < amount * 0.1) {
+      if (dollaramount < amount * price) {
         setIsLoading(false);
         return toast.error("Insufficient SOL balance");
       }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FC, Fragment, useEffect } from "react";
+import { FC, Fragment, } from "react";
 import "./index.css";
 import { Dialog, Transition } from "@headlessui/react";
 import PHANTOMWALLET from "../../assets/imgs/phantom.svg";
@@ -18,9 +18,9 @@ const ConnectWalletmodalPopup: FC<Props> = ({ isOpen, onClose }) => {
     const { Connect } = usePhantomContext();
     const urlparam = new URLSearchParams(window.location.search);
     const ConnectWallet = (wallet: string) => {
-        if (urlparam.get("wallet") && urlparam.get("wallet") !== wallet) {
-            return false;
-        }
+        // if (urlparam.get("wallet") && urlparam.get("wallet") !== wallet) {
+        //     return false;
+        // }
         Connect(wallet);
         onClose();
     };
