@@ -5,7 +5,7 @@ import axios from "axios";
 export function getTruncatedHash(
   address: string,
   partLength: number = 6,
-  frontlength: number = 9
+  frontlength: number = 9,
 ): string {
   return `${address?.substring(0, frontlength)}...${address?.substring(
     address?.length - partLength,
@@ -58,7 +58,7 @@ export const getSolPrice = async () => {
     );
     const solPrice = response.data.solana.usd;
     console.log(`The current price of Solana (SOL) in USD is $${solPrice}`);
-    return solPrice
+    return solPrice;
   } catch (error) {
     console.error("Error fetching the price:", error);
   }
