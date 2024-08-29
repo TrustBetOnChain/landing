@@ -2,12 +2,7 @@ import s from "./headermobile.module.css";
 
 import BurgerMenu from "../../../assets/imgs/burger-menu.svg";
 import Logo from "../../../assets/imgs/logo.svg";
-import Telegram from "../../../assets/imgs/tg.svg";
-import Youtube from "../../../assets/imgs/youtube.svg";
-import X from "../../../assets/imgs/x.svg";
 import Cross from "../../../assets/imgs/cross.svg";
-import Assure from "../../../assets/imgs/assure.svg";
-import { ConnectWalletButton } from "../../connectwallet/connect-wallet-button";
 import { PageSection } from "../../../page-section";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -21,7 +16,7 @@ export const HeaderMobile = () => {
         <div className="gtranslate_wrapper"></div>
         <ul className={s["nav-list"]}>
           <li className={s["nav-list"]}>
-            <img src={Logo} alt="" />
+            <img className={s["logo"]} src={Logo} alt="" />
           </li>
           <li className={s["burger-menu"]}>
             <img onClick={() => setModal(true)} src={BurgerMenu} alt="" />
@@ -31,10 +26,19 @@ export const HeaderMobile = () => {
       {modal && (
         <div className={s["pop-up"]}>
           <div></div>
-          <aside className={s["aside"]}>
-            <div className={s["aside-header"]}>
-              <img src={Logo} alt="" />
-              <img onClick={() => setModal(false)} src={Cross} alt="" />
+          <aside className={s["aside"] + " relative"}>
+            <div className={s["backdropmist"]} />
+            <div className={s["aside-header"] + " items-center"}>
+              <img src={Logo} alt="" className={s["logo"]} />
+              <img
+                onClick={() => {
+                  console.log("here")
+                  setModal(false)
+                }}
+                className="w-[20px] h-5"
+                src={Cross}
+                alt=""
+              />
             </div>
             <ul className={s["aside-list"]}>
               <li>
@@ -78,14 +82,12 @@ export const HeaderMobile = () => {
                   onClick={() => setModal(false)}
                   // src={Cross}
                   href={`#${PageSection.CONTACT}`}
-                ></a>
+                >
+                  Contact
+                </a>
               </li>
             </ul>
-            <div className={s["aside-footer"]}>
-              <ConnectWalletButton
-                onClick={() => setModal(false)}
-                className={s["button"]}
-              />
+            {/* <div className={s["aside-footer"]}>
               <div className={s["aside-socials"]}>
                 <a target="_blank" href="https://t.me/TrustBetOC">
                   <img src={Telegram} alt="" />
@@ -106,7 +108,7 @@ export const HeaderMobile = () => {
                   <img src={Youtube} alt="" />
                 </a>
               </div>
-            </div>
+            </div> */}
           </aside>
         </div>
       )}

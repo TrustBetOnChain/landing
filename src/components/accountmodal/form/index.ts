@@ -8,7 +8,11 @@ import { CLUSTER } from "../../../presale/config/vars";
 
 export const PriceSchema = z.object({
   coin: z.nativeEnum(Coin),
-  value: z.number().min(1, { message: "Shouldn't be zero" }),
+  value: z
+    .number({
+      required_error: "Token value is required. ",
+    })
+    .min(1, { message: "Token should be minimum 1." })
 });
 
 export type RadioOption<T extends string = string> = {

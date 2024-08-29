@@ -1,4 +1,12 @@
 dialog {
-    min-width: 100%;
-    min-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+section {
+  scroll-margin-top: 150px;
+}
+
+#how-to-start {
+  scroll-margin-top: 180px !important;
 }

@@ -1,11 +1,13 @@
 import Identicon from "identicon.js";
 export * from "./web3";
+import axios from "axios";
 
 export function getTruncatedHash(
   address: string,
   partLength: number = 6,
+  frontlength: number = 9,
 ): string {
-  return `${address?.substring(0, partLength)}...${address?.substring(
+  return `${address?.substring(0, frontlength)}...${address?.substring(
     address?.length - partLength,
   )}`;
 }
@@ -42,3 +44,22 @@ export function getCompactNumber(value: number, currency?: string): string {
   });
   return formatter.format(value);
 }
+
+export const getSolPrice = async () => {
+  try {
+    const response = await axios.get(
+      "https://api.coingecko.com/api/v3/simple/price",
+      {
+        params: {
+          ids: "solana",
+          vs_currencies: "usd",
+        },
+      },
+    );
+    const solPrice = response.data.solana.usd;
+    console.log(`The current price of Solana (SOL) in USD is $${solPrice}`);
+    return solPrice;
+  } catch (error) {
+    console.error("Error fetching the price:", error);
+  }
+};

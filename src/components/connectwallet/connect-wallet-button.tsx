@@ -95,7 +95,7 @@ export const ConnectWalletButton = ({
         <PrimaryButton onClick={handleClick}>
           <div className={s.account}>
             <div>{label}</div>
-            <img className="pb-1 ml-2" src={ConnectWalletImg} alt="" />
+            <img className=" ml-2" src={ConnectWalletImg} alt="" />
           </div>
         </PrimaryButton>
         {isBalanceShown && (
