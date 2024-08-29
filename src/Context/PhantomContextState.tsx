@@ -3,7 +3,7 @@
 import { FC, ReactNode, useEffect, useState } from "react";
 import PhantomContext from "./PhantomContext";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
-import { connection, ENDPOINT } from "../presale/config";
+import { ENDPOINT } from "../presale/config";
 import { useWallet } from "@solana/wallet-adapter-react";
 import {
   CoinbaseWalletName,
@@ -13,7 +13,6 @@ import {
   // WalletConnectWalletName,
 } from "@solana/wallet-adapter-wallets";
 import { getSolPrice } from "../util";
-import { getAssociatedTokenAddress } from "@solana/spl-token";
 
 const wallet = {
   Phantom: PhantomWalletName,
@@ -52,53 +51,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     // setProvider(getProvider());
   }, []);
 
-  const USDT_MINT = new PublicKey(
-    "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
-  );
-
-  const USDC_MINT = new PublicKey(
-    "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-  );
-
   // const urlparam = new URLSearchParams(window.location.search);
-  const getUSDCBalance = async () => {
-    // Get the associated token account address for this user's USDC
-    const tokenAccount = await getAssociatedTokenAddress(
-      USDC_MINT,
-      new PublicKey(account!),
-    );
-
-    // Fetch the token account info
-    const tokenAccountInfo = await connection.getAccountInfo(tokenAccount);
-
-    if (tokenAccountInfo) {
-      // If the account exists, get its balance
-      const accountData = Buffer.from(tokenAccountInfo.data);
-      const balance = accountData.readBigUInt64LE(64);
-
-      // USDC has 6 decimal places
-      const usdcBalance = Number(balance) / 1_000_000;
-
-      return usdcBalance;
-    } else {
-      // If the account doesn't exist, the balance is 0
-      return 0;
-    }
-  };
-  const getUSDTBalance = async () => {
-    const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
-      new PublicKey(account!),
-      { mint: USDT_MINT },
-    );
-
-    if (tokenAccounts.value.length > 0) {
-      const balance =
-        tokenAccounts.value[0].account.data.parsed.info.tokenAmount.uiAmount;
-      return balance;
-    } else {
-      return 0;
-    }
-  };
 
   // useEffect(() => {
   //   if (urlParams.get("wallet")) {
@@ -167,8 +120,6 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     try {
       if (walletType === "Phantom") {
-        console.log("phantom");
-
         const provider = getProvider(); // see "Detecting the Provider"
         const resp = await provider.request({ method: "connect" });
         setAccount(resp.publicKey.toString());
@@ -227,12 +178,9 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         SolanaBalance,
         setAccount,
         Connect,
-        getbalancesolana,
         DisConnect,
         setisConnected,
-        getUSDTBalance,
         getBalance,
-        getUSDCBalance,
         balance,
         setBalance,
       }}
