@@ -35,7 +35,7 @@ import { PreSaleProgram } from "../../presale/types/pre_sale_program";
 import { getPriceFeeds } from "../../presale/config/price-feed";
 import { buyTokensInstruction } from "../../presale/instructions/buy-tokens";
 // import { useEffect } from "react";
-import { geTokenAddressWithCreationInstruction, getSolPrice } from "../../util";
+import { geTokenAddressWithCreationInstruction } from "../../util";
 import { PriceForm, availableCoins, usePriceForm } from "./form";
 // import { simulateTransaction } from "@coral-xyz/anchor/dist/cjs/utils/rpc";
 import { TrustWalletName } from "@solana/wallet-adapter-wallets";
@@ -60,8 +60,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { account, SolanaBalance, getUSDCBalance, getUSDTBalance } =
-    usePhantomContext();
+  const { account, SolanaBalance } = usePhantomContext();
   const {
     register,
     control,
@@ -81,34 +80,6 @@ export const MyAccountModalContent: React.FC<Props> = ({
   const buyTokens = async (amount: number, coin: SupportedToken) => {
     try {
       setIsLoading(true);
-      const newSolprice = 0;
-      if (SolanaBalance === 0) {
-        // newSolprice = await getSolPrice();
-        let retryCount = 0;
-        let newSolprice = 0;
-
-        while (retryCount < 5 && newSolprice === 0) {
-          if (SolanaBalance === 0) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            newSolprice = await getSolPrice()!;
-            if (newSolprice > 0) {
-              break;
-            }
-            retryCount++;
-            // Optional: Add a small delay between retries
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-          } else {
-            break;
-          }
-        }
-        if (retryCount === 5 && newSolprice === 0) {
-          return toast.error(
-            "Failed to fetch SOL price after 5 attempts. The price is still zero.",
-          );
-          // You can also add a user-facing error message here if needed
-          // For example: setErrorMessage("Unable to fetch SOL price. Please try again later.");
-        }
-      }
       const provider = new AnchorProvider(connection, anchorWallet, {});
 
       const program = new Program<PreSaleProgram>(
@@ -139,31 +110,18 @@ export const MyAccountModalContent: React.FC<Props> = ({
         Number(vaultInfo.stake) / 10 ** vaultMintDecimals,
         vaultInfo.decimals,
       ]);
-      if (coin === "SOL") {
-        const currentsolbalance =
-          (await connection.getBalance(new PublicKey(account!))) /
-          LAMPORTS_PER_SOL;
-        const dollaramount = currentsolbalance * (SolanaBalance || newSolprice);
-        if (dollaramount < amount * price) {
-          setIsLoading(false);
-          return toast.error("Insufficient SOL balance");
-        }
-      }
-      if (coin === "USDC") {
-        const currentUsdcBalance = await getUSDCBalance();
-        console.log(currentUsdcBalance, amount * price);
-        if (currentUsdcBalance < amount * price) {
-          setIsLoading(false);
-          return toast.error("Insufficient USDC balance");
-        }
-      }
-      if (coin === "USDT") {
-        const currentUsdcBalance = await getUSDTBalance();
-        console.log(currentUsdcBalance, amount * price);
-        if (currentUsdcBalance < amount * price) {
-          setIsLoading(false);
-          return toast.error("Insufficient USDT balance");
-        }
+      const currentsolbalance =
+        (await connection.getBalance(new PublicKey(account!))) /
+        LAMPORTS_PER_SOL;
+      const dollaramount = currentsolbalance * SolanaBalance;
+      console.log({
+        SolanaBalance,
+        dollaramount,
+        butamount: amount * price,
+      });
+      if (dollaramount < amount * price) {
+        setIsLoading(false);
+        return toast.error("Insufficient SOL balance");
       }
       const feed = getPriceFeeds(CLUSTER)[coin];
 
