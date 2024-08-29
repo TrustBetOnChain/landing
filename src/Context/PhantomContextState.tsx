@@ -142,6 +142,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   const getbalancesolana = async () => {
+    console.log("balance")
     setSolanaBalance(await getSolPrice());
   };
   useEffect(() => {
