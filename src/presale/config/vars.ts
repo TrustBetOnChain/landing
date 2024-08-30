@@ -15,5 +15,5 @@ export const PRIVATE_MAINNET_CLUSTER_URL =
 export const ENDPOINT =
   CLUSTER === "devnet" ? clusterApiUrl(CLUSTER) : PRIVATE_MAINNET_CLUSTER_URL;
 
-export const price = 0.12;
+export const price = 0.1;
 export const vaultMintDecimals = 6;
