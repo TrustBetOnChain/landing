@@ -289,7 +289,7 @@ export const MyAccountModalContent: React.FC<Props> = ({
               Product information
             </h3>
             <div className="flex items-center">
-              <p className="text-[28px] text-white">Price: $0.1</p>
+              <p className="text-[28px] text-white">Price: $0.12</p>
             </div>
           </section>
           <section aria-labelledby="options-heading" className="mt-5">
