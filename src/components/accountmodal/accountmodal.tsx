@@ -1,26 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, RadioGroup, Transition } from "@headlessui/react";
-import { ShieldCheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  CheckIcon,
-  QuestionMarkCircleIcon,
-  StarIcon,
-} from "@heroicons/react/20/solid";
-import classNames from "classnames";
-import {
-  useAnchorWallet,
-  useConnection,
-  useWallet,
-} from "@solana/wallet-adapter-react";
-import TbetImage from "../../assets/tbet-icon.svg";
-import {
-  PRE_SALE_PROGRAM,
-  tokenVaultAddress,
-} from "../../presale/config/address";
-import { PublicKey } from "@solana/web3.js";
-import { useTbetStake } from "../../hooks/use-tbet-balance";
-import { connection } from "../../presale/config";
+import { Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { AccountModalContent } from "./account-modal-content";
+import usePhantomContext from "../../Context/usePhantomContext";
 
 interface Props {
   isOpen: boolean;
@@ -34,10 +16,13 @@ export const AccountModal: React.FC<Props> = ({
   onTransactionConfirmation,
 }) => {
   const anchorWallet = useAnchorWallet();
-  const { connected, disconnect, publicKey, wallet } = useWallet();
+  const { wallet } = useWallet();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { DisConnect } = usePhantomContext();
 
   function handleDisconnect() {
-    disconnect();
+    DisConnect();
     onClose();
   }
 
@@ -68,10 +53,10 @@ export const AccountModal: React.FC<Props> = ({
               leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
             >
               <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
-                {isOpen && anchorWallet && wallet && (
+                {isOpen && (
                   <AccountModalContent
-                    anchorWallet={anchorWallet}
-                    wallet={wallet}
+                    anchorWallet={anchorWallet!}
+                    wallet={wallet!}
                     disconnect={handleDisconnect}
                     onClose={onClose}
                     onTransactionConfirmation={onTransactionConfirmation}

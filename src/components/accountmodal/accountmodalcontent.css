@@ -1,0 +1,31 @@
+.backdropmist {
+  width: 300px;
+  height: 300px;
+  filter: blur(400px);
+  position: absolute;
+  background-color: var(--primarytext-color);
+}
+.mobilelabelsselect {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 15px !important;
+}
+
+@media (max-width: 500px) {
+  .mobilemodal {
+    display: grid;
+    place-content: center;
+    background-color: #ffffff45;
+  }
+
+  .backdropmist {
+    width: 300px;
+    height: 300px;
+    filter: blur(200px);
+    top: -42%;
+    left: -20%;
+    position: absolute;
+    background-color: var(--primarytext-color);
+  }
+}

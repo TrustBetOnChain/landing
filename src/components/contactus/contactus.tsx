@@ -6,21 +6,19 @@ import Telegram from "../../assets/imgs/tg.svg";
 import Youtube from "../../assets/imgs/youtube.svg";
 import X from "../../assets/imgs/x.svg";
 import Assure from "../../assets/imgs/assure.svg";
+import MEDIUM from "../../assets/imgs/Medium_Icon.svg";
+import DISCORD from "../../assets/imgs/discord.svg";
 import { PageSection } from "../../page-section";
 import { useState } from "react";
-import { sendEmail } from "../../email/sendEmail";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Modal } from "../modal/modal";
 
 export const ContactUs = () => {
-  const [message, setMessage] = useState("");
-  const [subject, setSubject] = useState("");
-
   const [modalIsOpen, setmodalIsOpen] = useState(false);
-  const [refAnimate] = useAutoAnimate();
-
   return (
-    <section id={PageSection.CONTACT} className={`${s.contactus} container`}>
+    <section
+      id={PageSection.CONTACT}
+      className={`${s.contactus} max-w-[84%] max-sm:!max-w-full mx-auto`}
+    >
       <aside className={s["aside"]}>
         <div className={s["aside-header"]}>
           <img src={TBetLogo} alt="" />
@@ -30,7 +28,7 @@ export const ContactUs = () => {
             white paper thoroughly analyzes current pitfalls of the industry,
             highlighting the concentration of profits in the hands of a few.
           </p>
-          <div>
+          <div className={s["header-contactus-link"]}>
             <a
               target="_blank"
               href="https://drive.google.com/file/d/16UHbchyN24CgOac8_7F_ln0BZUvTNdIx/view?usp=sharing"
@@ -39,7 +37,7 @@ export const ContactUs = () => {
             </a>
             <a
               target="_blank"
-              href="https://drive.google.com/file/d/1lfuu-qc4zeHDIIbHhZeAvclROMDtUfnR/view?usp=sharing"
+              href="https://drive.google.com/drive/folders/0AK7xtU8S9J_GUk9PVA"
             >
               Whitepaper
             </a>
@@ -62,10 +60,11 @@ export const ContactUs = () => {
           </div>
         </div>
       </aside>
-      <article className={s["article"]}>
+      <article className={s["article"] + " z-[200]"}>
         <h2 className={s["title"]}>Have any questions?</h2>
-        <span>
-          Please join our Telegram and Twitter and we would be happy to answer
+        <span className={s["span"] + " !mb-5"}>
+          Please join our Discord, Telegram and X.com and we <br /> would be
+          happy to answer
         </span>
         <div className={s["aside-socials"]}>
           <a target="_blank" href="https://t.me/TrustBetOC">
@@ -85,6 +84,12 @@ export const ContactUs = () => {
             href="https://youtube.com/@TrustBetOn-Chain?si=OsoKzu-byPpM5w2D"
           >
             <img src={Youtube} alt="" />
+          </a>
+          <a target="_blank" href="https://discord.gg/x54S3bChs3">
+            <img src={DISCORD} alt="" />
+          </a>
+          <a target="_blank" href="https://medium.com/@TrustBet">
+            <img src={MEDIUM} alt="" />
           </a>
         </div>
       </article>
