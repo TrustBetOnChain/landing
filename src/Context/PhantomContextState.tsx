@@ -163,22 +163,22 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       // console.log(i)
       // }
       // alert();
+      // @ts-ignore
+      if (!(window?.trustwallet || window?.trustWallet)) {
+        return window.open(
+          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+          "_blank",
+        );
+        // const isAndroid = /Android/i.test(navigator.userAgent);
+        // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      if (!("trustwallet" in window || "trustWallet" in window)) {
-        // return window.open(
-        //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-        //   "_blank",
-        // );
-        const isAndroid = /Android/i.test(navigator.userAgent);
-        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-        if (isAndroid) {
-          window.location.href = `intent://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}#Intent;scheme=https;package=com.wallet.crypto.trustapp;end;`;
-        } else if (isIOS) {
-          window.location.replace(
-            `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-          );
-        }
+        // if (isAndroid) {
+        //   window.location.href = `intent://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}#Intent;scheme=https;package=com.wallet.crypto.trustapp;end;`;
+        // } else if (isIOS) {
+        //   window.location.replace(
+        //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+        //   );
+        // }
       }
     }
     try {
