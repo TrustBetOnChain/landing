@@ -158,11 +158,11 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      // let str = ;
-      // for (const i in window) {
-      // console.log(i)
-      // }
-      // alert();
+      let str = "";
+      for (const i in window) {
+        str = str + " " + i + ",";
+      }
+      alert(str);
       // @ts-ignore
       if (!(window?.trustwallet || window?.trustWallet)) {
         return window.open(
