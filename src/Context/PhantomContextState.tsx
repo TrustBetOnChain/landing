@@ -164,7 +164,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         //   "_blank",
         // );
         const url = `${window.location.href}?wallet=${walletType}`;
-        const deepLink = `trustwallet://open_url?coin_id=60&url=${encodeURIComponent(url)}`;
+        const deepLink = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(url)}`;
 
         window.location.href = deepLink; // Open the Trust Wallet app directly
         // Fallback to Trust Wallet's app page if it's not installed
