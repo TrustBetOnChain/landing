@@ -158,22 +158,29 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      alert(JSON.stringify(window));
-      if (!("trustwallet" in window || "trustWallet" in window)) {
-        // return window.open(
-        //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-        //   "_blank",
-        // );
-        const url = `${window.location.href}?wallet=${walletType}`;
-        const deepLink = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(url)}`;
+      // let str = ;
+      // for (const i in window) {
+      // console.log(i)
+      // }
+      // alert();
 
-        window.location.href = deepLink; // Open the Trust Wallet app directly
-        // Fallback to Trust Wallet's app page if it's not installed
-        setTimeout(() => {
-          window.location.href =
-            "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp";
-        }, 2000);
-      }
+      setTimeout(() => {
+        if (!("trustwallet" in window || "trustWallet" in window)) {
+          // return window.open(
+          //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+          //   "_blank",
+          // );
+          const url = `${window.location.href}?wallet=${walletType}`;
+          const deepLink = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(url)}`;
+
+          window.location.href = deepLink; // Open the Trust Wallet app directly
+          // Fallback to Trust Wallet's app page if it's not installed
+          setTimeout(() => {
+            window.location.href =
+              "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp";
+          }, 2000);
+        }
+      }, 5000);
     }
     try {
       if (walletType === "Phantom") {
