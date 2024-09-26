@@ -159,6 +159,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     if (walletType === "trustwallet") {
       let str = "";
+      console.log(window);
       for (const i in window) {
         str = str + " " + i + ",";
       }
