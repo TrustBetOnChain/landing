@@ -159,10 +159,19 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     if (walletType === "trustwallet") {
       if (!("trustwallet" in window || "trustWallet" in window)) {
-        return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-          "_blank",
-        );
+        // return window.open(
+        //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+        //   "_blank",
+        // );
+        const url = `${window.location.href}?wallet=${walletType}`;
+        const deepLink = `trustwallet://open_url?coin_id=60&url=${encodeURIComponent(url)}`;
+
+        window.location.href = deepLink; // Open the Trust Wallet app directly
+        // Fallback to Trust Wallet's app page if it's not installed
+        setTimeout(() => {
+          window.location.href =
+            "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp";
+        }, 2000);
       }
     }
     try {
