@@ -158,7 +158,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      alert(window);
+      alert(JSON.stringify(window));
       if (!("trustwallet" in window || "trustWallet" in window)) {
         // return window.open(
         //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
