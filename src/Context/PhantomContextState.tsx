@@ -158,29 +158,68 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      let str = "";
-      console.log(window);
-      for (const i in window) {
-        str = str + " " + i + ",";
-      }
-      alert(str);
-      // @ts-ignore
-      if (!(window?.trustwallet || window?.trustWallet)) {
-        return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-          "_blank",
-        );
-        // const isAndroid = /Android/i.test(navigator.userAgent);
-        // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      // let str = "";
+      // console.log(window);
+      // for (const i in window) {
+      //   str = str + " " + i + ",";
+      // }
+      // alert(str);
+      // // @ts-ignore
+      // if (!(window?.trustwallet || window?.trustWallet)) {
+      //   return window.open(
+      //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+      //     "_blank",
+      //   );
+      //   // const isAndroid = /Android/i.test(navigator.userAgent);
+      //   // const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-        // if (isAndroid) {
-        //   window.location.href = `intent://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}#Intent;scheme=https;package=com.wallet.crypto.trustapp;end;`;
-        // } else if (isIOS) {
-        //   window.location.replace(
-        //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-        //   );
-        // }
-      }
+      //   // if (isAndroid) {
+      //   //   window.location.href = `intent://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}#Intent;scheme=https;package=com.wallet.crypto.trustapp;end;`;
+      //   // } else if (isIOS) {
+      //   //   window.location.replace(
+      //   //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+      //   //   );
+      //   // }
+      // }
+
+      const interval: any = setInterval(() => {
+        if (
+          // @ts-ignore
+          typeof window.trustwallet !== "undefined" ||
+          // @ts-ignore
+          typeof window.trustWallet !== "undefined"
+        ) {
+          alert("found");
+          alert(interval);
+
+          // Do wallet-related stuff here
+        } else if (interval == 50) {
+          return window.open(
+            `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+            "_blank",
+          );
+        } else {
+          console.log("Trust Wallet is not found. Trying again...");
+          return;
+        }
+      }, 1000);
+      alert(interval);
+
+      // if (!("trustwallet" in window || "trustWallet" in window)) {
+      //   return window.open(
+      //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+      //     "_blank",
+      //   );
+      //   // const url = `${window.location.href}?wallet=${walletType}`;
+      //   // const deepLink = `trustwallet://open_url?coin_id=60&url=${encodeURIComponent(url)}`;
+
+      //   // window.location.href = deepLink; // Open the Trust Wallet app directly
+      //   // // Fallback to Trust Wallet's app page if it's not installed
+      //   // setTimeout(() => {
+      //   //   window.location.href =
+      //   //     "https://play.google.com/store/apps/details?id=com.wallet.crypto.trustapp";
+      //   // }, 2000); // Wa
+      // }
     }
     try {
       if (walletType === "Phantom") {
@@ -208,7 +247,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   const getbalancesolana = async () => {
-    console.log("balance")
+    console.log("balance");
     setSolanaBalance(await getSolPrice());
   };
   useEffect(() => {
