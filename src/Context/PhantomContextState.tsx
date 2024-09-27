@@ -158,12 +158,12 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      if (!("trustwallet" in window || "trustWallet" in window)) {
-        return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}&_=${new Date().getTime()}`,
-          "_self",
-        );
-      }
+      // if (!("trustwallet" in window || "trustWallet" in window)) {
+      //   return window.open(
+      //     `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}&_=${new Date().getTime()}`,
+      //     "_self",
+      //   );
+      // }
     }
     try {
       if (walletType === "Phantom") {
