@@ -163,7 +163,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
         //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
         //   "_blank",
         // );
-        const url = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(`${window.location.href}?wallet=${walletType}`)}`;
+        const url = `https://link.trustwallet.com/open_url?url=https://fetrustbet.solulabdev.com?wallet=${walletType}`)}`;
         return window.open(url, "_blank");
       }
     }
