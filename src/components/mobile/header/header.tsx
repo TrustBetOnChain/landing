@@ -4,20 +4,12 @@ import BurgerMenu from "../../../assets/imgs/burger-menu.svg";
 import Logo from "../../../assets/imgs/logo.svg";
 import Cross from "../../../assets/imgs/cross.svg";
 import { PageSection } from "../../../page-section";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export const HeaderMobile = () => {
-  const [isReload,setReload] = useState(sessionStorage.getItem('reload'))
   const [modal, setModal] = useState(false);
   const [refAnimate] = useAutoAnimate();
-  useEffect(()=>{
-    if(isReload !== 'true'){
-      sessionStorage.setItem('reload','true')
-      // @ts-ignore
-      window.location.reload(true)
-    }
-  },[])
   return (
     <header ref={refAnimate} className={s["header"]}>
       <nav className={s["nav"]}>
