@@ -158,11 +158,15 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
     if (walletType === "trustwallet") {
-      if (!("trustwallet" in window || "trustWallet" in window)) {
-        return window.open(
-          `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
-          "_blank",
-        );
+        //@ts-ignore
+      let isTrust = typeof window !== 'undefined' && Boolean(window.aptos) && Boolean((window.aptos as any)?.isTrust)
+      if (!("trustwallet" in window || "trustWallet" in window || isTrust)) {
+        // return window.open(
+        //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
+        //   "_blank",
+        // );
+        const url = `https://link.trustwallet.com/open_url?coin_id=637&url=https://fetrustbet.solulabdev.com`;
+        return window.open(url, "_blank");
       }
     }
     try {
@@ -191,7 +195,7 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   const getbalancesolana = async () => {
-    console.log("balance")
+    console.log("balance");
     setSolanaBalance(await getSolPrice());
   };
   useEffect(() => {
