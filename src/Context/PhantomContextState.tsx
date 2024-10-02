@@ -159,11 +159,13 @@ const PhantomContextState: FC<{ children: ReactNode }> = ({ children }) => {
     }
     if (walletType === "trustwallet") {
       if (!("trustwallet" in window || "trustWallet" in window)) {
+        //@ts-ignore
+        alert(typeof window !== 'undefined' && Boolean(window.aptos) && Boolean((window.aptos as any)?.isTrust))
         // return window.open(
         //   `https://link.trustwallet.com/open_url?url=${window.location.href}?wallet=${walletType}`,
         //   "_blank",
         // );
-        const url = `https://link.trustwallet.com/open_url?url=https://fetrustbet.solulabdev.com?wallet=${walletType}`;
+        const url = `https://link.trustwallet.com/open_url?coin_id=637&url=https://fetrustbet.solulabdev.com`;
         return window.open(url, "_blank");
       }
     }
