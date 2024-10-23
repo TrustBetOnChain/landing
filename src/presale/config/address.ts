@@ -29,7 +29,7 @@ export const chainlink_price_feed: Record<SupportedNetwork, ChainlinkFeed> = {
 };
 
 export const PRE_SALE_PROGRAM = new PublicKey(
-  "CksdmMwTMoiotvYaNhXt8yUTYWHG4z8bBDvnq3cGY1EC",
+  "BAyhP4KBin6TFCRfFgvVqRsKxFgUMFZ4mVvWEgEL3mtH",
 );
 
 export const COLLECTOR_ADDRESS = new PublicKey(
